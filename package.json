@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/queerviolet/bones/issues"
   },
-  "homepage": "https://github.com/queerviolet/bones#readme"
+  "homepage": "https://github.com/queerviolet/bones#readme",
+  "dependencies": {
+    "chalk": "^1.1.3"
+  }
 }
