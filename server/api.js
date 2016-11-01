@@ -8,11 +8,11 @@ const api = module.exports = require('express').Router()
 //   .use('/auth', require('./auth'))
 //   .use('/users', require('./users'))
 
-api.use('/products', require('./products'))
-api.use('/carts', require('./carts'))
-api.use('/orders', require('./orders'))
-api.use('/addresses', require('./addresses'))
-api.use('/credit-cards', require('./credit-cards'))
+api.use('/products', require('./routes/products'))
+api.use('/carts', require('./routes/carts'))
+api.use('/orders', require('./routes/orders'))
+api.use('/addresses', require('./routes/addresses'))
+api.use('/credit-cards', require('./routes/credit-cards'))
 
 // Send along any errors
 api.use((err, req, res, next) => {
