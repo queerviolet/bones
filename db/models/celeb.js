@@ -1,19 +1,18 @@
 'use strict'
 
-const bcrypt = require('bcrypt')
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 
-const Celeb = db.define('users', {
+const Celeb = db.define('celebs', {
   name: {
     type: Sequelize.STRING,
     allowNull: false
   },
-  type: Sequelize.STRING,
+  celebType: Sequelize.STRING,
   list: Sequelize.STRING,
   rarity: Sequelize.INTEGER,
   alive: {
-    type: Sequelize.Boolean,
+    type: Sequelize.BOOLEAN,
     allowNull: false
   },
 })
