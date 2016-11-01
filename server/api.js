@@ -3,10 +3,9 @@
 const db = require('APP/db')
 const api = module.exports = require('express').Router()
 
-// api
-//   .get('/heartbeat', (req, res) => res.send({ok: true,}))
-//   .use('/auth', require('./auth'))
-//   .use('/users', require('./users'))
+api.get('/heartbeat', (req, res) => res.send({ok: true,}))
+api.use('/auth', require('./auth'))
+api.use('/users', require('./routes/users'))
 
 api.use('/products', require('./routes/products'))
 api.use('/carts', require('./routes/carts'))
