@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('APP/db')
-const User = require('./user')
+const User = require('./userModel')
 const {expect} = require('chai')
 
 describe('User', () => {

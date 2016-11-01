@@ -1,7 +1,7 @@
 const debug = require('debug')('auth')
 const passport = require('passport')
 
-const User = require('APP/db/models/user')
+const User = require('APP/db/models/userModel')
 
 const auth = require('express').Router()
 
