@@ -10,7 +10,6 @@ const Celeb = db.define('celebs', {
   },
   celebType: Sequelize.STRING,
   list: Sequelize.STRING,
-  rarity: Sequelize.INTEGER,
   alive: {
     type: Sequelize.BOOLEAN,
     allowNull: false
