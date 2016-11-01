@@ -11,13 +11,11 @@ describe('Celeb', () => {
       Celeb.create({ name: 'Famous Living Dude',
                    celebType: 'rich dude',
                    list: 'C',
-                   rarity: 12,
                       alive: true})
         .then(celeb => {
               expect(celeb).to.contain({ name: 'Famous Living Dude',
                    celebType: 'rich dude',
                    list: 'C',
-                   rarity: 12,
                   alive: true})
         })
       )
@@ -40,7 +38,6 @@ describe('Celeb', () => {
         Celeb.create({
                      celebType: 'rich dude',
                      list: 'C',
-                     rarity: 12,
                         alive: true})
           .then(celeb => console.log('this should not print'))
           .catch(function (err) {
@@ -51,8 +48,7 @@ describe('Celeb', () => {
       it('wont create a celeb without a living status', () =>
         Celeb.create({ name: 'Famous Living Dude',
                      celebType: 'rich dude',
-                     list: 'C',
-                     rarity: 12})
+                     list: 'C'})
           .then(celeb => console.log('this should not print'))
           .catch(function (err) {
             expect(err.name).to.be.equal('SequelizeValidationError');
@@ -63,7 +59,6 @@ describe('Celeb', () => {
         Celeb.create({ name: 'Famous Living Dude',
                      celebType: 'rich dude',
                      list: 'C',
-                     rarity: 12,
                      alive: 'cool'
                   })
           .then(celeb => console.log(celeb))
