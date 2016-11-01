@@ -23,6 +23,10 @@ const Product = db.define('product', {
     photoUrl: {
         type: Sequelize.STRING,
         defaultValue: null
+    },
+    isDigitalShip: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
     }
 }, {
     classMethods: {

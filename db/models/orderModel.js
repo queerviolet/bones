@@ -16,7 +16,8 @@ const Order = db.define('order', {
     totalCost: {
         type: Sequelize.DECIMAL(10, 2),
         defaultValue: 0
-    }
+    },
+    address: Sequelize.STRING,
 
 });
 

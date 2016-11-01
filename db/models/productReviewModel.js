@@ -3,7 +3,7 @@
 const Sequelize = require('sequelize');
 const db = require('APP/db');
 
-const ProductReviews = db.define('productReviews', {
+const ProductReview = db.define('productReview', {
     title: {
         type: Sequelize.STRING,
         allowNull: false
@@ -12,7 +12,7 @@ const ProductReviews = db.define('productReviews', {
         type: Sequelize.TEXT,
         allowNull: false,
         validate: {
-            len: [50, 500]
+            len: [10, 500]
         }
     },
     numStars: {
@@ -28,4 +28,4 @@ const ProductReviews = db.define('productReviews', {
 // productReviews belongsto product
 // 
 
-module.exports = ProductReviews;
+module.exports = ProductReview;
