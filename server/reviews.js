@@ -1,4 +1,4 @@
-import db = from 'APP/db';
+import db from 'APP/db';
 import express from 'express';
 import Review from 'APP/db/models/product'
 
@@ -13,3 +13,4 @@ router.get('/', (req, res, next) => {
 })
 
 
+module.exports = router

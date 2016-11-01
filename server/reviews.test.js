@@ -31,9 +31,9 @@ describe('/api/reviews', () => {
   )
 
 
-  it('GET / lists all products', () =>
+  it('GET / lists all reviews', () =>
     request(app)
-      .get(`/api/products`)
+      .get(`/api/reviews`)
       .expect(200)
       .then(res => {
         expect(res.body).to.have.length(reviews.length)
