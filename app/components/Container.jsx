@@ -4,8 +4,9 @@ import { Link } from 'react-router';
 
 
 export class Container extends Component {
+
   render() {
-    console.log(this)
+    console.log(this.props)
     return (
       <div>
       <nav>
@@ -15,7 +16,7 @@ export class Container extends Component {
             <span>Your source for celebrity memoribilia</span>
           </div>
           <ul>
-            <li><Link to='/login'>Login</Link></li>
+            <li>{this.props.auth == null ? <Link to='/login'>Login</Link> : <Link to='/logout'>Logout</Link> }</li>
             <li>Cart</li>
           </ul>
         </div>
@@ -36,7 +37,11 @@ export class Container extends Component {
     )}
 }
 
+const mapStateToProps = ({auth}) => ({
+  auth
+})
+
 export default connect (
-  state => ({}),
+  mapStateToProps,
   null
 ) (Container)
