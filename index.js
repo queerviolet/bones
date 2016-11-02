@@ -3,12 +3,8 @@
 const {resolve} = require('path')
 const chalk = require('chalk')
 const pkg = require('./package.json')
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
 const debug = require('debug')(`${pkg.name}:boot`)
->>>>>>> 256fc4bb61b0d36e2c22304f87d8349cfa0e6329
 
 const nameError =
 `*******************************************************************
