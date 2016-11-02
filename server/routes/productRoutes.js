@@ -12,11 +12,19 @@ module.exports = customProductRoutes
 // Epilogue will automatically create standard RESTful routes
 const product = epilogue.resource({
   model: db.model('product'),
-  endpoints: ['/product', '/product/:id'],
-  search: {
-    param: 'productTitle',
-    attributes: ['title']
-  }
+  endpoints: ['/products', '/product/:id'],
+  search: [
+    {
+      operator: '$eq',
+      param: 'isDigitalShip',
+      attributes: ['isDigitalShip']
+    }, {
+      param: 'productTitle',
+      attributes: ['title']
+    }, {
+      param: 'productDesc',
+      attributes: ['description']
+    }],
 })
 
 // find all users
