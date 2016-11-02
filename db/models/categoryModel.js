@@ -11,4 +11,6 @@ const Category = db.define('category', {
     }
 });
 
+// class method to add category -- NOT RIGHT NOW.
+
 module.exports = Category;

@@ -38,7 +38,13 @@ var data = {
   ],
 
   orders: [
-    { status: 'complete', items: [[1, 2], [5, 1]], totalCost: 42008.40, address: '5 Hanover Square, New York, NY, 10004', user_id: 1 }
+    { status: 'complete', address: '5 Hanover Square, New York, NY, 10004', user_id: 1 }
+  ],
+
+  order_Product: [
+    {quantity: 5, subTotal: 21.00, order_id: 1, product_id: 1},
+    {quantity: 3, subTotal: 1.26, order_id: 1, product_id: 3},
+    {quantity: 1, subTotal: 42000.00, order_id: 1, product_id: 5},
   ]
 }
 
@@ -47,6 +53,7 @@ const seedProducts = () => db.Promise.map(data.products, product => db.model('pr
 const seedProductReviews = () => db.Promise.map(data.productReviews, productReview => db.model('productReview').create(productReview));
 const seedCategories = () => db.Promise.map(data.categories, category => db.model('category').create(category));
 const seedOrders = () => db.Promise.map(data.orders, order => db.model('order').create(order));
+const seedOrder_Product = () => db.Promise.map(data.order_Product, order_Product => db.model('order_product').create(order_Product));
 //const seedCart = () => {}
 
 db.didSync
@@ -56,6 +63,7 @@ db.didSync
   .then(seedProducts)
   .then(seedProductReviews)
   .then(seedOrders)
+  .then(seedOrder_Product)
   .then(info => console.log(`Seeding has been completed!`))
   .catch(error => console.error(error))
   .finally(() => db.close())
