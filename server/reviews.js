@@ -1,6 +1,6 @@
-import db from 'APP/db';
-import express from 'express';
-import Review from 'APP/db/models/review'
+const db = require('APP/db');
+const express = require('express');
+const Review = require('APP/db/models/review');
 
 const router = express.Router();
 
