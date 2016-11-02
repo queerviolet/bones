@@ -9,12 +9,14 @@ import styles from './style/main.css'
 import store from './store'
 import Container from './components/Container'
 import Login from './components/Login'
+import ProductsContainer from './components/Products'
 
 
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={Container}>
+        <IndexRoute component={ProductsContainer} />
         <Route path="/login" component={Login} />
       </Route>
     </Router>
