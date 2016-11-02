@@ -1,6 +1,5 @@
 const Celeb = require('APP/db/models/celeb');
 const Product = require('APP/db/models/product');
-
 const router = require('express').Router();
 
 router.get('/', (req, res, next) =>
@@ -10,11 +9,8 @@ router.get('/', (req, res, next) =>
   )
 
 router.post('/', (req,res,next) =>
-  Celeb.findOrCreate(req.body)
-  .spread((celeb,wasCreatedBool) => {
-    if (wasCreatedBool) res.send(celeb)
-    else res.send({message: "Celebrity could not be added."})
-  })
+  Celeb.create(req.body)
+  .then(createdCeleb => res.status(201).send(createdCeleb))
   .catch(next)
   )
 
@@ -29,11 +25,6 @@ router.get('/:celebId', (req,res,next) =>
 
   })
   .then(foundProdsByCeleb => res.send(foundProdsByCeleb))
-  // .then(foundEntries => {
-  //   return foundEntries.map( entry => {
-  //     Product.findById(entry.productId)
-  //   })
-  // .then(foundProdsByCeleb => res.send(foundProdsByCeleb))
   .catch(next)
   )
 
@@ -43,7 +34,7 @@ router.put('/:celebId', (req,res,next) =>
       id: req.params.celebId
     }
   })
-  .then(foundCelebs => res.send(foundCelebs))
+  .then(updatedCeleb => res.send(updatedCeleb))
   .catch(next)
   )
 
