@@ -1,6 +1,13 @@
 import { createStore, applyMiddleware } from 'redux'
 import rootReducer from './reducers'
-import creatLogger from 'redux-logger'
+import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 
-export default createStore(rootReducer, applyMiddleware(creatLogger(), thunkMiddleware))
+import {whoami} from './reducers/auth'
+
+const store = createStore(rootReducer, applyMiddleware(createLogger(), thunkMiddleware))
+
+export default store
+
+// Set the auth info at start
+store.dispatch(whoami()) 
