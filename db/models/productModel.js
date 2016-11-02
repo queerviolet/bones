@@ -28,13 +28,14 @@ const Product = db.define('product', {
         type: Sequelize.BOOLEAN,
         defaultValue: false
     }
-}, {
-    classMethods: {
-        createProduct: (productObj, userId) => {
-        productObj.userId = userId;
-            return Product.create(productObj);
-        }
-    }
-});
+}//, {  THIS METHOD WILL BE FOR INSERTING A PRODUCT WITH A SELLER ID.
+//     classMethods: {
+//         createProduct: (productObj, userId) => {
+//         productObj.userId = userId;
+//             return Product.create(productObj);
+//         }
+//     }
+// }
+);
 
 module.exports = Product;

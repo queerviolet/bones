@@ -21,6 +21,9 @@ const Order = db.define('order', {
 
 });
 
+// CLASS method that handles the entire order.
+    // will take a cart as input and add a new row to the table. 
+
 //order belongsto user
 // order hasmany product??
 module.exports = Order;

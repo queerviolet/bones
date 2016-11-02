@@ -12,6 +12,9 @@ const Cart = db.define('cart', {
     }
 });
 
+// instance method to add to cart.
+// instance method to update cart total price.
+
 // cart belongsTo user
 
 module.exports = Cart;

@@ -24,8 +24,10 @@ const ProductReview = db.define('productReview', {
     }
 });
 
+
+
 // productReviews belongsto user
 // productReviews belongsto product
-// 
+//
 
 module.exports = ProductReview;
