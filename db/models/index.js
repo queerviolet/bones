@@ -1,4 +1,4 @@
-'use strict';
+  'use strict';
 
 // Require our models. Running each module registers the model into sequelize
 // so any other part of the application could call sequelize.model('User')
@@ -10,6 +10,7 @@ const Cart = require('./cartModel')
 const Order = require('./orderModel')
 const Product = require('./productModel')
 const ProductReview = require('./productReviewModel')
+const order_Product = require('./order_Product')
 
 // Associations for db Models
 
@@ -40,11 +41,16 @@ ProductReview.belongsTo(Product);
 
 // Product Review Associations
 
-module.exports = { 
+
+Order.belongsToMany(Product, {through: 'order_product'});
+Product.belongsToMany(Order, {through: 'order_product'});
+
+module.exports = {
     User,
     Category,
     Cart,
     Order,
     Product,
-    ProductReview
+    ProductReview,
+    order_Product
 }
