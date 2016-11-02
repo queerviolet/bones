@@ -1,6 +1,6 @@
 'use strict'
 
-import axios from ('axios');
+import axios from 'axios';
 
 // Create constant for Actions
 export const RECEIVE_ALL_PRODUCTS = 'RECEIVE_ALL_PRODUCTS';
