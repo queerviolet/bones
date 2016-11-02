@@ -3,58 +3,22 @@
 const {resolve} = require('path')
 const chalk = require('chalk')
 const pkg = require('./package.json')
-
+const debug = require('debug')(`${pkg.name}:boot`)
 
 const nameError =
 `*******************************************************************
- You need to give your app a proper name.`
-
-const appLink = join(__dirname, 'node_modules', 'APP')
-
-const symlinkError = error =>
-`*******************************************************************
-${appLink} must point to '..'
-This symlink lets you require('APP/some/path') rather than
-../../../some/path
-I tried to create it, but got this error:
-${error.message}
-You might try this:
-  rm ${appLink}
-Then run me again.
+ You need to give your app a proper name.
+ The package name
+    ${pkg.name}
+isn't valid. If you don't change it, things won't work right.
+Please change it in ${__dirname}/package.json
   ~ xoxo, bones
 ********************************************************************`
 
-function makeAppSymlink() {
-  console.log(`Linking '${appLink}' to '..' ...`)
-  try {
-    fs.unlinkSync(appLink)
-    fs.linkSync(appLink, '..')
-  } catch (error) {
-    console.error(chalk.red(nameError))
-    process.exit(1)
-  }
-  console.log(`Ok, created ${appLink}`)
+const reasonableName = /^[a-z0-9\-_]+$/
+if (!reasonableName.test(pkg.name)) {
+  console.error(chalk.red(nameError))
 }
-
-function checkAppSymlink() {
-  try {
-    const currently = fs.readlinkSync(appLink)
-    if (currently !== '..') {
-      throw new Error(`${appLink} is pointing to '${currently}' rather than '..'`)
-    }
-  } catch (error) {
-    makeAppSymlink()
-  }
-}
-
-const debug = require('debug')(`${pkg.name}:boot`)
-
-
-// this was giving us incorrect errors
-// const reasonableName = /^[[a-z0-9]\-]+$/
-// if (!reasonableName.test(pkg.name)) {
-//   console.error(chalk.red(nameError))
-// }
 
 // This will load a secrets file from
 //
