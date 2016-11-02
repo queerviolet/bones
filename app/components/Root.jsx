@@ -27,9 +27,10 @@ export default class BonesJokes extends Component {
 
     const {joke, answered} = this.state
     return (
-      <div>
-        <h1>Selleb</h1>
-        <h2>Your source for celeb memoribilia</h2>
+      <div onClick={answered ? this.nextJoke : this.answer}>
+        <h1>{joke.q}</h1>
+        {answered && <h2>{joke.a}</h2>}
+        <cite>~xoxo, bones</cite>
       </div>
     )
   }
