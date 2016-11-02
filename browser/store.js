@@ -1,6 +1,14 @@
 import { createStore, applyMiddleware } from 'redux'
-import rootReducer from './reducers'
-import creatLogger from 'redux-logger'
+import rootReducer from './redux'
+import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 
-export default createStore(rootReducer, applyMiddleware(creatLogger(), thunkMiddleware))
+// Setup Redux middleware based on env
+const middleware = [ thunkMiddleware ];
+// if (window && window.location.host.slice(0, 9) === 'localhost')
+  middleware.push(createLogger());
+
+export default createStore(
+  rootReducer,
+  applyMiddleware(...middleware)
+);

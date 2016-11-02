@@ -36,6 +36,7 @@ module.exports = app
   
   // Serve static files from ../public
   .use(express.static(resolve(__dirname, '..', 'public')))
+  .use(express.static(resolve(__dirname, '..', 'node_modules/bootstrap/dist/css')))
 
   // Serve our api
   .use('/api', require('./api'))
