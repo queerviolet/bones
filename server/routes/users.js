@@ -15,8 +15,13 @@ const users = epilogue.resource({
   endpoints: ['/users', '/users/:id']
 })
 
-const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
-users.delete.auth(mustBeLoggedIn)
-users.delete.auth(selfOnly)
-users.list.auth(forbidden)
-users.read.auth(mustBeLoggedIn)
+customUserRoutes.get('/', (req, res) => {
+	res.send(users.model)
+})
+
+
+// const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
+// users.delete.auth(mustBeLoggedIn)
+// users.delete.auth(selfOnly)
+// users.list.auth(forbidden)
+// users.read.auth(mustBeLoggedIn)
