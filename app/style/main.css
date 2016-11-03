@@ -4,6 +4,7 @@
 
 body {
   margin: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 nav {
@@ -90,15 +91,4 @@ label.star:hover { transform: rotate(-15deg) scale(1.3); }
 label.star:before {
   content: '\f006';
   font-family: FontAwesome;
-}
-
-
-#productsTable {
-  width: 100%;
-  display: flex;
-  padding: 0 1rem;
-  margin-bottom: 5px;
-  justify-content: space-between;
-  align: center;
-  display: inline-block;
 }
