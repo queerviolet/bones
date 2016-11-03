@@ -27,6 +27,10 @@ const forbidden = message => (req, res, context) => {
   if(!req.user.isAdmin) res.status(403).send(message)
   return context.stop
 }
+const catcherr = msg =>(req, res, context)=>{
+  console.log("RES", req);
+  return context.continue
+}
 
-epilogue.filters = {mustBeLoggedIn, selfOnly, forbidden,}
+epilogue.filters = {mustBeLoggedIn, selfOnly, forbidden, catcherr}
 module.exports = epilogue

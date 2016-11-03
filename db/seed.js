@@ -1,8 +1,10 @@
 const db = require('APP/db')
 
 const seedUsers = () => db.Promise.map([
+
   {firstName: 'Michelle', lastName: 'Obama', email: 'michelle@firstlady.rocks', password: '1234', username: 'totalbadass'},
   {firstName: 'Barack', lastName: 'Obama', email: 'barack@president.rocks', password: '1234', username: 'realpowerfuldude'},
+
 ], user => db.model('users').create(user))
 
 const seedProducts = () => db.Promise.map([
@@ -33,5 +35,5 @@ db.didSync
   .then(celebs => console.log(`Seeded ${celebs.length} celebs OK`))
   .then(seedReviews)
   .then(reviews => console.log(`Seeded ${reviews.length} reviews OK`))
-  .catch(error => console.error(error))    
+  .catch(error => console.error(error))
   .finally(() => db.close())
