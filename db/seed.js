@@ -6,9 +6,9 @@ const seedUsers = () => db.Promise.map([
 ], user => db.model('users').create(user))
 
 const seedProducts = () => db.Promise.map([
-  {name: `Hillary's Pantsuit`, price: 350.00, categories: ['Clothing']},
-  {name: `Elijah Woods's Frodo Ring`, price: 13000, categories:['Film', 'Fantasy']},
-  {name: `Emma Watson's Hermione Wig`, price: 175.00,categories: ['Costume', 'Hair']},
+  {name: `Hillary's Pantsuit`, price: 350.00, description: 'Classic red pantsuit, worn at the Democratic National Convention 2016', categories: ['Clothing']},
+  {name: `Elijah Woods's Frodo Ring`, price: 13000, description: 'Made from real Elven magic', categories:['Film', 'Fantasy']},
+  {name: `Emma Watson's Hermione Wig`, description:'The bushy but loveable mess from Harry Potter and the Chamber of Secrets', price: 175.00,categories: ['Costume', 'Hair']},
 ], product => db.model('products').create(product))
 
 const seedCelebs = () => db.Promise.map([

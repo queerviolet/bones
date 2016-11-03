@@ -3,6 +3,7 @@ const {expect} = require('chai')
 const db = require('APP/db')
 const Product = require('APP/db/models/product')
 const app = require('./start')
+const Review = require('APP/db/models/review')
 
 describe('/api/products', () => {
 
@@ -27,6 +28,27 @@ describe('/api/products', () => {
 
   const [watch, dogCollar] = products
 
+  const reviews = [
+          {
+            stars: 3,
+            text: 'It was the worst thing EVER.',
+            product_id: 1,
+            user_id: 2
+          },
+          {
+            stars: 4,
+            text: 'I loved so much I would marry it if such things were permitted legally!',
+            product_id: 1,
+            user_id: 1
+          },
+          {
+            stars: 0,
+            text: 'It was okay, I guess. Not reall what I expected given the images',
+            product_id: 2,
+            user_id: 1
+          }
+  ]
+
   const celebs = [
     {
       name: 'Angelina Jolie',
@@ -40,13 +62,19 @@ describe('/api/products', () => {
     }
   ]
 
-  const [angelia, brad] = celebs
+  const [angelina, brad] = celebs
 
+
+  // TODO: test is now returning an error because the reviews table also references the products table
   before('sync database & make products', () =>
     db.didSync
       .then(() => Product.destroy({truncate: true}))
       .then(() => products.map(
         product => Product.create(product)))
+      .then(() => Review.destroy({where:{}}))
+      .then(() => reviews.map(
+        product => Review.create(product)
+      ))
   )
 
 
@@ -59,7 +87,7 @@ describe('/api/products', () => {
       })
   )
 
-  // Uncheck this spec and get it to pass
+  // TODO: Uncheck this spec and get it to pass
   xit('**Fix this with understanding of join tables** GET / lists all products by celeb\'s id', () =>
     request(app)
       .get(`/api/products?name=angelina+jolie`)
