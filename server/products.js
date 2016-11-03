@@ -25,25 +25,11 @@ router.get('/', function (req, res, next) {
   }
 })
 
-
-router.get('/:productId', (req, res, next) => {
-  Review.findAll({where: {product_id: req.params.productId}})
-  .then(reviews => {
-    res.json(reviews);
-  })
-  .catch(next)
-})
-
 // Find one existing product based on id
 router.get('/:productId', function (req, res, next) {
   Product.findbyId(req.params.productId)
-    .then(product => {
-      const returnedProduct = product;
-      Review.findAll({where: {product_id: req.params.productId}}) 
-    })
-    .then(reviews => {
-      res.json(returnedProduct, reviews)
-    })
+    .then(product =>
+      res.send(product))
     .catch(next)
 })
 

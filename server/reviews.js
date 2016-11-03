@@ -20,8 +20,6 @@ router.get('/:reviewId', (req, res, next) => {
   .catch(next)
 })
 
-
-// Shouldn't this be just /productId? B/c the full route will be /api/reviews/:productId. If it stays this route, it interferes with the api/products route
 router.get('/products/:productId', (req, res, next) => {
   Review.findAll({where: {product_id: req.params.productId}})
   .then(reviews => {

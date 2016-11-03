@@ -1,17 +1,15 @@
 'use strict'
 
-import React from 'react'
-import { render } from 'react-dom'
-import { connect } from 'react-redux'
-
-import { products } from 'APP/app/reducers/products';
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+import { connect } from 'react-redux';
 
 export class Products extends React.Component {
   render() {
     const { products } = this.props || []
     return (
-      <div>
-        <h1>All Products</h1>
+      <div id="productsTable">
+        <h2>All Products</h2>
         <table type="productsList">
           <thead>
             <tr>
@@ -22,11 +20,11 @@ export class Products extends React.Component {
               <th>Quantity</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="mainTable">
             {
               products && products.map(product => (
                 <tr key={product.id}>
-                  <td> 
+                  <td>
                     <img src={product.photoURL}/>
                   </td>
                   <td>{product.name}</td>
