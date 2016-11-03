@@ -54,7 +54,7 @@ describe('Product', () => {
        name: `Kate Winslet's Titanic Necklace`,
        price: 15000.00
      }).then(product =>
-       expect(product.photoURL).to.eql('http://placehold.it/350x150')
+       expect(product.photoURL).to.eql('http://placehold.it/250x150')
      )
    )
 

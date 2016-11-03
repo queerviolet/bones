@@ -44,7 +44,7 @@ nav ul li:last-child{
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0;
+  padding: 0 1rem;
 }
 
 #main-menu ul li:last-child {
@@ -78,7 +78,7 @@ input.star:checked ~ label.star:before {
  transition: all .25s;
 }
 
-input.star-5:checked ~ label.star:before {
+input.star-5:check2ed ~ label.star:before {
  color: #FE7;
  text-shadow: 0 0 20px #952;
 }
@@ -92,3 +92,13 @@ label.star:before {
   font-family: FontAwesome;
 }
 
+
+#productsTable {
+  width: 100%;
+  display: flex;
+  padding: 0 1rem;
+  margin-bottom: 5px;
+  justify-content: space-between;
+  align: center;
+  display: inline-block;
+}
