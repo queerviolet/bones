@@ -14,16 +14,6 @@ export default () => {
                         <li><a href="#">Last link</a></li>
                     </ul>
                 </div>
-                <div id="page-content-wrapper">
-                    <div className="page-content">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-md-12">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     );
