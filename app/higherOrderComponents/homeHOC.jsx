@@ -12,11 +12,13 @@ const createHomeHOC = HomeComponent => {
 
             componentWillMount () {
                 this.props.onLoadCategories();
+                this.props.onLoadProducts(); // make this function
             }
 
             render () {
                 return (
-                    <HomeComponent categories={this.props.categories}/>
+                    <HomeComponent categories={this.props.categories}
+                                   products={this.props.products}/>
                 );
             }
         }
