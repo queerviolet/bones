@@ -21,5 +21,5 @@ describe('<Container />', () => {
 
   it('main menu has four items', () => {
     expect(root.find('#main-menu li')).to.have.length(4)
-  }
+  })
 })
