@@ -20,7 +20,10 @@ user.get('/', function(req, res, next){
     .catch(next);
 })
 
+
 user.get('/:userId', function(req, res, next){
+
+    console.log('IN USER GET')
     User.findById(req.params.userId)
     .then(function(users){
         console.log("single user", users);
@@ -59,40 +62,14 @@ user.delete('/:userId', function(req, res, next){
 
 })
 
-// const middle = {
-//   list: {
-//     write: {
-//       before: function(req, res, context) {
-//         // modify data before writing list data
-//         return context.continue;
-//       },
-//       action: function(req, res, context) {
-//         console.log("Middle",context.instance);
+const users = epilogue.resource({
+  model: db.model('users'),
+  endpoints: ['/users', '/users/:id']
+})
 
-//         return context.continue;
-//       },
-//       after: function(req, res, context) {
-//         // set some sort of flag after writing list data
-//         return context.continue;
-//       }
-//     }
+const {mustBeLoggedIn, selfOnly, forbidden, catcherr} = epilogue.filters
+users.delete.auth(mustBeLoggedIn)
+users.delete.auth(selfOnly('delete'))
+//users.list.auth(forbidden('cannot list users'))
+users.read.auth(mustBeLoggedIn)
 
-//     }
-
-// };
-
-// // Epilogue will automatically create standard RESTful routes
-// const users = epilogue.resource({
-//   model: db.model('users'),
-//   endpoints: ['/users', '/users/:id']
-// })
-
-// users.use(middle);
-
-// const {mustBeLoggedIn, selfOnly, forbidden, catcherr} = epilogue.filters
-// users.delete.auth(mustBeLoggedIn)
-// users.delete.auth(selfOnly('delete'))
-// //users.list.auth(forbidden('cannot list users'))
-// //console.log("here", user.list.write.action)
-// //users.list.write.action();
-// users.read.auth(mustBeLoggedIn)
