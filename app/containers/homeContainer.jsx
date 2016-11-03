@@ -3,7 +3,7 @@
 import { connect } from 'react-redux';
 import homeHOC from '../higherOrderComponents/homeHOC';
 import { receiveAllCategoriesFromServer } from '../actions/categoryActions';
-import { receiveAllProductsFromServer } from '../actions/productActions';
+import { receiveAllProductsFromServer } from '../actions/productsActions';
 
 const mapStateToProps = (state, ownProps) => ({ })
 const mapDispatchToProps = (dispatch, ownProps) => {

@@ -6,9 +6,9 @@ export default ({products}) => (
 
         <div className="row text-center">
           {
-            products && products.map(product => {
+            products && products.map((product, index) => {
               return (
-                <div className="col-md-3 col-sm-6 product-boxes">
+                <div className="col-md-3 col-sm-6 product-boxes" key={`${index}`}>
                     <div className="thumbnail">
                         <img src="http://placehold.it/800x500" alt=""/>
                         <div className="caption">

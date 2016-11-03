@@ -1,6 +1,6 @@
 'use strict'
 
-import { RECEIVE_ALL_PRODUCTS } from '../actions/productActions';
+import { RECEIVE_ALL_PRODUCTS } from '../actions/productsActions';
 
 // Reducer for Categories
 export default function categoriesReducer(prevState = [], action){
