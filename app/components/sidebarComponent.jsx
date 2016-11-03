@@ -2,16 +2,20 @@
 
 import React from 'react'
 
-export default () => {
+export default ({ categories }) => {
+    console.log(categories);
     return (
         <div className="sidebar-container">
             <div id="wrapper">
                 <div id="sidebar-wrapper">
-                    <ul className="sidebar-nav">
-                        <li className="sidebar-brand"><a href="#">Home</a></li>
-                        <li><a href="#">Another link</a></li>
-                        <li><a href="#">Next link</a></li>
-                        <li><a href="#">Last link</a></li>
+                    <ul className="sidebar-nav"> Categories
+                        {
+                            categories && categories.map((category, index) => {
+                                return (
+                                    <li key={`category-${index}`}>{category.name}</li>
+                                )
+                            })
+                        }
                     </ul>
                 </div>
             </div>

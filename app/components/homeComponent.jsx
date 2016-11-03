@@ -1,12 +1,12 @@
 'use strict'
 
 import React from 'react';
-import sidebarContainer from '../containers/sidebarContainer';
+import SidebarContainer from '../containers/sidebarContainer';
 
 export default () => {
     return (
         <div className="home-container">
-            {sidebarContainer.WrappedComponent()}
+            <SidebarContainer/>
         </div>
     )
 }
