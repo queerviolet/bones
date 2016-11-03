@@ -12,7 +12,7 @@ export class User extends Component {
                     username:"fakeusename",
                     email:"fake email",
                     password:"fake password",
-                    id:3}
+                    id:1}
 
     this.update = this.update.bind(this);
 
