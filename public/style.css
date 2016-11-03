@@ -19,12 +19,32 @@ body,html {
   left: 0px;
 }
 
+.thumbnail {
+  display: inline-block;
+}
+
 .content {
   min-height: calc(100vh - 55px);
   top: 55px;
   padding-top: 2em;
 }
 
-.ratings {
-  height: 20px;
+/* Review List */
+/* Note: Change star font-size */
+
+#reviews {
+  padding-top: 20px;
+}
+
+.reviews-header * {
+  display: inline;
+}
+
+.reviews-rating {
+  float: right;
+  font-size: 30px;
+}
+
+.review > p {
+  margin: 0;
 }

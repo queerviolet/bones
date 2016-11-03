@@ -1,6 +1,7 @@
-import React from'react';
-import { Link } from 'react-router';
+import React from 'react'
 import { RaisedButton } from 'material-ui'
+import Reviews from '../Reviews'
+import { roundPrice, getAvgRating, getStars } from '../../utils'
 
 export default ({ product, buyClick }) => {
 
@@ -8,21 +9,25 @@ export default ({ product, buyClick }) => {
 		return null
 	}
 
+	const avgRating = product.reviews.length ? getAvgRating(product.reviews) : 0;
+	console.log(avgRating)
   return (
 
     <div id="product" className="col-xs-12">
     	<div className="row">
     		<div className="product-image col-xs-12 col-sm-8" >
 
-    		<img src="http://placehold.it/550x400" alt="" />
+    		<img src={product.images[0]} alt="" />
 
     		</div>
 
     		<div className="product-details col-xs-12 col-sm-4" >
 
-    			<h2>NAME</h2>
-    			<p> $$$$ </p>
-    			<p> ***** </p>
+    			<h2>{product.name}</h2>
+    			<p>{`$${roundPrice(product.price)}`}</p>
+    			{
+						avgRating ? getStars(avgRating) : null
+					}
     			{product.quantity ? <p> In-Stock </p> : <p> Out Of Stock </p> }
     			<RaisedButton onClick={buyClick} label='Buy'/>
 
@@ -32,17 +37,12 @@ export default ({ product, buyClick }) => {
 
     	<div className="row">
     		<div className="product-description col-xs-12" >
-
-    			<p>DESCRIPTION</p>
-
+    			<p>{product.description}</p>
     		</div>
-
     	</div>
 
     	<div className="row">
-    		
-    		{/* Review Component*/}
-
+    		<Reviews reviews={product.reviews} avgRating={avgRating} />
     	</div>
 
 

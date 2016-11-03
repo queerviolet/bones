@@ -1,16 +1,19 @@
-import React from'react';
+import React from 'react';
 import { Link } from 'react-router';
 import { AutoComplete, SelectField, MenuItem } from 'material-ui'
+import { roundPrice, getAvgRating, getStars } from '../../utils'
 
 // Replace with categories
 const categories = [
-  'All',
-  'Bedroom',
-  'Office',
-  'Living Room'
+  { key: 'all', display: 'All' },
+  { key: 'bedroom', display: 'Bedroom' },
+  { key: 'livingroom', display: 'Living Room' },
+  { key: 'kitchen', display: 'Kitchen' },
+  { key: 'office', display: 'Office' },
+  { key: 'bath', display: 'Bath' },
+  { key: 'dining', display: 'Dining Room' }
 ]
 
-// TODO: Place actual values inside jsx component
 export default ({ products, category, handleChange }) => {
   return (
     <div id="products" className="col-xs-12">
@@ -20,7 +23,7 @@ export default ({ products, category, handleChange }) => {
             dataSource={ products }
             floatingLabelText="Search"
             fullWidth={ true }
-            onChange={(event, key, value) => handleChange("searchText", value) }
+            onUpdateInput={(text) => handleChange("searchText", text) }
           />
         </div>
         <div className="filter col-sm-3">
@@ -31,7 +34,7 @@ export default ({ products, category, handleChange }) => {
           >
           {
             categories.map((category, i) => {
-              return <MenuItem key={i} value={i} primaryText={category} />
+              return <MenuItem key={i} value={category.key} primaryText={category.display} />
             })
           }
           </SelectField>
@@ -40,18 +43,21 @@ export default ({ products, category, handleChange }) => {
       <div className="row">
       {
         products.map((product) => {
+          const avgRating = getAvgRating(product.reviews)
           return (
           <div key={ product.id } className="col-sm-4 col-lg-4 col-md-4">
             <div className="thumbnail">
-              <img src="http://placehold.it/320x150" alt="" />
+              <img src={product.images[0]} alt="" />
               <div className="caption">
-                <h4 className="pull-right">$24.99</h4>
+                <h4 className="pull-right">{`$${roundPrice(product.price)}`}</h4>
                 <h4>
-                  <Link to={`/products/${product.id}`}>First Product</Link>
+                  <Link to={`/products/${product.id}`}>{product.name}</Link>
                 </h4>
               </div>
-              <div className="ratings">
-                <p className="pull-right">Stars here</p>
+              <div className="pull-right ratings">
+              {
+                getStars(avgRating)
+              }
               </div>
             </div>
           </div>
