@@ -72,3 +72,11 @@ user.delete('/:userId', function(req, res, next){
 
 
 
+const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
+users.delete.auth(mustBeLoggedIn)
+
+users.delete.auth(selfOnly("delete"))
+//users.list.auth(forbidden("cannot list"))
+
+users.read.auth(mustBeLoggedIn)
+
