@@ -1,25 +1,27 @@
 body {
   /* padding is used to prevent the navbar from covering up page content*/
   padding-top: 50px;
-  background-color: #FFF2C5;
+  background-color: #27363B;
 }
 
-#cart img {
- max-width: 60px;
+#cart  {
+ max-width: 100px;
  position: absolute;
  top: 0%;
  right: 5%;
  border-radius: 100%;
+ color: red;
+ font-size: 1.5em;
 }
 
-#cart img{
+#cart {
  transition: 0.5s ease;
  -webkit-transition: 0.5s ease;
  -moz-transition: 0.5s ease;
 }
 
 /* This will control the cart image when someone hovers over it with their mouse*/
-#cart img:hover{
+#cart:hover{
   -webkit-transform: scale(1.5,1.5);
   -moz-transform:scale(1.5,1.5);
   -webkit-opacity: 1;
@@ -35,7 +37,7 @@ body {
   margin-left: -250px;
   left: 250px;
   width: 15vw;
-  background: #363636;
+  background: #FCCEAA;
   position: fixed;
   height: 100%;
   overflow-y: auto;
@@ -58,7 +60,7 @@ body {
   list-style: none;
   margin: 0;
   padding: 0;
-  color: #E8E8E8;
+  color: #27363B;
   font-size: 20px;
 }
 
