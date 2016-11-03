@@ -10,6 +10,7 @@ import store from './store'
 import Container from './components/Container'
 import Login from './components/Login'
 import User from './components/user'
+import Review from './components/Review'
 import ProductsContainer from './components/Products'
 
 render (
@@ -19,6 +20,7 @@ render (
         <IndexRoute component={ProductsContainer} />
         <Route path="/login" component={Login} />
         <Route path="/user" component={User} />
+        <Route path="/reviews" component={Review} />
       </Route>
     </Router>
   </Provider>,

@@ -3,8 +3,8 @@
 const {resolve} = require('path')
 const chalk = require('chalk')
 const pkg = require('./package.json')
-const debug = require('debug')(`${pkg.name}:boot`)
 
+const debug = require('debug')(`${pkg.name}:boot`)
 
 const nameError =
 `*******************************************************************
