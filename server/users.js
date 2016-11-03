@@ -22,7 +22,15 @@ user.get('/', function(req, res, next){
 
 
 user.get('/:userId', function(req, res, next){
-
+    if (!req.user) {
+        User.findById(req.params.userId)
+        .then(function(users){
+            console.log("single user", users);
+            res.json(users);
+        })
+        .catch(next);
+        //tmp change it should return 401
+    }
     console.log('IN USER GET')
     User.findById(req.params.userId)
     .then(function(users){
@@ -35,8 +43,8 @@ user.get('/:userId', function(req, res, next){
 
 user.post('/', function(req, res, next){
     User.create(req.body)
-    .then(function(){
-        res.status(201).send();
+    .then(function(user){
+        res.status(201).json(user);
     })
     .catch(next);
 })
@@ -62,14 +70,14 @@ user.delete('/:userId', function(req, res, next){
 
 })
 
-const users = epilogue.resource({
-  model: db.model('users'),
-  endpoints: ['/users', '/users/:id']
-})
+// const users = epilogue.resource({
+//   model: db.model('users'),
+//   endpoints: ['/users', '/users/:id']
+// })
 
-const {mustBeLoggedIn, selfOnly, forbidden, catcherr} = epilogue.filters
-users.delete.auth(mustBeLoggedIn)
-users.delete.auth(selfOnly('delete'))
-//users.list.auth(forbidden('cannot list users'))
-users.read.auth(mustBeLoggedIn)
+// const {mustBeLoggedIn, selfOnly, forbidden, catcherr} = epilogue.filters
+// users.delete.auth(mustBeLoggedIn)
+// users.delete.auth(selfOnly('delete'))
+// //users.list.auth(forbidden('cannot list users'))
+// users.read.auth(mustBeLoggedIn)
 
