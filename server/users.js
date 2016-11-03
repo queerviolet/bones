@@ -3,24 +3,48 @@
 const epilogue = require('./epilogue')
 const db = require('APP/db')
 
-const user = require('express').Router()
+const User = require('APP/db/models/user');
+const customUserRoutes = require('express').Router()
 
 // Custom routes go here.
 
-module.exports = user
+const user = require('express').Router();
+module.exports = user;
+
 user.get('/', function(req, res, next){
     User.findAll()
     .then(function(users){
-        console.log("users for routes", users);
+        //console.log("users for routes", users);
         res.json(users);
     })
     .catch(next);
 })
 
+
+user.get('/:userId', function(req, res, next){
+    if (!req.user) {
+        User.findById(req.params.userId)
+        .then(function(users){
+            console.log("single user", users);
+            res.json(users);
+        })
+        .catch(next);
+        //tmp change it should return 401
+    }
+    console.log('IN USER GET')
+    User.findById(req.params.userId)
+    .then(function(users){
+        console.log("single user", users);
+        res.json(users);
+    })
+    .catch(next);
+})
+
+
 user.post('/', function(req, res, next){
     User.create(req.body)
-    .then(function(){
-        res.status(201).send();
+    .then(function(user){
+        res.status(201).json(user);
     })
     .catch(next);
 })
@@ -46,18 +70,5 @@ user.delete('/:userId', function(req, res, next){
 
 })
 
-// // Epilogue will automatically create standard RESTful routes
-// const users = epilogue.resource({
-//   model: db.model('users'),
-//   endpoints: ['/users', '/users/:id']
-// })
 
-// users.use(middle);
 
-// const {mustBeLoggedIn, selfOnly, forbidden, catcherr} = epilogue.filters
-// users.delete.auth(mustBeLoggedIn)
-// users.delete.auth(selfOnly('delete'));
-// //users.list.auth(forbidden('cannot list users'))
-// console.log("here", users.list.write.action);
-// //users.list.write.action();
-// users.read.auth(mustBeLoggedIn)

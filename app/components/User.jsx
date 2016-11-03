@@ -21,7 +21,8 @@ export class User extends Component {
       store.subscribe(() => this.setState(store.getState()));
   }
   update( firstName, lastName, username, email, password){
-    //var url = `/api/users/${this.state.id}`;
+
+    //var url = `/api/users/${id}`;
     var user = {firstName: firstName,
                 lastName: lastName,
                 username: username,
