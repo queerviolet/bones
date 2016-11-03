@@ -15,7 +15,6 @@ import ProductsContainer from './components/Products'
 
 import { fetchProducts } from './reducers/products'
 
-
 render (
   <Provider store={store}>
     <Router history={browserHistory}>

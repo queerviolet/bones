@@ -31,8 +31,8 @@ describe('/api/reviews', () => {
   before('sync database & make products', () =>
     db.didSync
       .then(() => Review.destroy({where:{}}))
-      .then(() => reviews.map(
-        product => Review.create(product)
+      .then(() => db.Promise.map(reviews,
+        review => Review.create(review)
       ))
   )
 
