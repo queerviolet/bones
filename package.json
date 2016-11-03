@@ -55,8 +55,8 @@
     "redux-thunk": "^2.1.0",
     "sequelize": "^3.24.6",
     "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1"
-    "sinon-chai": "^2.8.0"
   },
   "devDependencies": {
     "babel": "^6.5.2",
