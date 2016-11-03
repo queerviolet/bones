@@ -34,6 +34,7 @@ product.list = (req, res, context) => {
 
 // get details about one user
 product.read = (req, res, context) => {
+  console.log('hello what is up!');
   const productId = req.params.id;
   aProduct = context.find(product => product.id === productId);
   res.status(201).json(aProduct);

@@ -15,7 +15,7 @@ render (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={homeContainer}>
-       <Route path="product/:id" component={productContainer} />
+       <Route path="products/:id" component={productContainer} />
       </Route>
       <Route path="/login" component={Login} />      
     </Router>

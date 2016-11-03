@@ -18,7 +18,8 @@ const createHomeHOC = HomeComponent => {
             render () {
                 return (
                     <HomeComponent categories={this.props.categories}
-                                   products={this.props.products}/>
+                                   products={this.props.products}
+                                   props={this.props}/>
                 );
             }
         }

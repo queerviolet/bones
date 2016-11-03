@@ -1,34 +1,35 @@
 'use strict'
 
 import React from 'react';
+import axios from 'axios';
 
 export default class ProductComponent extends React.Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
-		this.state = {currentProduct: {}};
+		this.state = { currentProduct: {} };
 	}
 
-	componentWillMount () {
-		console.log('componentWillMount');
+	componentWillMount() {
 		const products = this.props.products;
-		const productId = this.params.id;
-		if(products.length > 0){
+		const productId = this.props.props.params.id;
+		if (products.length > 0) {
 			this.state.currentProduct = products.find(product => product.id === productId)
 		} else {
-			console.log('hey!');
-			axois.get(`api/products/${productId}`)
-				.then(product => this.state.currentProduct = product)
+			axios.get(`/api/product/${productId}`)
+				.then(product => {
+					this.setState({ currentProduct: product.data });
+				})
 				.catch(err => console.log('Error when fetching a product', err))
 		}
 	}
 
-	render () {
-		console.log('printing!');
+	render() {
 		return (
 			<div className='product-container'>
-				{
-					this.state.currentProduct.title 
-				}
+				<ul>
+					<li>{this.state.currentProduct.title}</li>
+					<li>{this.state.currentProduct.description}</li>
+				</ul>
 			</div>
 		);
 	}
