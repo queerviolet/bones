@@ -43,8 +43,8 @@ Order.belongsTo(Address, {as: 'billing_address'});
 // Address.hasOne(Order, {as: 'billing_address'});
 
 // OrderCreditcards
-CreditCard.belongsTo(Order);
-Order.hasOne(CreditCard);
+Order.belongsTo(CreditCard);
+CreditCard.hasOne(Order);
 
 // LineItemsProduct
 LineItem.belongsTo(Product);
@@ -60,7 +60,6 @@ User.hasMany(Review);
 
 // CartProduct.hasOne(Product)
 Product.hasOne(CartProduct)
-
 
 
 module.exports = {User, Product, Review, Order, LineItem, Address, CreditCard, CartProduct};

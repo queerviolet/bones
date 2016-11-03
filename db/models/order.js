@@ -7,7 +7,7 @@ const Order = db.define('orders', {
 	confirmation_number: Sequelize.STRING,
 	status: {
 		type: Sequelize.ENUM,
-		values: ['Created', 'Processing', 'Cancelled', 'Completed']
+		values: ['created', 'processing', 'cancelled', 'completed']
 	},
 	order_date: Sequelize.DATE
 },{

@@ -1,18 +1,14 @@
 'use strict'
 
-const db = require('APP/db');
-const User = require('APP/db/models/user');
-const chai = require('chai');
-const Bluebird = require('bluebird');
-const chaiProperties = require('chai-properties');
-const chaiThings = require('chai-things');
-chai.use(chaiProperties);
-chai.use(chaiThings);
-const expect = chai.expect;
-const supertest = require('supertest-as-promised');
-const sinon = require('sinon');
+import db from 'APP/db';
+import User from 'APP/db/models/user';
 
-describe('User', () => {
+import chai from 'chai';
+const expect = chai.expect;
+
+import Bluebird from 'bluebird';
+
+describe('User Model', () => {
 	before('wait for the db', function(done){
 		db.didSync
 			.then(() => {
@@ -40,8 +36,8 @@ describe('User', () => {
 				.catch(done);
 		})
 	});
- 	
- 	after('clear db', () => db.didSync)
+	
+	after('clear db', () => db.didSync)
 
 	describe('authenticate(plaintext: String) ~> Boolean', () => {
 
@@ -56,10 +52,22 @@ describe('User', () => {
 				.then(result => expect(result).to.be.false))
 	})
 
-	describe('throw an error for invalidated data', () => {
+	describe('Associated Model', () => {
 
-		it('when first name is empty', () => {
-			const user = User.build({
+		it('has proper properties with associated tables', () => {
+			User.findById(1)
+			.then(result => {
+				expect(result.dataValues)
+				.to.include.keys('id', 'first_name', 'last_name', 'email', 'password_digest', 'shipping_address_id', 'billing_address_id')
+				.not.include.keys('password')
+			})
+		}) 
+	}) 
+
+	describe('data validation', () => {
+
+		it('throws an error for invalid names', () => {
+			let user = User.build({
 				first_name: null,
 				last_name: 'Trump',
 				email: 'test@secrets.org',
@@ -67,33 +75,34 @@ describe('User', () => {
 			})
 
 			return user.validate()
-				.then(err=> {
-				expect(err).to.be.an('object');
+			.then(err => {
+				expect(err).to.be.an('object')
+				expect(err).to.be.an.instanceOf(Error);	
 				expect(err.errors).to.contain.a.thing.with.properties({
-            path: 'first_name',
-            type: 'notNull Violation'
-        });
+					path: 'first_name',
+					type: 'notNull Violation'
+				});
 			})
 		})
-			
 
-		// it("when email is duplicated", () => {
-		// 	const user = User.build({
-		// 		first_name: 'name',
-		// 		last_name: 'random',
-		// 		email: 'trump@secrets.org',
-		// 		password: 'abcde'
-		// 	})
 
-		// 	return user.validate()
-		// 		.then(err=> {
-		// 		expect(err).to.be.an('object');
-		// 		expect(err.errors).to.contain.a.thing.with.properties({
-  //           path: 'email',
-  //           type: 'unique Violation'
-  //       });
-		// 	})
-		// })
+		it("throws an error for invalid emails", () => {
+			let user = User.build({
+				first_name: 'test',
+				last_name: 'random',
+				email: 'invalid email',
+				password: 'abcde'
+			})
+
+			return user.validate()
+				.then(err => {
+					expect(err).to.be.an('object');
+					expect(err.errors).to.contain.a.thing.with.properties({
+						path: 'email',
+						type: 'Validation error'
+				})
+			})
+		}) 
 	})
 })
 
