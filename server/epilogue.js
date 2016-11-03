@@ -19,13 +19,17 @@ const selfOnly = action => (req, res, context) => {
     res.status(403).send(`You can only ${action} yourself.`)
     return context.stop
   }
-  return context.continue  
+  return context.continue
 }
 
 const forbidden = message => (req, res, context) => {
   res.status(403).send(message)
   return context.stop
 }
+const catcherr = msg =>(req, res, context)=>{
+  console.log("RES", req);
+  return context.continue
+}
 
-epilogue.filters = {mustBeLoggedIn, selfOnly, forbidden,}
+epilogue.filters = {mustBeLoggedIn, selfOnly, forbidden, catcherr}
 module.exports = epilogue
