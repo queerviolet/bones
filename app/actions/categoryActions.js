@@ -6,11 +6,11 @@ import axios from 'axios';
 export const RECEIVE_ALL_CATEGORIES = 'RECEIVE_ALL_CATEGORIES';
 
 // Create the Actions
-const receiveAllCategories = categories => ({type: RECEIVE_ALL_CATEGORIES, categories});
+export const receiveAllCategories = categories => ({type: RECEIVE_ALL_CATEGORIES, categories});
 
 // Thunk Creators for Actions
-export const receiveAllCategoriesFromServer = (categories, callback) => dispatch => {
-    axios.get('/api/products')   
+export const receiveAllCategoriesFromServer = (callback) => dispatch => {
+    axios.get('/api/category')   
         .then(res => {
             dispatch(receiveAllCategories(res.data));
             callback && callback(`categories`);
