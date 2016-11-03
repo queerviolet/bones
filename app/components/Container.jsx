@@ -6,7 +6,6 @@ import { Link } from 'react-router';
 export class Container extends Component {
 
   render() {
-    console.log(this.props)
     return (
       <div>
       <nav>

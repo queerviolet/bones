@@ -40,7 +40,7 @@ describe('/api/products', () => {
     }
   ]
 
-  const [angelia, brad] = celebs
+  const [angelina, brad] = celebs
 
   before('sync database & make products', () =>
     db.didSync

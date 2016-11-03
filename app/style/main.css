@@ -44,7 +44,7 @@ nav ul li:last-child{
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0;
+  padding: 0 1rem;
 }
 
 #main-menu ul li:last-child {
