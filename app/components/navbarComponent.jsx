@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 export default () => (
 
   <nav className="navbar navbar-inverse navbar-fixed-top">
-    <div className="container-fluid">
+    <div className="container">
       <div className="navbar-header">
         <a className="navbar-brand" href="#">CodeCommerce</a>
         <form className="navbar-form navbar-left" role="search">
@@ -17,3 +17,4 @@ export default () => (
     </div>
   </nav>
 );
+
