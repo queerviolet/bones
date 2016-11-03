@@ -9,8 +9,8 @@ import styles from './style/main.css'
 import store from './store'
 import Container from './components/Container'
 import Login from './components/Login'
+import User from './components/user'
 import ProductsContainer from './components/Products'
-
 
 render (
   <Provider store={store}>
@@ -18,6 +18,7 @@ render (
       <Route path="/" component={Container}>
         <IndexRoute component={ProductsContainer} />
         <Route path="/login" component={Login} />
+        <Route path="/user" component={User} />
       </Route>
     </Router>
   </Provider>,
