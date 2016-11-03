@@ -7,11 +7,12 @@ import { Provider } from 'react-redux'
 import store from './store'
 import Root from './components/Root'
 import Login from './components/Login'
+import homeComponent from './components/homeComponent'
 
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={Root} />
+      <Route path="/" component={homeComponent} />
       <Route path="/login" component={Login} />      
     </Router>
   </Provider>,
