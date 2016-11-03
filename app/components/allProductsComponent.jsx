@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 
-export default ({products}) => (
+export default ({props, products}) => (
 
         <div className="row text-center">
           {
@@ -16,7 +16,7 @@ export default ({products}) => (
                             <p>{product.description}</p>
                             <p>${product.price}</p>
                             <p>
-                                <a href="#" className="btn btn-primary">Buy Now!</a> <a href="#" className="btn btn-default">More Info</a>
+                                <a href="#" className="btn btn-primary">Add to Cart!</a> <a href="#" className="btn btn-default">More Info</a>
                             </p>
                         </div>
                     </div>
@@ -26,3 +26,4 @@ export default ({products}) => (
           }
         </div>
 );
+
