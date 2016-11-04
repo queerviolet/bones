@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
+var total = 0;
 
-export default ({products, cart}) => (
+export default ({products, cart, addToCart}) => (
 <div className="container">
   <div className="row">
     <div className="col-sm-12 col-md-10 col-md-offset-1">
@@ -26,23 +27,24 @@ export default ({products, cart}) => (
               var product = products[productId - 1];
               var price = product.price;
               var name = product.title;
-              var total = +price * +qty;
-              total = Math.round(total*100)/100;
-              total = total.toString();
-              var dot = total.indexOf('.');
+              var itemTotal = +price * +qty;
+              itemTotal = Math.round(itemTotal*100)/100;
+              cartTotal(itemTotal);
+              itemTotal = itemTotal.toString();
+              var dot = itemTotal.indexOf('.');
               if (dot === -1) {
-                total += '.00';
+                itemTotal += '.00';
               } else {
-                var arr = total.split('.');
+                var arr = itemTotal.split('.');
                 if (arr[1].length < 2) {
-                  total += '0'
+                  itemTotal += '0'
                 }
               }
               return (
               <tr key={index}>
                 <td className="col-sm-8 col-md-6">
                   <div className="media">
-                    <a className="thumbnail pull-left" href="#"> <img className="media-object" src={product.pUrl} style={{width: 72, height: 72}}/> </a>
+                    <a className="thumbnail pull-left" href="#"> <img className="media-object" src={product.photoUrl} style={{width: 72, height: 72}}/> </a>
                     <div className="media-body">
                       <h4 className="media-heading"><a href="#">{name}</a></h4>
                       <h5 className="media-heading"> by <a href="#">Sawgonation</a></h5>
@@ -53,7 +55,7 @@ export default ({products, cart}) => (
                     <input type="email" className="form-control" id="exampleInputEmail1" value={qty}/>
                   </td>
                   <td className="col-sm-1 col-md-1 text-center"><strong>${price}</strong></td>
-                  <td className="col-sm-1 col-md-1 text-center"><strong>${total}</strong></td>
+                  <td className="col-sm-1 col-md-1 text-center"><strong>${itemTotal}</strong></td>
                   <td className="col-sm-1 col-md-1">
                     <button type="button" className="btn btn-danger">
                       <span className="glyphicon glyphicon-remove"></span> Remove
@@ -69,21 +71,21 @@ export default ({products, cart}) => (
                 <td>   </td>
                 <td>   </td>
                 <td><h5>Subtotal</h5></td>
-                <td className="text-right"><h5><strong>$24.59</strong></h5></td>
+                <td className="text-right"><h5><strong>{total}</strong></h5></td>
               </tr>
               <tr>
                 <td>   </td>
                 <td>   </td>
                 <td>   </td>
                 <td><h5>Estimated shipping</h5></td>
-                <td className="text-right"><h5><strong>$6.94</strong></h5></td>
+                <td className="text-right"><h5><strong>"It's free"</strong></h5></td>
               </tr>
               <tr>
                 <td>   </td>
                 <td>   </td>
                 <td>   </td>
                 <td><h3>Total</h3></td>
-                <td className="text-right"><h3><strong>$31.53</strong></h3></td>
+                <td className="text-right"><h3><strong>{total}</strong></h3></td>
               </tr>
               <tr>
                 <td>   </td>
@@ -104,3 +106,8 @@ export default ({products, cart}) => (
           </div>
         </div>
         );
+
+function cartTotal (price) {
+  total += +price;
+  console.log('total ', total);
+}
