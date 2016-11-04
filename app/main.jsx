@@ -13,7 +13,7 @@ render (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={homeContainer} />
-      <Route path="/login" component={Login} />      
+      <Route path="/login" component={Login} />
     </Router>
   </Provider>,
   document.getElementById('main')
