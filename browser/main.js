@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import App from './components/App'
 import AllProductsContainer from './components/products/AllProductsContainer'
 import ProductContainer from './components/product/ProductContainer'
+import OrderFormContainer from './components/orderform/OrderFormContainer'
 
 // Redux actions and thunks
 import store from './store'
@@ -23,6 +24,7 @@ render(
       <Route path="/" component={ App } onEnter={ appEnter }>
         <Route path="/products" component={ AllProductsContainer } />
         <Route path="/products/:productId" component={ ProductContainer } onEnter={ productEnter } />
+        <Route path="/orderform" component={ OrderFormContainer } />
         <IndexRoute component={ AllProductsContainer } />
       </Route>
     </Router>
