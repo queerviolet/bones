@@ -20,13 +20,13 @@ chance.mixin({
 			zip: chance.zip()
 		};
 	},
-	// cartProducts: () => {
-	// 	return {
-	// 		sessionId: chance.string(),
-	// 		quantity: chance.natural({max:100}),
-	// 		product_id: chance.natural({min:0, max:5}),
-	// 	}
-	// },
+	cartProducts: () => {
+		return {
+			sessionId: chance.string(),
+			quantity: chance.natural({max:100}),
+			product_id: chance.natural({min:1, max:5}),
+		}
+	},
 	creditCards: () => {
 		return {
 			number: chance.cc(),
@@ -34,6 +34,14 @@ chance.mixin({
 			security_code: chance.natural({min: 100, max: 999}),
 			user_id: chance.natural({min:1, max:5}),
 		};
+	},
+	lineItems: () => {
+		return {
+			quantity: chance.natural({min:1, max:8}),
+			price: chance.floating({min: 10, max: 200, fixed: 2}),
+			order_id: chance.natural({min:1, max:5}),
+			product_id: chance.natural({min:1, max:5})
+		}
 	},
 	orders: () => {
 		return {
@@ -108,9 +116,9 @@ const addressArr = [],
 
 for (let i = 0; i < 30; i++) {
 	addressArr.push(chance.addresses());
-	// cartProductArr.push(chance.cartProducts());
+	cartProductArr.push(chance.cartProducts());
 	creditcardArr.push(chance.creditCards());
-	// lineItemArr.push(chance.lineItem());
+	lineItemArr.push(chance.lineItems());
 	orderArr.push(chance.orders());
 	productArr.push(chance.products());
 	reviewArr.push(chance.reviews());
@@ -131,21 +139,7 @@ const seedProducts = seedFunc('products');
 const seedReviews = seedFunc('reviews');
 const seedOrders = seedFunc('orders');
 const seedCartProducts = seedFunc('cartProducts');
-
-// const seedUsers = () => db.Promise.map([
-//   {
-// 		first_name: 'Donald',
-// 		last_name: 'Trump',
-// 		email: 'trump@secrets.org',
-// 		password: 'abcde'
-// 	},
-//   {
-// 		first_name: 'Hillary',
-// 		last_name: 'Clinton',
-// 		email: 'clinton@secrets.org',
-// 		password: '54321'
-// 	},
-// ], user => db.model('users').create(user))
+const seedLineItmes = seedFunc('lineItems');
 
 
 db.didSync
@@ -156,7 +150,8 @@ db.didSync
 	.then(seedCreditcards)
 	.then(seedReviews)
 	.then(seedOrders)
-	// .then(seedCartProducts)
+	.then(seedCartProducts)
+	.then(seedLineItmes)
 	.then(() => console.log(`Seeded OK`))
 	.catch(error => console.error(error))    
 	.finally(() => db.close())

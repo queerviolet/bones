@@ -27,17 +27,19 @@ describe('Review Model', () => {
 
 	describe('Associated Model', () => {
 
-		it('has proper properties with associated tables', () => {
+		it('has proper properties with associated tables', (done) => {
 			Review.findById(1)
 			.then(result => {
 				expect(result.dataValues).to.include.keys('id', 'rating', 'comment', 'product_id', 'user_id');
+				done();
 			})
+			.catch(done);
 		}) 
 	}) 
 
 	describe('data validation', () => {
 
-		it('throws an error for invalid reviews', () => {
+		it('throws an error for invalid reviews', (done) => {
 			let review1 = Review.build({
 				rating: null,
 				comment: 'bad bad'
@@ -51,7 +53,9 @@ describe('Review Model', () => {
 					path: 'rating',
 					type: 'notNull Violation'
 				});
+				done();
 			})
+			.catch(done);
 		}) 
 	})
 })

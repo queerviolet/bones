@@ -27,7 +27,8 @@ describe('Product Model', () => {
 					'color': 'blue',
 					'material': 'bamboo',
 					'images': ["https://dummyimage.com/320x150/ddd/fff.jpg&text=1"]
-				}, {
+				},
+				Product.create({
 					name: 'My Chair',
 					'price': 20,
 					'description': "it's a chair!",
@@ -37,7 +38,7 @@ describe('Product Model', () => {
 					'color': 'red',
 					'material': 'MDF',
 					'images': ["https://dummyimage.com/320x150/ddd/fff.jpg&text=2"]
-				})
+				}))
 			])
 			.then(() => done())
 			.catch(done);
@@ -48,7 +49,7 @@ describe('Product Model', () => {
 
 	describe('data validation', () => {
 
-		it('throws an error for invalid quantity', () => {
+		it('throws an error for invalid quantity', (done) => {
 			let product1 = Product.build({
 					name: 'My bed',
 					'price': 10,
@@ -69,7 +70,9 @@ describe('Product Model', () => {
 					path: 'quantity',
 					type: 'notNull Violation'
 				});
+				done();
 			})
+			.catch(done);
 		})
 
 		// it('throws an error for invalid type', () => {

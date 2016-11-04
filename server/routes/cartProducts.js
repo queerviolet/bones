@@ -1,38 +1,63 @@
 'use strict'
 
-const epilogue = require('APP/server/epilogue')
-const db = require('APP/db')
+const db = require('APP/db');
+const productModel = db.model('products');
+const userModel = db.model('users');
+const cartProductModel = db.model('cartProducts');
+
 
 const customCartsRoutes = require('express').Router() 
 
-// Custom routes go here.
-
 module.exports = customCartsRoutes
 
-// Epilogue will automatically create standard RESTful routes
-const carts = [{id:1}, {id:2}, {id:3}]
-
-customCartsRoutes.get('/:id', (req, res) => {
-	res.send(carts[req.params.id])
+customCartsRoutes.get('/', (req,res,next) => {
+	cartProductModel.findAll({
+		where: { sessionId: req.sessionID }
+	})
+	.then(result => res.send(result))
+	.catch(next);
 })
 
-// delete cart info after order
-customCartsRoutes.delete('/:id', (req, res) => {
-	res.status(204).send()
+customCartsRoutes.post('/', (req,res,next) => {
+	let cartProduct = cartProductModel.build({
+		sessionId: req.sessionID,
+		quantity: req.body.quantity,
+		product_id: req.body.productId
+	})
+
+	cartProduct.validate()
+	.then(err => {
+		if(err) {
+			let error = new Error(err.errors[0].message);
+			error.status = 409;
+			return next(error)
+		}
+		return cartProduct.save()
+			.then(() => res.status(201).send(cartProduct))
+			.catch(next);
+	})
+	.catch(next);
 })
 
-// add items to cart
-customCartsRoutes.post('/:id/:productId', (req, res) => {
-	res.send('add')
+customCartsRoutes.delete('/', (req,res,next) => {
+	cartProductModel.clearCart(req.sessionID)
+	.then(() => res.sendStatus(204))
+	.catch(next)
 })
 
-// remove
-customCartsRoutes.delete('/:id/:productId', (req, res) => {
-	res.status(204).send()
+customCartsRoutes.put('/:productId', (req,res,next) => {
+	cartProductModel.update(
+		{ quantity: req.body.quantity}, 
+		{ where: {sessionId: req.sessionID, product_id: req.params.productId} }
+	)
+	.then(() => res.sendStatus(204))
+	.catch(next);
 })
 
-// update quantity (min 1)
-customCartsRoutes.put('/:id/:productId', (req, res) => {
-	res.send()
+customCartsRoutes.delete('/:productId', (req,res,next) => {
+	cartProductModel.destroy(
+		{ where: {sessionId: req.sessionID, product_id: req.params.productId} }
+	)
+	.then(() => res.sendStatus(204))
+	.catch(next);
 })
-

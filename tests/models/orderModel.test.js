@@ -33,11 +33,13 @@ describe('Order Model', () => {
 
 	describe('Associated Model', () => {
 
-		it('has proper properties with associated tables', () => {
+		it('has proper properties with associated tables', (done) => {
 			Order.findById(1)
 			.then(result => {
 				expect(result.dataValues).to.include.keys('shipping_address_id', 'billing_address_id', 'credit_card_id', 'user_id');
+				done();
 			})
+			.catch(done)
 		}) 
 	}) 
 
