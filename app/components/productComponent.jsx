@@ -14,7 +14,7 @@ export default class ProductComponent extends React.Component {
 		if (products && products.length > 0) {
 			this.state.currentProduct = products.find(product => product.id === productId)
 		} else {
-			this.props.onLoadProduct(productId);
+			//this.props.onLoadProduct(productId);
 		}
 	}
 

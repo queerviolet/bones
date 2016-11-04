@@ -6,37 +6,21 @@ import axios from 'axios';
 export default class SelectedProductsComponent extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            selectedProducts: []
-        }
+        console.log(props)
     }
 
     componentWillMount() {
         const products = this.props.products;
         const categoryId = this.props.props.params.categoryId;
         if (products && products.length > 0) {
-            connsole.log('component mount', products);
-            const selectedProducts = products.filter(product => {
-                return product.category_id === categoryId;
-            })
-            this.setState({
-                selectedProducts
-            })
+            this.state.selectedProducts = products.find(product => product.id === productId)
         } else {
-            axios.get('/api/products')
-                .then(products => {
-                    const productsArray = products.data;
-                    const selectedProducts = productsArray.filter(product =>
-                        product.category_id === Number(categoryId)
-                    )
-                    this.setState({ selectedProducts });
-                })
-                .catch(err => console.log('Error when fetching filtered products', err));
+            this.props.onLoadCategoryProducts(categoryId);
         }
     }
 
     render() {
-        const selectedProducts = this.state.selectedProducts;
+        const selectedProducts = this.props.selectedProducts;
         console.log('selected render', selectedProducts);
         return (
             <div className="selected-products-container">
@@ -44,7 +28,7 @@ export default class SelectedProductsComponent extends React.Component {
                     selectedProducts && selectedProducts.map((product, index) => {
                         return (
                             <div className="selected-product" key={`${index}`}>
-                                <img src="http://placehold.it/500x400" alt="" />
+                                <img src={product.photoUrl} alt="" />
                                 <div>{product.title}</div>
                             </div>
                         );

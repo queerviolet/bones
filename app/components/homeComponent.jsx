@@ -5,7 +5,7 @@ import SidebarContainer from '../containers/sidebarContainer';
 import NavbarContainer from '../containers/navbarContainer';
 import AllproductsContainer from '../containers/allproductsContainer';
 
-export default ({ props, params }) => {
+export default ({ props, params, onLoadCategoryProducts }) => {
 
   var children = React.Children.map(props.children, function (child) {
     return React.cloneElement(child, {
@@ -20,7 +20,7 @@ export default ({ props, params }) => {
         <NavbarContainer />
         <div className="row">
           <div className='col-md-2'>
-            <SidebarContainer />
+            <SidebarContainer onLoadCategoryProducts={onLoadCategoryProducts}/>
           </div>
           <div className='col-md-10'>
             {children}

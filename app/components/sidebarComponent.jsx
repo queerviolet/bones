@@ -1,8 +1,9 @@
 'use strict'
 
 import React from 'react'
+import { Link } from 'react-router';
 
-export default ({ categories }) => {
+export default ({ categories, onLoadCategoryProducts }) => {
     return (
         <div className="sidebar-container col-md-2">
             <div id="wrapper">
@@ -11,7 +12,11 @@ export default ({ categories }) => {
                         {
                             categories && categories.map((category, index) => {
                                 return (
-                                    <li key={`category-${index}`} className="categoryLinks">{category.name}</li>
+                                    <Link to={"/products/category/" + category.id}
+                                    key={`category-${index}`}
+                                    onClick={() => {onLoadCategoryProducts(category.id)}}>
+                                        <li className="categoryLinks">{category.name}</li>
+                                    </Link>
                                 )
                             })
                         }

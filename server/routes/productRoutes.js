@@ -24,7 +24,12 @@ const product = epilogue.resource({
     }, {
       param: 'productDesc',
       attributes: ['description']
-    }],
+    }, {
+        operator: '$eq',
+        param: 'category',
+        attributes: ['category_id']
+      }
+    ],
 })
 
 // find all users
