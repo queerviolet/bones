@@ -2,12 +2,15 @@
 
 import { connect } from 'react-redux';
 import productComponent from '../components/productComponent';
+import { receiveOneProductFromServer } from '../actions/productsActions';
 
 const mapStateToProps = (state, ownProps) => ({
-    products: state.products
+    currentProduct: state.currentProduct
 })
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {};
+    return {
+        onLoadProduct: (productId) => dispatch(receiveOneProductFromServer(productId))
+    };
  }
 
 export default connect(mapStateToProps, mapDispatchToProps)(productComponent);

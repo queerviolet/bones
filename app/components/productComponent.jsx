@@ -6,7 +6,6 @@ import axios from 'axios';
 export default class ProductComponent extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { currentProduct: {} };
 	}
 
 	componentWillMount() {
@@ -15,30 +14,27 @@ export default class ProductComponent extends React.Component {
 		if (products && products.length > 0) {
 			this.state.currentProduct = products.find(product => product.id === productId)
 		} else {
-			axios.get(`/api/product/${productId}`)
-				.then(product => {
-					this.setState({ currentProduct: product.data });
-				})
-				.catch(err => console.log('Error when fetching a product', err))
+			this.props.onLoadProduct(productId);
 		}
 	}
 
 	render() {
-		const product = this.state.currentProduct;
+		const currentProduct = this.props.currentProduct;
+		console.log(currentProduct);
 		return (
 
   		<div id="product">
     		<div className="product-image" >
-    		  <img src={product.photoUrl} alt="" />
+    		  <img src={currentProduct.photoUrl} alt="" />
     		</div>
     		<div className="product-details" >
-    			<h2>{product.title}</h2>
-    			<p>${product.price}</p>
-    			 {product.inventoryQty>0 ? <p> Stock Available </p> : <p> Stock not Available</p>}
+    			<h2>{currentProduct.title}</h2>
+    			<p>${currentProduct.price}</p>
+    			 {currentProduct.inventoryQty>0 ? <p> Stock Available </p> : <p> Stock not Available</p>}
     		</div>
 
     		<div className="product-description" >
-    			<p>{product.description}</p>
+    			<p>{currentProduct.description}</p>
     			{/*       Review Component      */}
     		</div>
       </div>
