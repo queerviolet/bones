@@ -2,7 +2,9 @@ const request = require('supertest-as-promised')
 const {expect} = require('chai')
 const db = require('APP/db')
 const Product = require('APP/db/models/product')
+const Celeb = require('APP/db/models/celeb')
 const app = require('./start')
+const Review = require('APP/db/models/review')
 
 describe('/api/products', () => {
 
@@ -24,8 +26,11 @@ describe('/api/products', () => {
             photoURL: 'http://luxurylaunches.com/wp-content/uploads/2012/11/pharrells-gshock-gold-watch.jpg'
           }   
   ]
-
-  const [watch, dogCollar] = products
+  let watch, dogCollar
+  const makeProducts = () =>
+    db.Promise.map(products,
+      product => Product.create(product))
+    .then(products => [watch, dogCollar] = products)
 
   const celebs = [
     {
@@ -40,13 +45,26 @@ describe('/api/products', () => {
     }
   ]
 
-  const [angelia, brad] = celebs
+  let angelina, brad
+  const makeCelebs = () =>
+    db.Promise.map(celebs,
+      celeb => Celeb.create(celeb))
+    .then(celebs => [angelina, brad] = celebs)
 
+  const associateProductsWithCelebs = () =>       
+      Promise.all([
+        brad.addProduct(watch),
+        angelina.addProduct(dogCollar),
+      ])
+
+
+  // TODO: test is now returning an error because the reviews table also references the products table
   before('sync database & make products', () =>
     db.didSync
-      .then(() => Product.destroy({truncate: true}))
-      .then(() => products.map(
-        product => Product.create(product)))
+      .then(() => Product.destroy({truncate: true, cascade: true}))
+      .then(makeProducts)
+      .then(makeCelebs)
+      .then(associateProductsWithCelebs)
   )
 
 
@@ -59,7 +77,7 @@ describe('/api/products', () => {
       })
   )
 
-  // Uncheck this spec and get it to pass
+  // TODO: Uncheck this spec and get it to pass
   xit('**Fix this with understanding of join tables** GET / lists all products by celeb\'s id', () =>
     request(app)
       .get(`/api/products?name=angelina+jolie`)
@@ -87,14 +105,14 @@ describe('/api/products', () => {
 
   it('PUT / updates a product', () =>
       request(app)
-        .put('/api/products/10')
+        .put(`/api/products/${watch.id}`)
         .send({ quantity: 2 })
         .expect(201)
   )
 
   it('DELETE / deletes a product', () =>
       request(app)
-        .delete('/api/products/2')
+        .delete(`/api/products/${dogCollar.id}`)
         .expect(200)
   )
 })

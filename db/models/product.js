@@ -32,7 +32,7 @@ const Product = db.define('products', {
   },
   photoURL: {
     type: Sequelize.STRING,
-    defaultValue: 'http://placehold.it/350x150'
+    defaultValue: 'http://placehold.it/250x150'
   }
 },
   {

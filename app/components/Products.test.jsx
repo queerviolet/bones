@@ -1,21 +1,21 @@
 import React from 'react'
 import chai, {expect} from 'chai'                                                   
 chai.use(require('chai-enzyme'))
-import {shallow} from 'enzyme'
+import {shallow, mount, render} from 'enzyme'
 
 import {Products} from './Products'
 
-describe('<ProductsContainer />', () => {
+describe('<Products />', () => {
   let root
-  beforeEach('render the container', () =>
+  beforeEach('render the root', () =>
     root = shallow(<Products/>)
   )
 
   it('Displays a welcome header', () => {
-    expect(root.find('h1')).to.have.length(1)
+    expect(root.find('h2')).to.have.length(1)
   })
 
-  it('displays a table', () => {
+  it('displays a table with five columns on it', () => {
     expect(root.find('table[type="productsList"]')).to.have.length(1)
   })
 })

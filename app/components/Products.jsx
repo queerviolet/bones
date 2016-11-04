@@ -1,46 +1,62 @@
 'use strict'
 
-import React from 'react'
-import { render } from 'react-dom'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { Link } from 'react-router';
+import { render } from 'react-dom';
+import { connect } from 'react-redux';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import Chip from 'material-ui/Chip';
 
-import { products } from 'APP/app/reducers/products';
+const styles = {
+  chip: {
+    margin: 4,
+  },
+};
 
-export const Products = ({ products }) => (
-  <div>
-    <h1>Selleb</h1>
-    <h3>Your source for celeb memoribilia</h3>
-    <table type="productsList">
-      <thead>
-        <tr>
-          <th>Photo</th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Categories</th>
-          <th>Quantity</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          products && products.map(product => (
-            <tr key={product.id}>
-              <td> 
-                <img src={product.photoURL}/>
-              </td>
-              <td>{product.name}</td>
-              <td>{product.description}</td>
-              <td>{product.categories}</td>
-              <td>{product.quantity}</td>
-            </tr>
-          ))
-        }  
-      </tbody>
-    </table>
-  </div>
-)
+export class Products extends React.Component {
+  render() {
+    const { products } = this.props || []
+    return (
+      <div id="productsTable">
+        <h2>All Products</h2>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderColumn>Photo</TableHeaderColumn>
+              <TableHeaderColumn>Name</TableHeaderColumn>
+              <TableHeaderColumn>Description</TableHeaderColumn>
+              <TableHeaderColumn>Quantity</TableHeaderColumn>
+              <TableHeaderColumn>Categories</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {
+              products && products.map(product => (
+                <TableRow key={products.id}>
+                  <TableRowColumn><img src={product.photoURL}/></TableRowColumn>
+                  <TableRowColumn>{product.name}</TableRowColumn>
+                  <TableRowColumn>{product.description}</TableRowColumn>
+                  <TableRowColumn>{product.quantity}</TableRowColumn>
+                  <TableRowColumn>
+                    {
+                      product.categories && product.categories.map(category => (
+                        <Chip style={styles.chip}>{category}</Chip>
+                      ))
 
+                    }
+                  </TableRowColumn>
+                </TableRow>
+              ))
+            }     
+          </TableBody>
+        </Table>
+      </div>
+    )
+  }
+}
 
-const mapStateToProps = ({products}) => ({ products })
+const mapStateToProps = (state) => ({ 
+  products: state.products })
 
 export default connect(mapStateToProps)(Products);
 
