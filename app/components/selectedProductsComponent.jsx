@@ -11,16 +11,16 @@ export default class SelectedProductsComponent extends React.Component {
 
     componentWillMount() {
         const products = this.props.products;
-        const productId = this.props.props.params.id;
+        const categoryId = this.props.props.params.categoryId;
         if (products && products.length > 0) {
             this.state.selectedProducts = products.find(product => product.id === productId)
         } else {
-            this.props.onLoadSelectedProducts(productId);
+            this.props.onLoadCategoryProducts(categoryId);
         }
     }
 
     render() {
-        const selectedProducts = this.state.selectedProducts;
+        const selectedProducts = this.props.selectedProducts;
         console.log('selected render', selectedProducts);
         return (
             <div className="selected-products-container">
