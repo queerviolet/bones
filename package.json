@@ -15,7 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/queerviolet/bones.git"
   },
-  "engine": {
+  "engines": {
     "node": "6.7.0"
   },
   "keywords": [
@@ -31,13 +31,13 @@
   "homepage": "https://github.com/queerviolet/bones#readme",
   "dependencies": {
     "axios": "^0.15.2",
-    "babel-preset-stage-2": "^6.18.0",
-    "bcrypt": "^0.8.7",
     "babel": "^6.5.2",
     "babel-core": "^6.18.0",
     "babel-loader": "^6.2.7",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "chai-enzyme": "^0.5.2",
     "chalk": "^1.1.3",
