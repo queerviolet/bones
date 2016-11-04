@@ -1,6 +1,7 @@
 'use strict'
 
 import React from 'react'
+import { Link } from 'react-router';
 
 export default ({ categories }) => {
     return (
@@ -11,7 +12,9 @@ export default ({ categories }) => {
                         {
                             categories && categories.map((category, index) => {
                                 return (
-                                    <li key={`category-${index}`} className="categoryLinks">{category.name}</li>
+                                    <Link to={"/products/category/" + category.id}key={`category-${index}`}>
+                                        <li className="categoryLinks">{category.name}</li>
+                                    </Link>
                                 )
                             })
                         }

@@ -18,7 +18,8 @@ export default ({products, addToCart, cart}) => (
                             <p>{product.description}</p>
                             <p>${product.price}</p>
                             <p>
-                                <a onClick={() => {addToCart(product.id, 1);}} href="#" className="btn btn-primary">Buy Now!</a> <a href="#" className="btn btn-default">More Info</a>
+                                <a onClick={() => {addToCart(product.id, 1);}} href="#" className="btn btn-primary">Add To Cart!</a>
+                                <Link to={"/products/" + product.id} className="btn btn-default">More Info</Link>
                             </p>
                         </div>
                     </div>

@@ -15,7 +15,6 @@ export default class SelectedProductsComponent extends React.Component {
         const products = this.props.products;
         const categoryId = this.props.props.params.categoryId;
         if (products && products.length > 0) {
-            connsole.log('component mount', products);
             const selectedProducts = products.filter(product => {
                 return product.category_id === categoryId;
             })
@@ -44,7 +43,7 @@ export default class SelectedProductsComponent extends React.Component {
                     selectedProducts && selectedProducts.map((product, index) => {
                         return (
                             <div className="selected-product" key={`${index}`}>
-                                <img src="http://placehold.it/500x400" alt="" />
+                                <img src={product.photoUrl} alt="" />
                                 <div>{product.title}</div>
                             </div>
                         );

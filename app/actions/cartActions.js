@@ -12,5 +12,3 @@ export const updateCart = (itemId, qty) => {
   }
 }
 
-
-// need to later add the action creator to get the cart from local storage.

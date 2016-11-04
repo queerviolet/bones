@@ -29,11 +29,11 @@ body {
 }
 
 #wrapper {
-  padding-left: 250px;
   transition: all 0.4s ease 0s;
 }
 
 #sidebar-wrapper {
+  padding-left: 1em;
   margin-left: -250px;
   left: 250px;
   width: 15vw;
@@ -46,7 +46,7 @@ body {
 }
 
 #page-content-wrapper {
-  width: 100%;
+  width: 50%;
 }
 
 .categoryLinks {
@@ -65,5 +65,11 @@ body {
 }
 
 .product-boxes {
-  width: 70vh;
+  width: 100%;
+  align-content: center;
 }
+
+#single-product {
+  width: 50%
+}
+

@@ -26,34 +26,22 @@ export default class ProductComponent extends React.Component {
 	render() {
 		const product = this.state.currentProduct;
 		return (
-		
-		<div id="product">
 
-
+  		<div id="product">
     		<div className="product-image" >
-
-    		<img src="http://placehold.it/500x400" alt="" />
-
+    		  <img src={product.photoUrl} alt="" />
     		</div>
-
     		<div className="product-details" >
-
     			<h2>{product.title}</h2>
-    			<p> Price</p>
-    	
-    			{product.quantity ? <p> Stock Available </p> : <p> Stock not Available</p> }
-
+    			<p>${product.price}</p>
+    			 {product.inventoryQty>0 ? <p> Stock Available </p> : <p> Stock not Available</p>}
     		</div>
 
-    
     		<div className="product-description" >
-
     			<p>{product.description}</p>
-    			{/* Review Component*/}
-
+    			{/*       Review Component      */}
     		</div>
-    	</div>	
-
+      </div>
 		);
 	}
 }
