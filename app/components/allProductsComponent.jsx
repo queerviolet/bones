@@ -2,21 +2,23 @@ import React from 'react';
 import { Link } from 'react-router';
 
 
-export default ({props, products}) => (
+
+export default ({products, addToCart, cart}) => (
 
         <div className="row text-center">
           {
+            // checkoutLocalStorage(cart);
             products && products.map((product, index) => {
               return (
-                <div className="col-md-3 col-sm-6 product-boxes" key={`${index}`}>
+                <div key={`${index}`} className="col-md-3 col-sm-6 product-boxes">
                     <div className="thumbnail">
-                        <img src="http://placehold.it/800x500" alt=""/>
+                        <img src={product.photoUrl} alt=""/>
                         <div className="caption">
                             <h3>{product.title}</h3>
                             <p>{product.description}</p>
                             <p>${product.price}</p>
                             <p>
-                                <a href="#" className="btn btn-primary">Add to Cart!</a> <a href="#" className="btn btn-default">More Info</a>
+                                <a onClick={() => {addToCart(product.id, 1);}} href="#" className="btn btn-primary">Buy Now!</a> <a href="#" className="btn btn-default">More Info</a>
                             </p>
                         </div>
                     </div>

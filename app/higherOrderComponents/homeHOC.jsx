@@ -13,13 +13,16 @@ const createHomeHOC = HomeComponent => {
             componentWillMount () {
                 this.props.onLoadCategories();
                 this.props.onLoadProducts(); // make this function
+                // need to populate cart based on what is on the local storage.
             }
 
             render () {
                 return (
                     <HomeComponent categories={this.props.categories}
                                    products={this.props.products}
-                                   props={this.props}/>
+                                   props={this.props}
+                                   cart={this.props.cart}
+                                   />
                 );
             }
         }

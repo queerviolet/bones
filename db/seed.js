@@ -2,7 +2,7 @@
 
 const Promise = require('bluebird');
 const db = require('APP/db')
-const pUrl = 'http://66.media.tumblr.com/avatar_400587114ddf_128.png';
+const pUrl = 'http://placehold.it/800x500';
 
 var data = {
   users: [
@@ -24,7 +24,7 @@ var data = {
     { title: 'Swag Rice Cooker', description: 'Cooks your rice', price: 42.00, inventoryQty: 1, photoUrl: pUrl, isDigitalShip: false, user_id: 2, category_id: 2 },
     { title: 'Swag List', description: 'Linked List implementation', price: 0.42, inventoryQty: 10, photoUrl: pUrl, isDigitalShip: true, user_id: 3, category_id: 3 },
     { title: 'Swag Couch', description: 'Couch for all that swag', price: 4200.00, inventoryQty: 4, photoUrl: pUrl, isDigitalShip: false, user_id: 3, category_id: 4 },
-    { title: 'THE Swagon', description: 'Wagon of unbelievable swag', price: 42000.00, inventoryQty: 1, photoUrl: pUrl, isDigitalShip: false, user_id: 3, category_id: 5 },
+    { title: 'THE Swagon', description: 'Wagon of unbelievable swag', price: 42000.00, inventoryQty: 1, photoUrl: 'http://www.barrett-jackson.com/staging/carlist/items/FullSize/Cars/44141/44141_Side_Profile.jpg', isDigitalShip: false, user_id: 3, category_id: 5 },
     { title: 'Binary Swag Tree', description: '???', price: 42000000.00, inventoryQty: 84, photoUrl: pUrl, isDigitalShip: true, user_id: 3, category_id: 3 },
   ],
 
