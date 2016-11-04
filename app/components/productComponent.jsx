@@ -12,7 +12,7 @@ export default class ProductComponent extends React.Component {
 	componentWillMount() {
 		const products = this.props.products;
 		const productId = this.props.props.params.id;
-		if (products.length > 0) {
+		if (products && products.length > 0) {
 			this.state.currentProduct = products.find(product => product.id === productId)
 		} else {
 			axios.get(`/api/product/${productId}`)
