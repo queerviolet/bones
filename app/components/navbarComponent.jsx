@@ -4,9 +4,9 @@ import { Link } from 'react-router';
 export default () => (
 
   <nav className="navbar navbar-inverse navbar-fixed-top">
-    <a id="cart" className="btn" data-placement="bottom" title="Ready to Buy?" >
+    <Link to="cart" id="cart" className="btn" data-placement="bottom" title="Ready to Buy?" >
       <span className="glyphicon glyphicon-shopping-cart"></span>
-    </a>
+    </Link>
     <div className="container">
       <div className="navbar-header">
         <a className="navbar-brand" href="#">CodeCommerce</a>
