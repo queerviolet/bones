@@ -1,5 +1,6 @@
 import React from 'react'
 import { RaisedButton } from 'material-ui'
+import {green500} from 'material-ui/styles/colors';
 import Reviews from '../Reviews'
 import { roundPrice, getAvgRating, getStars } from '../../utils'
 
@@ -29,7 +30,7 @@ export default ({ product, buyClick }) => {
 						avgRating ? getStars(avgRating) : null
 					}
     			{product.quantity ? <p> In-Stock </p> : <p> Out Of Stock </p> }
-    			<RaisedButton onClick={buyClick} label='Buy'/>
+    			<RaisedButton onClick={buyClick} label='Buy' backgroundColor={green500}/>
 
     		</div>
 
