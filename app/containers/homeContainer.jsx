@@ -9,8 +9,7 @@ const mapStateToProps = (state, ownProps) => ({ })
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onLoadCategories: (categories) => dispatch(receiveAllCategoriesFromServer()),
-        onLoadProducts: (products) => dispatch(
-           receiveAllProductsFromServer())
+        onLoadProducts: (products) => dispatch(receiveAllProductsFromServer())
     };
  }
 

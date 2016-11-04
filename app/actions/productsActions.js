@@ -10,7 +10,7 @@ const receiveAllProducts = products => ({type: RECEIVE_ALL_PRODUCTS, products});
 
 // Thunk Creators for Actions
 export const receiveAllProductsFromServer = (products, callback) => dispatch => {
-    axios.get('/api/products')   
+    axios.get('/api/products')
         .then(res => {
             dispatch(receiveAllProducts(res.data));
             callback && callback(`products`);
