@@ -12,7 +12,7 @@ module.exports = customProductRoutes
 // Epilogue will automatically create standard RESTful routes
 const product = epilogue.resource({
   model: db.model('product'),
-  endpoints: ['/products', '/product/:id'],
+  endpoints: ['/products', '/products/:id'],
   search: [
     {
       operator: '$eq',
