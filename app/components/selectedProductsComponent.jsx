@@ -44,6 +44,7 @@ export default class SelectedProductsComponent extends React.Component {
                     selectedProducts && selectedProducts.map((product, index) => {
                         return (
                             <div className="selected-product" key={`${index}`}>
+                                <img src="http://placehold.it/500x400" alt="" />
                                 <div>{product.title}</div>
                             </div>
                         );
