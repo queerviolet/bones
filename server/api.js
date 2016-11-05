@@ -9,6 +9,7 @@ api
   .use('/users', require('./routes/usersRoutes'))
   .use('/category', require('./routes/categoryRoutes'))
   .use('/product', require('./routes/productRoutes'))
+  .use('/reviews', require('./routes/reviewRoutes'))
 
 
   // un comment these lines when the cart route and order route are set up

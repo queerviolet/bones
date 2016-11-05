@@ -2,14 +2,17 @@
 
 const router = require('express').Router();
 const db = require('APP/db');
-const Review = require('../../db/models/productReviewModel')
+const Review = db.model('productReview');
 
 const Promise = require('sequelize').Promise;
 
 //Get all reviews
 router.get('/reviews', function(req, res, next) {
     Review.findAll()
-        .then((reviews) => res.send(reviews))
+        .then((reviews) => {
+            console.log(reviews);
+            res.send(reviews)
+        })
         .catch(next)
 });
 

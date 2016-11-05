@@ -57,7 +57,7 @@ export default class ProductComponent extends React.Component {
          <label className="star star-5" htmlFor="star-5"></label> <br />
          <label>Your Review:</label><br />
          <br />
-         <textarea rows="20" cols="100" onChange={(e) => this.updateText(e)}></textarea><br />
+         <textarea rows="8" cols="100" onChange={(e) => this.updateText(e)}></textarea><br />
          <button type="submit" onClick={(e)=>{
           			e.preventDefault()
           			this.addReview(this.state)
