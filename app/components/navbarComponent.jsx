@@ -8,6 +8,9 @@ Navbar has:
   - a search bar to find items by name
   - a cart button that links to the cart
 */
+searchKey: function(data) {
+      
+    }
 
 export default () => (
 
@@ -20,9 +23,12 @@ export default () => (
         <Link to={"/"}className="navbar-brand">CodeCommerce</Link>
         <form className="navbar-form navbar-left" role="search">
           <div className="form-group">
-            <input type="text" className="form-control" placeholder="BST, loops, etc..."></input>
+            <input type="text" className="form-control" 
+              type="search"
+              placeholder="BST, loops, etc..."
+              onChange={this.searchKey.bind(this)}/></input>
           </div>
-          <button type="submit" className="btn btn-default">Search</button>
+          <button type="submit" className="btn btn-default" onSubmit: searchKey({this.props.value})</button>
         </form>
       </div>
     </div>
