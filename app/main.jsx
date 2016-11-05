@@ -21,6 +21,7 @@ render(
         <IndexRoute component={allProductsContainer} />
         <Route path="products/:id" component={productContainer} />
         <Route path="products/category/:categoryId" component={selectedProductsContainer} />
+        <Route path="products/name/:productName" component={selectedProductsContainer} />
       </Route>
       <Route path="/login" component={Login} />
     </Router>

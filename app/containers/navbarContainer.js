@@ -5,15 +5,14 @@ import navbarComponent from '../components/navbarComponent';
 import { receiveNamedProductsFromServer } from '../actions/productsActions';
 import { browserHistory } from 'react-router'
 
-const mapStateToProps = (state, ownProps) => ({})
+const mapStateToProps = (state, ownProps) => ({
+    selectedProducts: state.selectedProducts
+})
 
-const callback = url => browserHistory.push(`${url}`)
+const callback = url => browserHistory.push(`/${url}`)
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        onSubmitName: (name) => {
-            console.log('submitted input', name);
-            dispatch(receiveNamedProductsFromServer(name, callback))
-        }
+        onSubmitName: (name) => dispatch(receiveNamedProductsFromServer(name, callback))
     };
  }
 

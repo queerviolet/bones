@@ -2,14 +2,18 @@
 
 import { connect } from 'react-redux';
 import selectedProductsComponent from '../components/selectedProductsComponent';
-import { receiveCategoryProductsFromServer } from '../actions/productsActions';
+import { 
+  receiveCategoryProductsFromServer,
+  receiveNamedProductsFromServer 
+} from '../actions/productsActions';
 
 const mapStateToProps = (state, ownProps) => ({
   selectedProducts: state.selectedProducts
 });
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onLoadCategoryProducts: categoryId => dispatch(receiveCategoryProductsFromServer(categoryId))
+    onLoadCategoryProducts: categoryId => dispatch(receiveCategoryProductsFromServer(categoryId)),
+    onLoadNamedProducts: productName => dispatch(receiveNamedProductsFromServer(productName))
   };
 }
 

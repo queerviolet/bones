@@ -11,16 +11,13 @@ The selected products component will render out the select components from a sea
 export default class SelectedProductsComponent extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props)
     }
 
     componentWillMount() {
-        const products = this.props.products;
-        const categoryId = this.props.props.params.categoryId;
-        if (products && products.length > 0) {
-            this.state.selectedProducts = products.find(product => product.id === productId)
-        } else {
-            this.props.onLoadCategoryProducts(categoryId);
+        if(this.props.props.params.categoryId){
+            this.props.onLoadCategoryProducts(this.props.props.params.categoryId);            
+        } else if(this.props.props.params.productName){
+            this.props.onLoadNamedProducts(this.props.props.params.productName);             
         }
     }
 
