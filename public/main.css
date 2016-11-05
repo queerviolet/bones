@@ -21,7 +21,6 @@ body {
  -moz-transition: 0.5s ease;
 }
 
-/* This will control the cart image when someone hovers over it with their mouse*/
 #cart:hover{
   -webkit-transform: scale(1.5,1.5);
   -moz-transform:scale(1.5,1.5);
@@ -29,6 +28,8 @@ body {
   -moz-opacity: 1;
 }
 /* +++++++++++++++++++++++++END CART ICON STYLES+++++++++++++++++++++++++*/
+
+
 
 /* +++++++++++++++++++++++++START SIDEBAR ICON STYLES++++++++++++++++++++*/
 
@@ -54,7 +55,6 @@ body {
 }
 
 .categoryLinks {
-  /*padding adds space between each of the category links*/
   padding-top: 2em;
 }
 
