@@ -31,7 +31,7 @@ users.update = (req, res, context) => {
   res.json(context)
 }
 
-user.create = (req, res, context) => {
+users.create = (req, res, context) => {
   res.json(context);
 }
 
