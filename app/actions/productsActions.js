@@ -6,13 +6,15 @@ import axios from 'axios';
 export const RECEIVE_ALL_PRODUCTS = 'RECEIVE_ALL_PRODUCTS';
 export const RECEIVE_ONE_PRODUCT = 'RECEIVE_ONE_PRODUCT';
 export const RECEIVE_CATEGORY_PRODUCTS = 'RECEIVE_CATEGORY_PRODUCTS';
-export const RECEIVE_NAMED_PRODUCTS = 'RECEIVE_NAMED_PRODUCTS'
+export const RECEIVE_NAMED_PRODUCTS = 'RECEIVE_NAMED_PRODUCTS';
+export const CREATE_ONE_PRODUCT = 'CREATE_ONE_PRODUCT';
 
 // Create the Actions
 const receiveAllProducts = products => ({type: RECEIVE_ALL_PRODUCTS, products});
 const receiveOneProduct = product => ({type: RECEIVE_ONE_PRODUCT, product});
 const receiveCategoryProducts = categoryProducts => ({type: RECEIVE_CATEGORY_PRODUCTS, categoryProducts});
-const receiveNamedProducts = namedProducts => ({type: RECEIVE_NAMED_PRODUCTS, namedProducts})
+const receiveNamedProducts = namedProducts => ({type: RECEIVE_NAMED_PRODUCTS, namedProducts});
+const createOneProduct = product => ({type: CREATE_ONE_PRODUCT, product});
 
 // Thunk Creators for Actions
 // get products (all) from the server
@@ -51,4 +53,13 @@ export const receiveNamedProductsFromServer = (name, callback) => dispatch => {
             callback && callback(`products/name/${name}`);
         })
         .catch(err => console.log('Error loading named products', err));
+}
+
+// creates a story and sends it to the server
+export const createOneProductToServer = (product, callback) => dispatch => {
+    axios.post('/', product)
+        .then(res => res.data)
+        .then(product => createOneProduct(product))
+        .then(dispatch)
+        .catch(err => console.error(`Creating product ${product.title} failed!`, err));
 }

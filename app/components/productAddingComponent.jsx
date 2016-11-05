@@ -24,14 +24,15 @@ export default class ProductAddingComponent extends React.Component {
 
     onHandleSubmit(event){
         event.preventDefault();
-        const newProduct = this.getState();
+        const newProduct = this.state;
+        this.props.onCreateOneProduct(newProduct);
         // dispatch a post message to the server to add a new product
     }
 
     render(){
         return (
             <div className="product-add-component">
-                <form className="product-add-form">
+                <form className="product-add-form" onSubmit={this.onHandleSubmit}>
                     <div className="product-title-container">
                         <label>Product Title</label>
                         <input type="title-input" className="add-input" 
