@@ -10,8 +10,6 @@ Navbar has:
 */
 
 export default () => (
-
-
 <nav className="navbar navbar-inverse navbar-fixed-top">
   <Link to="cart" id="cart" className="btn" data-placement="bottom" title="Ready to Buy?" >
     <span className="glyphicon glyphicon-shopping-cart"></span>
