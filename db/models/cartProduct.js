@@ -1,7 +1,8 @@
 'use strict'
 
-const Sequelize = require('sequelize')
-const db = require('APP/db')
+const Sequelize = require('sequelize');
+const db = require('APP/db');
+const productModel = require('./product');
 
 // Each product and corresponding quantity in user carts
 // sessionId (str): Express session of the user
@@ -29,11 +30,11 @@ const cartProduct = db.define('cartProducts', {
 	},
 	// clearCart (fn): Remove all of the user's cart products
 	classMethods: {
-		clearCart: function(sessionId) {
-			return 	cartProduct.destroy({
-					where: { sessionId: sessionId }
-				})
-		}
+		clearCart: sessionId => cartProduct.destroy({ where: { sessionId: sessionId }}),
+		getCartProducts: sessionId => cartProduct.findAll({ 
+			where: { sessionId: sessionId },
+			include: [{model: productModel}]
+		})
 	}
 })
 

@@ -10,12 +10,7 @@ const customCartsRoutes = require('express').Router()
 module.exports = customCartsRoutes
 
 customCartsRoutes.get('/', (req,res,next) => {
-	cartProductModel.findAll({
-		where: { sessionId: req.sessionID },
-		include: [ {
-			model: productModel, required: true
-		}]
-	})
+	cartProductModel.getCartProducts(req.sessionID)
 	.then(result => res.send(result))
 	.catch(next);
 })

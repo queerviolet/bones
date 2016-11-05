@@ -2,7 +2,6 @@
 
 const Sequelize = require('sequelize');
 const db = require('APP/db');
-const reviewModel = db.model('reviews');
 
 const Product = db.define('products', {
 	name: { type: Sequelize.STRING, allowNull: false },

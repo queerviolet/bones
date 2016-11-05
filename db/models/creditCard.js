@@ -17,7 +17,12 @@ const CreditCard = db.define('creditCards', {
 				}
 			}
 		}
+	},
+	credit_cart_type: {
+		type: Sequelize.ENUM,
+		values: ['amex','mastercard','visa']
 	}
 })
+
 
 module.exports = CreditCard;
