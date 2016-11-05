@@ -21,15 +21,16 @@ export default () => (
     <div className="container">
       <div className="navbar-header">
         <Link to={"/"}className="navbar-brand">CodeCommerce</Link>
-        <form className="navbar-form navbar-left" role="search">
           <div className="form-group">
-            <input type="text" className="form-control" 
+        <input className="navbar-form navbar-left" role="search"
+              type="text" className="form-control" 
               type="search"
               placeholder="BST, loops, etc..."
-              onChange={this.searchKey.bind(this)}/></input>
-          </div>
+              onChange={this.searchKey.bind(this)}>
+          
           <button type="submit" className="btn btn-default" onSubmit: searchKey({this.props.value})</button>
-        </form>
+        </input>
+        </div>
       </div>
     </div>
   </nav>
