@@ -4,6 +4,7 @@ body {
   background-color: #27363B;
 }
 
+/* +++++++++++++++++++++++++START CART ICON STYLES+++++++++++++++++++++++++*/
 #cart  {
  max-width: 100px;
  position: absolute;
@@ -27,6 +28,9 @@ body {
   -webkit-opacity: 1;
   -moz-opacity: 1;
 }
+/* +++++++++++++++++++++++++END CART ICON STYLES+++++++++++++++++++++++++*/
+
+/* +++++++++++++++++++++++++START SIDEBAR ICON STYLES++++++++++++++++++++*/
 
 #wrapper {
   transition: all 0.4s ease 0s;
@@ -63,6 +67,7 @@ body {
   color: #27363B;
   font-size: 20px;
 }
+/* +++++++++++++++++++++++++END SIDEBAR ICON STYLES++++++++++++++++++++*/
 
 .product-boxes {
   width: 100%;
@@ -73,3 +78,53 @@ body {
   width: 50%
 }
 
+/* +++++++++++++++++++++++++START LOGIN STYLES+++++++++++++++++++++++++*/
+.wrapper {
+  margin-top: 80px;
+  margin-bottom: 20px;
+}
+
+.form-signin {
+  max-width: 420px;
+  padding: 30px 38px 66px;
+  margin: 0 auto;
+  background-color: #eee;
+  border: 3px dotted rgba(0,0,0,0.1);
+  }
+
+.form-signin-heading {
+  text-align:center;
+  margin-bottom: 30px;
+}
+
+.form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+}
+
+input[type="text"] {
+  margin-bottom: 0px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+input[type="password"] {
+  margin-bottom: 20px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.colorgraph {
+  height: 7px;
+  border-top: 0;
+  background: #c4e17f;
+  border-radius: 5px;
+  background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+
+/* +++++++++++++++++++++++++END LOGIN STYLES+++++++++++++++++++++++++ */
