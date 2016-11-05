@@ -6,11 +6,13 @@ import axios from 'axios';
 export const RECEIVE_ALL_PRODUCTS = 'RECEIVE_ALL_PRODUCTS';
 export const RECEIVE_ONE_PRODUCT = 'RECEIVE_ONE_PRODUCT';
 export const RECEIVE_CATEGORY_PRODUCTS = 'RECEIVE_CATEGORY_PRODUCTS';
+export const RECEIVE_NAMED_PRODUCTS = 'RECEIVE_NAMED_PRODUCTS'
 
 // Create the Actions
 const receiveAllProducts = products => ({type: RECEIVE_ALL_PRODUCTS, products});
 const receiveOneProduct = product => ({type: RECEIVE_ONE_PRODUCT, product});
 const receiveCategoryProducts = categoryProducts => ({type: RECEIVE_CATEGORY_PRODUCTS, categoryProducts});
+const receiveNamedProducts = namedProducts => ({type: RECEIVE_NAMED_PRODUCTS, namedProducts})
 
 // Thunk Creators for Actions
 // get products (all) from the server
@@ -33,11 +35,20 @@ export const receiveOneProductFromServer = (productId, callback) => dispatch => 
 
 // gets filtered products by catergory from the server
 export const receiveCategoryProductsFromServer = (categoryId, callback) => dispatch => {
-    console.log(categoryId);
     axios.get(`/api/products?category=${categoryId}`)
         .then(res => {
             dispatch(receiveCategoryProducts(res.data));
             callback && callback(`products/category/${categoryId}`);
         })
-        .catch(err => console.log('Error loading category filter', err));
+        .catch(err => console.log('Error loading category products', err));
+}
+
+// gets filtered products by name from the server
+export const receiveNamedProductsFromServer = (name, callback) => dispatch => {
+    axios.get(`/api/products?productTitle=${name}`)
+        .then(res => {
+            dispatch(receiveNamedProducts(res.data))
+            callback && callback(`products/name/${name}`);
+        })
+        .catch(err => console.log('Error loading named products', err));
 }

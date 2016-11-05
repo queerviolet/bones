@@ -25,6 +25,7 @@ render(
         <Route path="products/:id" component={productContainer} />
         <Route path="products/category/:categoryId" component={selectedProductsContainer} />
         <Route path="cart" component={cartContainer} onEnter={receiveAllProductsFromServer}/>
+        <Route path="products/name/:productName" component={selectedProductsContainer} />
       </Route>
       <Route path="/login" component={Login} />
       <Route path="/checkout" component={checkoutComponent} />
