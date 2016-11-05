@@ -30,6 +30,5 @@ users.read = (req, res, context) => {
 const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
 users.delete.auth(mustBeLoggedIn)
 users.delete.auth(selfOnly)
-//users.list(req, res, next)
 //users.list.auth(forbidden)
 //users.read.auth(mustBeLoggedIn)
