@@ -24,6 +24,8 @@ export default class ProductAddingComponent extends React.Component {
 
     onHandleSubmit(event){
         event.preventDefault();
+        const newProduct = this.getState();
+        // dispatch a post message to the server to add a new product
     }
 
     render(){
@@ -62,9 +64,16 @@ export default class ProductAddingComponent extends React.Component {
                     </div>
                     <div className="product-digital-container">
                         <label>Product Digital Shipping</label>
-                        <input type="digital-input" className="add-input" 
-                            name="digital" onChange={(event) => {this.onHandleChange('isDigitalShip', event)}}
-                            id="digital-input-id" placeholder="Digital Shipping?"></input>
+                        <div className="btn-group">
+                            <button type="button" className="btn, btn-default dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expended="false">
+                                Digital Shipping
+                            </button>
+                            <ul className="dropdown-menu">
+                                <li>Yes</li>
+                                <li>No</li>
+                            </ul>
+                        </div>
                     </div>
                     <div className="product-categories-container">
                         <label>Product Categories</label>
