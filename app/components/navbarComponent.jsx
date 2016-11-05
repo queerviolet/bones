@@ -18,7 +18,8 @@ export default () => (
   </Link>
   <div className="container">
     <div className="navbar-header">
-      <a className="navbar-brand" href="#">CodeCommerce</a>
+      <Link to={"/"}className="navbar-brand">CodeCommerce</Link>
+      <Link to={"/login"}className="nav navbar navbar-right">Login</Link>
       <form className="navbar-form navbar-left" role="search">
         <div className="form-group">
           <input type="text" className="form-control" placeholder="BST, loops, etc..."></input>
