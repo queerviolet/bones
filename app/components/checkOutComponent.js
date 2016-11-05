@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router';
 
-export default () => (
+export default ({total}) => (
 <div className='container'>
   <div className='row' style={{"paddingTop":"25px", "paddingBottom":"25px"}}>
     <div className='col-md-12'>
@@ -10,7 +11,9 @@ export default () => (
             Review Your Order & Complete Checkout
           </h2>
           <hr/>
-          <a href="" className="btn btn-info" style={{"width": "100%"}}>Add More Products & Services</a>
+          <Link to="/">
+            <span className="btn btn-info" style={{"width": "100%"}}>Add More Products & Services</span>
+          </Link>
           <hr/>
           <div className="shopping_cart">
             <form className="form-horizontal" role="form" action="" method="post" id="payment-form">
@@ -45,7 +48,7 @@ export default () => (
                                         </ul>
                                       </td>
                                       <td>
-                                        <b>$147.00</b>
+                                        <b>Item Total</b>
                                       </td>
                                     </tr>
 
@@ -55,7 +58,7 @@ export default () => (
                               <div className="col-md-3">
                                 <div style={{"textAlign": "center"}}>
                                   <h3>Order Total</h3>
-                                  <h3><span style={{"color":"green"}}>$147.00</span></h3>
+                                  <h3><span style={{"color":"green"}}>${total}</span></h3>
                                 </div>
                               </div>
                             </div>
@@ -339,4 +342,4 @@ export default () => (
                                     </div>
                                   </div>
                                 </div>
-                                );
+                              );

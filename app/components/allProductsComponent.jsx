@@ -21,7 +21,7 @@ export default ({products, addToCart, cart}) => (
                         <p>{product.description}</p>
                         <p>${product.price}</p>
                         <p>
-                            <a onClick={() => {addToCart(product.id, 1);}} href="#" className="btn btn-primary">Add To Cart!</a>
+                            <a onClick={(e) => {e.preventDefault(); addToCart(product.id, 1);}} href="#" className="btn btn-primary">Add To Cart!</a>
                             <Link to={"/products/" + product.id} className="btn btn-default">More Info</Link>
                         </p>
                     </div>
@@ -32,4 +32,3 @@ export default ({products, addToCart, cart}) => (
       }
     </div>
 );
-

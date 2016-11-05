@@ -15,8 +15,11 @@ import selectedProductsContainer from './containers/selectedProductsContainer'
 import WhoAmI from './components/WhoAmI'
 import cartContainer from './containers/cartContainer';
 import receiveAllProductsFromServer from './actions/productsActions';
-import checkoutComponent from './components/checkoutComponent';
+
 import productAddingContainer from './containers/productAddingContainer';
+
+import checkoutContainer from './containers/checkoutContainer';
+
 
 render(
   <Provider store={store}>
@@ -30,7 +33,7 @@ render(
         <Route path="products/add" component={productAddingContainer} />
       </Route>
       <Route path="/login" component={Login} />
-      <Route path="/checkout" component={checkoutComponent} />
+      <Route path="/checkout" component={checkoutContainer} />
     </Router>
   </Provider>,
   document.getElementById('main')
