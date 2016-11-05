@@ -24,7 +24,7 @@ render(
       <Route path="/" component={ App } onEnter={ appEnter }>
         <Route path="/products" component={ AllProductsContainer } />
         <Route path="/products/:productId" component={ ProductContainer } onEnter={ productEnter } />
-        <Route path="/orderform" component={ OrderFormContainer } />
+        <Route path="/checkout" component={ OrderFormContainer } />
         <IndexRoute component={ AllProductsContainer } />
       </Route>
     </Router>

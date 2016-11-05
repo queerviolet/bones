@@ -1,8 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router'
 
 // Material theme
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import { Tabs, Tab } from 'material-ui'
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import FontIcon from 'material-ui/FontIcon';
 import FlatButton from 'material-ui/FlatButton';
@@ -10,23 +10,31 @@ import {black, white, blueGrey500} from 'material-ui/styles/colors';
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin();
 
-const toolbarStyle = {backgroundColor: blueGrey500}
-const toolbarText = {color: white}
-const buttonText = {color: white}
+// Material CSS rules
+const toolbarText = {color: white, padding: 0}
+const buttonText = {color: white, padding: 0, transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms'}
 const centerText = {marginLeft: '45%'}
-const seperator = {backgroundColor: black, marginLeft: 'none'}
 
 export default ({ children }) => (
     <MuiThemeProvider>
       <div id="app">
-        <Toolbar style={toolbarStyle}>
+        <Toolbar id="navbar" style={{backgroundColor: '#007281'}}>
             <ToolbarGroup style={centerText}>
-              <ToolbarTitle style={toolbarText} text="JustHome" />
+              <Link to="/">
+                <ToolbarTitle style={toolbarText} text="JustHome" />
+              </Link>
             </ToolbarGroup>
-            <ToolbarGroup float="right" >
-              <FlatButton style={buttonText} label="Sign In" />
-              <ToolbarSeparator style={seperator} />
-              <FontIcon className="material-icons" color={white} hoverColor={black} >shopping_cart</FontIcon>
+            <ToolbarGroup style={{float: 'right'}}>
+              <div className="navbar-item">
+                <Link to="/sign-in">
+                  <FlatButton labelStyle={buttonText} hoverColor="#007281" rippleColor="#007281" label="Sign In" />
+                </Link>
+              </div>
+              <div className="navbar-item">
+                <Link to="/cart">
+                  <FontIcon className="material-icons" color={white} hoverColor="#00b6ce">shopping_cart</FontIcon>
+                </Link>
+              </div>
             </ToolbarGroup>
           </Toolbar>   
         <div className="container content">

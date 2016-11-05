@@ -18,7 +18,7 @@ export default ({ products, category, handleChange }) => {
   return (
     <div id="products" className="col-xs-12">
       <div className="row">
-        <div className="search col-sm-9">
+        <div className="search col-xs-12 col-sm-8 col-md-9">
           <AutoComplete
             dataSource={ products }
             floatingLabelText="Search"
@@ -26,10 +26,11 @@ export default ({ products, category, handleChange }) => {
             onUpdateInput={(text) => handleChange("searchText", text) }
           />
         </div>
-        <div className="filter col-sm-3">
+        <div className="filter col-xs-offset-1 col-xs-10 col-sm-offset-0 col-sm-4 col-md-3">
           <SelectField
             floatingLabelText="Category"
             value={category}
+            fullWidth={ true }
             onChange={(event, key, value) => handleChange("category", value) }
           >
           {
@@ -40,7 +41,7 @@ export default ({ products, category, handleChange }) => {
           </SelectField>
         </div>
       </div>
-      <div className="row">
+      <div className="row product-results">
       {
         products.map((product) => {
           const avgRating = getAvgRating(product.reviews)

@@ -10,23 +10,53 @@ body,html {
   height: inherit;
 }
 
+.content {
+  min-height: calc(100vh - 55px);
+  padding-top: 5.6em;
+}
+
+/* Nav bar */
+
 #navbar {
   position: fixed;
-  height: 55px;
-  z-index: 1;
+  z-index: 2;
   width: inherit;
-  top: 0px;
-  left: 0px;
+}
+
+#navbar a {
+  text-decoration: none;
+}
+
+.navbar-item, .navbar-item > a {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-item + .navbar-item::before {
+  content: '|';
+  font-size: 28px;
+  color: white;
+}
+
+/* navbar icons */
+.navbar-item > a > button > div > span:hover {
+  color: #00b6ce !important;
+}
+
+/* navbar icons */
+.navbar-item > a > span {
+  padding: 0 16px;
+}
+
+/* Product Search */
+
+.product-results {
+  padding-top: 1em;
+  text-align: center;
 }
 
 .thumbnail {
   display: inline-block;
-}
-
-.content {
-  min-height: calc(100vh - 55px);
-  top: 55px;
-  padding-top: 2em;
 }
 
 /* Review List */
