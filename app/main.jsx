@@ -15,6 +15,7 @@ import selectedProductsContainer from './containers/selectedProductsContainer'
 import WhoAmI from './components/WhoAmI'
 import cartContainer from './containers/cartContainer';
 import receiveAllProductsFromServer from './actions/productsActions';
+import checkoutComponent from './components/checkoutComponent';
 
 render(
   <Provider store={store}>
@@ -26,6 +27,7 @@ render(
         <Route path="cart" component={cartContainer} onEnter={receiveAllProductsFromServer}/>
       </Route>
       <Route path="/login" component={Login} />
+      <Route path="/checkout" component={checkoutComponent} />
     </Router>
   </Provider>,
   document.getElementById('main')
