@@ -4,6 +4,7 @@ Short and sweet:
 
 ```
 npm install
+npm run seed
 npm run build-watch
 npm start
 ```

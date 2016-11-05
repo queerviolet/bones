@@ -33,8 +33,6 @@ User.hasMany(Order);
 LineItem.belongsTo(Order);
 Order.hasMany(LineItem);
 
-
-
 // other associations we need
 // OrderAdresses
 Order.belongsTo(Address, {as: 'shipping_address'});
@@ -59,7 +57,8 @@ Review.belongsTo(User);
 User.hasMany(Review);
 
 // CartProduct.hasOne(Product)
-Product.hasOne(CartProduct)
+// Product.hasOne(CartProduct);
+CartProduct.belongsTo(Product);
 
 
 module.exports = {User, Product, Review, Order, LineItem, Address, CreditCard, CartProduct};

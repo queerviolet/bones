@@ -3,17 +3,17 @@ import chai, { expect } from 'chai'
 import sinon from 'sinon'
 import axios from 'axios';
 
-import rootReducer from 'App/browser/redux/index'
-import actualStore from 'App/browser/store'
-import { axiosResponse } from './utils.js'
+import rootReducer from 'APP/browser/redux/index'
+import actualStore from 'APP/browser/store'
+import { axiosResponse } from './../utils.js'
 
 import { RECEIVE_PRODUCTS,
          receiveProducts,
-         fetchProducts } from 'App/browser/redux/products'
+         fetchProducts } from 'APP/browser/redux/products'
 
 import { RECEIVE_PRODUCT,
          receiveProduct,
-         fetchProduct } from 'App/browser/redux/product'
+         fetchProduct } from 'APP/browser/redux/product'
 
 
 describe('Products', () => {

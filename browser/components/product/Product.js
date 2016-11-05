@@ -11,7 +11,6 @@ export default ({ product, buyClick }) => {
 	}
 
 	const avgRating = product.reviews.length ? getAvgRating(product.reviews) : 0;
-	console.log(avgRating)
   return (
 
     <div id="product" className="col-xs-12">
@@ -30,7 +29,7 @@ export default ({ product, buyClick }) => {
 						avgRating ? getStars(avgRating) : null
 					}
     			{product.quantity ? <p> In-Stock </p> : <p> Out Of Stock </p> }
-    			<RaisedButton onClick={buyClick} label='Buy' backgroundColor={green500}/>
+    			<RaisedButton onClick={() => buyClick(product.id)} label='Buy' backgroundColor={green500}/>
 
     		</div>
 

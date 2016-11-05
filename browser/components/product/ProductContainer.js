@@ -1,14 +1,14 @@
 import React from'react';
 import { connect } from 'react-redux';
 import Product from './Product';
+import { addToCart } from '../../redux/cart'
 
 const mapStateToProps = ({ currentProduct }) => ({ product: currentProduct });
 
-const mapDispatchtoProps = ({dispatch}) => {
+const mapDispatchtoProps = (dispatch) => {
 	return {
-		// TODO: Add item to cart using the /api/cart-products route
-		buyClick : () => {
-			console.log("BUY!")
+		buyClick : (productId) => {
+			dispatch(addToCart(productId));
 		}
 	}
 }

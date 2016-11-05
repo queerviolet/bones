@@ -5,14 +5,16 @@ const productModel = db.model('products');
 const userModel = db.model('users');
 const cartProductModel = db.model('cartProducts');
 
-
 const customCartsRoutes = require('express').Router() 
 
 module.exports = customCartsRoutes
 
 customCartsRoutes.get('/', (req,res,next) => {
 	cartProductModel.findAll({
-		where: { sessionId: req.sessionID }
+		where: { sessionId: req.sessionID },
+		include: [ {
+			model: productModel, required: true
+		}]
 	})
 	.then(result => res.send(result))
 	.catch(next);
@@ -33,8 +35,17 @@ customCartsRoutes.post('/', (req,res,next) => {
 			return next(error)
 		}
 		return cartProduct.save()
-			.then(() => res.status(201).send(cartProduct))
-			.catch(next);
+			.then((newProduct) => {
+				productModel.findById(newProduct.product_id)
+					.then(product => {
+						newProduct.dataValues.product = product.dataValues;
+						res.status(201).send(newProduct);
+					})
+			})
+			.catch(err => {
+				console.log(err);
+				next();
+			});
 	})
 	.catch(next);
 })
@@ -47,17 +58,29 @@ customCartsRoutes.delete('/', (req,res,next) => {
 
 customCartsRoutes.put('/:productId', (req,res,next) => {
 	cartProductModel.update(
-		{ quantity: req.body.quantity}, 
-		{ where: {sessionId: req.sessionID, product_id: req.params.productId} }
-	)
-	.then(() => res.sendStatus(204))
+		{ quantity: req.body.quantity }, 
+		{ where: { sessionId: req.sessionID, product_id: req.params.productId },
+		returning: true })
+	.then((response) => {
+		return cartProductModel.findOne({
+			where: { id: response[1][0].id},
+			include: [{ model: productModel, required: true }]
+		})
+	})
+	.then((updatedCartProduct) => {
+		res.send(updatedCartProduct);
+	})
 	.catch(next);
 })
 
 customCartsRoutes.delete('/:productId', (req,res,next) => {
+	console.log('got to destroy', req.params.productId, req.sessionID)
 	cartProductModel.destroy(
-		{ where: {sessionId: req.sessionID, product_id: req.params.productId} }
+		{ where: { sessionId: req.sessionID, product_id: req.params.productId } }
 	)
-	.then(() => res.sendStatus(204))
+	.then((thing) => {
+		console.log('post destroy', thing);
+		res.sendStatus(204)
+	})
 	.catch(next);
 })

@@ -1,7 +1,7 @@
 'use strict'
 
 import db from 'APP/db';
-import Product from 'APP/db/models/Product';
+import Product from 'APP/db/models/product';
 
 import chai from 'chai';
 import chaiProperties from 'chai-properties';
