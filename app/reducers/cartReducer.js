@@ -20,7 +20,6 @@ export default function cartReducer(prevState = initCart || {}, action){
         checkoutLocalStorage(update);
         return update;
       }
-      break;
     default: return prevState;
   }
 }

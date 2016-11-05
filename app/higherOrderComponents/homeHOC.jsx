@@ -10,6 +10,7 @@ const createHomeHOC = HomeComponent => {
                 super(props);
             }
 
+            // When the component mounts, get all categories and products
             componentWillMount () {
                 this.props.onLoadCategories();
                 this.props.onLoadProducts(); // make this function
