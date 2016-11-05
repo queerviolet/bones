@@ -12,6 +12,7 @@ const Product = require('./productModel')
 const ProductReview = require('./productReviewModel')
 const order_Product = require('./order_Product')
 
+
 // Associations for db Models
 
 // User Associations
