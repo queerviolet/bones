@@ -14,6 +14,7 @@ const User = db.define('users', {
     },
     unique: true
   },
+  username: Sequelize.STRING,
   addresses: Sequelize.ARRAY(Sequelize.STRING),
   isAdmin: {
     type: Sequelize.BOOLEAN,
