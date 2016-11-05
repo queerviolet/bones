@@ -15,9 +15,7 @@ import selectedProductsContainer from './containers/selectedProductsContainer'
 import WhoAmI from './components/WhoAmI'
 import cartContainer from './containers/cartContainer';
 import receiveAllProductsFromServer from './actions/productsActions';
-
 import productAddingContainer from './containers/productAddingContainer';
-
 import checkoutContainer from './containers/checkoutContainer';
 
 
@@ -30,7 +28,7 @@ render(
         <Route path="products/category/:categoryId" component={selectedProductsContainer} />
         <Route path="cart" component={cartContainer} onEnter={receiveAllProductsFromServer}/>
         <Route path="products/name/:productName" component={selectedProductsContainer} />
-        <Route path="products/add" component={productAddingContainer} />
+        <Route path="products/product/add" component={productAddingContainer} />
       </Route>
       <Route path="/login" component={Login} />
       <Route path="/checkout" component={checkoutContainer} />
