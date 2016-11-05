@@ -8,9 +8,6 @@ Navbar has:
   - a search bar to find items by name
   - a cart button that links to the cart
 */
-searchKey: function(data) {
-      
-    }
 
 export default () => (
 
@@ -27,8 +24,7 @@ export default () => (
               type="search"
               placeholder="BST, loops, etc..."
               onChange={this.searchKey.bind(this)}>
-          
-          <button type="submit" className="btn btn-default" onSubmit: searchKey({this.props.value})</button>
+          <button type="submit" className="btn btn-default" onSubmit={() => searchKey(this.props.value)}></button>
         </input>
         </div>
       </div>
