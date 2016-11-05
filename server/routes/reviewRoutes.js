@@ -1,23 +1,23 @@
 'use strict';
 
-var router = require('express').Router();
-var db = require('APP/db');
-var Review = require('../../db/models/productReviewModel')
+const router = require('express').Router();
+const db = require('APP/db');
+const Review = require('../../db/models/productReviewModel')
 
-var Promise = require('sequelize').Promise;
+const Promise = require('sequelize').Promise;
 
 //Get all reviews
 router.get('/reviews', function(req, res, next) {
     Review.findAll()
-        .then(function(reviews) {
-            res.send(reviews)
-        })
+        .then((reviews) => res.send(reviews))
         .catch(next)
 });
 
 //Get one review by id
 router.get('reviews/:reviewId', function(req, res, next) {
-    res.send(req.review)
+     Review.findById(req.params.reviewId)
+     .then((review)=>res.send(review))
+     .catch(next)
 });
 
 

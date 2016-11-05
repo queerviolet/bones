@@ -42,7 +42,8 @@ export default class ProductComponent extends React.Component {
 
     		<div className="product-description" >
     			<p>{currentProduct.description}</p>
-    			<div className="review-form">
+    			
+    	<div className="review-form">
          <form>
          <input className="star star-1" id="star-1" type="radio" name="star1" value="1" onChange={(e) => this.updateStar(e)}/>
          <label className="star star-1" htmlFor="star-1"></label>
@@ -58,9 +59,9 @@ export default class ProductComponent extends React.Component {
          <br />
          <textarea rows="20" cols="100" onChange={(e) => this.updateText(e)}></textarea><br />
          <button type="submit" onClick={(e)=>{
-          e.preventDefault()
-          this.addReview(this.state)
-          }}
+          			e.preventDefault()
+          			this.addReview(this.state)
+         			 }}
         >Submit Review
          </button>
          </form>
