@@ -13,6 +13,7 @@ const receiveOneProduct = product => ({type: RECEIVE_ONE_PRODUCT, product});
 const receiveCategoryProducts = categoryProducts => ({type: RECEIVE_CATEGORY_PRODUCTS, categoryProducts});
 
 // Thunk Creators for Actions
+// get products (all) from the server
 export const receiveAllProductsFromServer = (callback) => dispatch => {
     axios.get('/api/products')
         .then(res => {
@@ -21,6 +22,7 @@ export const receiveAllProductsFromServer = (callback) => dispatch => {
         })
 }
 
+// get one product by id from the server
 export const receiveOneProductFromServer = (productId, callback) => dispatch => {
     axios.get(`/api/products/${productId}`)
         .then(res => {
@@ -29,6 +31,7 @@ export const receiveOneProductFromServer = (productId, callback) => dispatch => 
         })
 }
 
+// gets filtered products by catergory from the server
 export const receiveCategoryProductsFromServer = (categoryId, callback) => dispatch => {
     console.log(categoryId);
     axios.get(`/api/products?category=${categoryId}`)
@@ -38,4 +41,3 @@ export const receiveCategoryProductsFromServer = (categoryId, callback) => dispa
         })
         .catch(err => console.log('Error loading category filter', err));
 }
-

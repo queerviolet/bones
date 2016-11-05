@@ -1,6 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+/*
+The navbar component will render a basic navbar
+Navbar has:
+  - a home button that links to the homepage
+  - a search bar to find items by name
+  - a cart button that links to the cart
+*/
+
 export default () => (
 
   <nav className="navbar navbar-inverse navbar-fixed-top">
@@ -19,6 +27,5 @@ export default () => (
         </form>
       </div>
     </div>
-  </nav>
+</nav>
 );
-

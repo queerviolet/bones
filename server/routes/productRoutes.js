@@ -13,7 +13,9 @@ module.exports = customProductRoutes
 const product = epilogue.resource({
   model: db.model('product'),
   endpoints: ['/products', '/products/:id'],
-  search: [
+  search: [ 
+    // this sets up queries for the endpoints 
+    // i.e. /products?isDigitalShip=true
     {
       operator: '$eq',
       param: 'isDigitalShip',

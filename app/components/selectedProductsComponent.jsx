@@ -1,7 +1,12 @@
 'use stict'
 
 import React from 'react';
-import axios from 'axios';
+
+/*
+The selected products component will render out the select components from a search or filter
+    - This component loads in item baseds on a search, or filter
+	- The component mount gets the product through param(link) or selection
+*/
 
 export default class SelectedProductsComponent extends React.Component {
     constructor(props) {

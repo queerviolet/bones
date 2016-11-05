@@ -8,6 +8,7 @@ const mapStateToProps = (state, ownProps) => ({
   products: state.products,
   cart: state.cart
 })
+
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     addToCart: (item, qty) => {

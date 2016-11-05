@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-
+/*
+This component is a stateless component rendering all the products
+- User for the landing page to get view all the products
+*/
 
 export default ({products, addToCart, cart}) => (
 
