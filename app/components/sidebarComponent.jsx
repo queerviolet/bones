@@ -3,6 +3,10 @@
 import React from 'react'
 import { Link } from 'react-router';
 
+/* 
+The sidebar component will render out a sidebar with the different categories of products.
+*/
+
 export default ({ categories, onLoadCategoryProducts }) => {
     return (
         <div className="sidebar-container col-md-2">

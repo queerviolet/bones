@@ -3,6 +3,12 @@
 import React from 'react';
 import axios from 'axios';
 
+/*
+The product component will render a single product to the screen
+	- This component loads in an item based on a selected product, or linked object
+	- The component mount gets the product through param(link) or selection
+*/
+
 export default class ProductComponent extends React.Component {
 	constructor(props) {
 		super(props);
