@@ -1,6 +1,6 @@
 'use strict'
 
-import { UPDATE_CART } from '../actions/cartActions';
+import { UPDATE_CART, REMOVE_CART_ITEM } from '../actions/cartActions';
 
 // Reducer for Categories
 var initCart = JSON.parse(localStorage.getItem('cart'));
@@ -20,14 +20,20 @@ export default function cartReducer(prevState = initCart || {}, action){
         checkoutLocalStorage(update);
         return update;
       }
+    case REMOVE_CART_ITEM:
+      delete prevState[action.itemId];
+      var update = Object.assign({}, prevState);
+      checkoutLocalStorage(update);
+      return update;
+
     default: return prevState;
   }
 }
 
 function checkoutLocalStorage (cart) {
+  localStorage.clear();
   console.log('cart ', cart);
   cart = JSON.stringify(cart);
   localStorage.setItem('cart', cart);
   console.log('local ', localStorage);
-  // localStorage.clear();
 }

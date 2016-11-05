@@ -41,4 +41,3 @@ export const receiveCategoryProductsFromServer = (categoryId, callback) => dispa
         })
         .catch(err => console.log('Error loading category filter', err));
 }
-
