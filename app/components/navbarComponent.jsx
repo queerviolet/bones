@@ -32,6 +32,7 @@ export default class NavbarComponent extends React.Component{
     console.log('submitting an event', this.state.searchText);
     console.log(Router);
     this.props.onSubmitName(this.state.searchText);
+    document.getElementById("search-form").reset();
   }
 
   render(){
@@ -44,7 +45,7 @@ export default class NavbarComponent extends React.Component{
           <div className="navbar-header">
             <Link to={"/"}className="navbar-brand">CodeCommerce</Link>
             <Link to={"/login"}className="nav navbar navbar-right">Login</Link>
-            <form className="navbar-form navbar-left" role="search" onSubmit={this.handleOnSubmit}>
+            <form className="navbar-form navbar-left" id="search-form" role="search" onSubmit={this.handleOnSubmit}>
               <div className="form-group">
                 <input type="text" className="form-control" 
                   placeholder="BST, loops, etc..." onChange={this.handleOnChange}></input>
