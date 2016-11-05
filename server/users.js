@@ -3,7 +3,7 @@
 const epilogue = require('./epilogue')
 const db = require('APP/db')
 
-const customUserRoutes = require('express').Router() 
+const customUserRoutes = require('express').Router()
 
 // Custom routes go here.
 
