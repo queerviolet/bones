@@ -22,10 +22,5 @@ import {connect} from 'react-redux'
 
 export default connect (
   state => ({}),
-  dispatch => ({
-    login(username, password) {
-      return dispatch(login(username, password))
-    }
-  }),
+  {login},
 ) (Login)
-
