@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 import { RaisedButton } from 'material-ui'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn, TableFooter} from 'material-ui/Table';
 import DropDownMenu from 'material-ui/DropDownMenu';
@@ -96,7 +97,9 @@ export default ({cartProducts, handleQuantityChange, removeProductFromCart }) =>
                     <TableHeaderColumn>{}</TableHeaderColumn>
                     <TableHeaderColumn>{}</TableHeaderColumn>
                     <TableHeaderColumn>
-                        <RaisedButton disabled={!cartProducts.length} label="Buy" primary={true} style={style} href="/checkout" />
+                        <Link to="/checkout">
+                            <RaisedButton disabled={!cartProducts.length} label="Buy" primary={true} style={style} />
+                        </Link>
                     </TableHeaderColumn>
                     <TableHeaderColumn>{}</TableHeaderColumn>
                 </TableRow>

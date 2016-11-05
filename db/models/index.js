@@ -56,9 +56,7 @@ Product.hasMany(Review);
 Review.belongsTo(User);
 User.hasMany(Review);
 
-// CartProduct.hasOne(Product)
-// Product.hasOne(CartProduct);
-CartProduct.belongsTo(Product);
-
+// CartProducts
+CartProduct.belongsTo(Product)
 
 module.exports = {User, Product, Review, Order, LineItem, Address, CreditCard, CartProduct};
