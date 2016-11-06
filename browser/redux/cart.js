@@ -58,10 +58,7 @@ export const updateQuantity = (productId, newQuantity) => dispatch => {
         quantity: newQuantity
     }
     axios.put(`/api/cart-products/${productId}`, body)
-        .then(res => {
-            console.log('res')
-            dispatch(updatedCartProduct(res.data));
-        })
+        .then(res => dispatch(updatedCartProduct(res.data)))
         .catch(err => console.error('unable to update quantity', err));
 }
 

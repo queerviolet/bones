@@ -19,7 +19,7 @@ export default ({ lineItems }) => {
       </TableHeader>
       <TableBody>
       {
-        lineItems.map(item => <LineItem key={item.id} item={item} />)
+        lineItems && lineItems.map(item => <LineItem key={item.id} item={item} />)
       }
       </TableBody>
       <TableFooter adjustForCheckbox={false}>

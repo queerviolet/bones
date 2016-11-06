@@ -7,7 +7,8 @@ const productType = ['chair', 'table', 'bed', 'closet', 'sofa', 'desk'],
 	productStyle = ['coastal', 'contemporary', 'traditional', 'modern', 'gothic', 'brutalist'],
 	productMaterial = ['wood', 'plastic', 'mdf', 'mild steel', 'cast iron', 'synthetic leather', 'polyurethane', 'leather', 'fabric', 'acrylic', 'stainless steel'],
 	productCategory = ['bedroom', 'livingroom', 'kitchen', 'office', 'bath', 'dining'],
-	orderStatus = ['created', 'processing', 'cancelled', 'completed']
+	orderStatus = ['created', 'processing', 'cancelled', 'completed'],
+	cardType = ['visa', 'amex', 'mastercard'];
 
 // create methods generating random object
 chance.mixin({
@@ -33,6 +34,7 @@ chance.mixin({
 			expiry_date: chance.exp(),
 			security_code: chance.natural({min: 100, max: 999}),
 			user_id: chance.natural({min:1, max:5}),
+			card_type: chance.pickone(cardType)
 		};
 	},
 	lineItems: () => {

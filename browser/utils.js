@@ -9,6 +9,7 @@ export const roundPrice = (price) => price.toFixed(2);
 
 // Get the total price of the input LineItems or Products
 export const totalPrice = (products) => {
+  if (!products) return 0;
   const total = products.reduce(
     (sum, item) => sum + (item.quantity ? item.price * item.quantity : item.price)
   , 0)
@@ -17,6 +18,7 @@ export const totalPrice = (products) => {
 
 // Return the average rating of the passed in reviews
 export const getAvgRating = (reviews) => {
+  if (!reviews) return 0;
   const totalStars = reviews.reduce((sum, review) => sum + review.rating, 0);
   return Math.ceil(totalStars / reviews.length);
 }
@@ -35,4 +37,31 @@ export const getStars = (rating) => {
     }
     </div>
   )
+}
+
+/* Form Validators */
+
+// Credit card numbers
+export const checkCreditCard = (number) => {
+  return number.match(/^\d{4}-\d{4}-\d{4}-\d{4}$/);
+}
+
+// State
+export const checkState = (state) => {
+  return state.match(/^[A-Z]{2}$/);
+}
+
+// Zip code
+export const checkZipCode = (zip) => {
+  return zip.match(/^\d{5}(?:[-]\d{4})?$/);
+}
+
+// Expiration date
+export const checkExpDate = (exp) => {
+  return exp.match(/(0[1-9])|(1[0-2])\/\d{4}/);
+}
+
+// CV
+export const checkCV = (cv) => {
+  return cv.match(/\d{3}/);
 }

@@ -78,3 +78,21 @@ body,html {
 .review > p {
   margin: 0;
 }
+
+/* Checkout */
+
+.form-box {
+  border: 1px solid #edd5ed;
+  padding: 0 15px 15px;
+  margin-bottom: 20px;
+}
+
+/* Always set the width of the legend inline */
+.form-box > legend {
+  border: none;
+  margin: 0;
+  padding-left: 15px;
+  color: rgba(0, 0, 0, 0.498039);
+  font-size: 1.4em;
+}
+

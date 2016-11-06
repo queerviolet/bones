@@ -15,14 +15,11 @@ const cartProductModel = db.model('cartProducts');
 const customOrdersRoutes = require('express').Router() 
 module.exports = customOrdersRoutes
 
-const Chance = require('chance');
-const chance = new Chance(Math.random);
-let newOrder = {
-	confirmation_number: chance.string({
-			pool:'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
-			length: 20
-		})
-}
+const chance = require('chance')(Math.random);
+const generateConfirmationNum = () => chance.string({
+	pool:'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+	length: 20
+});
 
 // // Epilogue will automatically create standard RESTful routes
 // const orders = epilogue.resource({
@@ -49,9 +46,8 @@ customOrdersRoutes.get('/:id', (req,res,next) => {
 
 // This was working!!
 customOrdersRoutes.post('/', (req,res,next) => {
-
 	orderModel.findOrCreate({
-		where: newOrder,
+		where: { confirmation_number: generateConfirmationNum() },
 		include: [
 			{ model: addressModel, as: 'shipping_address', required: false },
 			{ model: addressModel, as: 'billing_address', required: false },
@@ -73,7 +69,7 @@ customOrdersRoutes.post('/', (req,res,next) => {
 	})
 	.then(order => {
 		return creditCardModel
-			.findOrCreate({where: req.body.creditCard})
+			.findOrCreate({where: req.body.credit_card})
 			.spread(creditCardInfo => order.setCreditCard(creditCardInfo))
 			.catch(next)
 	})
