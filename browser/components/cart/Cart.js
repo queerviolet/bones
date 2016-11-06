@@ -1,5 +1,6 @@
-import React from 'react'
-import { RaisedButton } from 'material-ui'
+import React from 'react';
+import { Link } from 'react-router';
+import { RaisedButton } from 'material-ui';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn, TableFooter} from 'material-ui/Table';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -9,12 +10,6 @@ import { roundPrice } from '../../utils';
 const style = {
   margin: 12,
 };
-
-// const BuyButton = () => (
-//   <div>
-//     <RaisedButton label="Buy" primary={true} style={style} href="/checkout" />
-//   </div>
-// );
 
 const XButton = (item, removeProductFromCart) => {
     return (
@@ -54,15 +49,21 @@ export default ({cartProducts, handleQuantityChange, removeProductFromCart }) =>
             <TableBody displayRowCheckbox={false} showRowHover={true}>
                 {
                     cartProducts && cartProducts.map(item => {
+                        let productLink = `/products/${item.id}`
                         return (
                         <TableRow key={item.id}>
                             <TableRowColumn>
-                                <img src={item.product.images[0]} alt="" />
+                                <img style={{width: "100%", height: "auto"}} src={item.product.images[0]} alt="" />
                             </TableRowColumn>
-                            <TableRowColumn>{item.product.name}</TableRowColumn>
+                            <TableRowColumn>
+                                <Link to={productLink}>
+                                    {item.product.name}
+                                </Link>
+                            </TableRowColumn>
                             <TableRowColumn>${roundPrice(item.product.price)}</TableRowColumn>
                             <TableRowColumn>
                                 <TextField
+                                style={{width:"55%", minWidth: "40px"}}
                                 value={item.quantity}
                                 type="number"
                                 onChange={(event) => {handleQuantityChange(item.product.id, event.target.value)}}
@@ -71,7 +72,7 @@ export default ({cartProducts, handleQuantityChange, removeProductFromCart }) =>
                             <TableRowColumn>
                                 ${roundPrice(item.product.price * item.quantity)}
                             </TableRowColumn>
-                            <TableRowColumn>
+                            <TableRowColumn style={{maxWidth:"10px"}}>
                                 {
                                     XButton(item, removeProductFromCart)
                                 }
@@ -96,7 +97,9 @@ export default ({cartProducts, handleQuantityChange, removeProductFromCart }) =>
                     <TableHeaderColumn>{}</TableHeaderColumn>
                     <TableHeaderColumn>{}</TableHeaderColumn>
                     <TableHeaderColumn>
-                        <RaisedButton disabled={!cartProducts.length} label="Buy" primary={true} style={style} href="/checkout" />
+                        <Link to="/checkout">
+                            <RaisedButton disabled={!cartProducts.length} label="Buy" primary={true} style={style} />
+                        </Link>
                     </TableHeaderColumn>
                     <TableHeaderColumn>{}</TableHeaderColumn>
                 </TableRow>
