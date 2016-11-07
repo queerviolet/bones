@@ -8,7 +8,7 @@ api
   .use('/auth', require('./auth'))
   .use('/users', require('./routes/usersRoutes'))
   .use('/category', require('./routes/categoryRoutes'))
-  .use('/product', require('./routes/productRoutes'))
+  .use('/products', require('./routes/productRoutes'))
   .use('/orders', require('./routes/orderRoutes'))
 
 
