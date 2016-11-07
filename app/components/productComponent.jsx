@@ -12,6 +12,20 @@ The product component will render a single product to the screen
 export default class ProductComponent extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			review: {
+				userId: 1,
+				title: '',
+				numStars: 1,
+				description: '',
+				productId: 1,
+			}
+		}
+		this.onHandleSubmitReview = this.onHandleSubmitReview.bind(this);
+	}
+
+	onHandleSubmitReview(event) {
+		event.preventDefault();
 	}
 
 
@@ -57,12 +71,7 @@ export default class ProductComponent extends React.Component {
 							<label>Your Review:</label><br />
 							<br />
 							<textarea rows="8" cols="100" onChange={(e) => this.updateText(e)}></textarea><br />
-							<button type="submit" onClick={(e) => {
-								e.preventDefault()
-								this.addReview(this.state)
-							} }
-								>Submit Review
-        		</button>
+							<button type="submit">Submit Review</button>
 						</form>
 					</div>
 					{
