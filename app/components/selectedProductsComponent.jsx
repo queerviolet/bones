@@ -1,6 +1,7 @@
 'use stict'
 
 import React from 'react';
+import { Link } from 'react-router';
 
 /*
 The selected products component will render out the select components from a search or filter
@@ -38,6 +39,7 @@ export default class SelectedProductsComponent extends React.Component {
                                 <div className="product-description" >
                                     <p>{product.description}</p>
                                     <a onClick={(e) => {e.preventDefault(); this.props.addToCart(product.id, 1);}} href="#" className="btn btn-primary">Add To Cart!</a>
+                                    <Link to={"/products/" + product.id} className="btn btn-default">More Info</Link>
                                 </div>
                             </div>
                         );
