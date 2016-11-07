@@ -47,12 +47,11 @@ export const receiveCategoryProductsFromServer = (categoryId, callback) => dispa
 
 // gets filtered products by name from the server
 export const receiveNamedProductsFromServer = (name, callback) => dispatch => {
-    console.log('name', name);
     const urlName = name.split(' ').join('+');
     axios.get(`/api/products?productTitle=${urlName}`)
         .then(res => {
             dispatch(receiveNamedProducts(res.data));
-            callback && callback(`/products/name/${urlName}`);
+            callback && callback(`products/name/${urlName}`);
         })
         .catch(err => console.log('Error loading named products', err));
 }
