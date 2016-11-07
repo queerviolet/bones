@@ -40,7 +40,7 @@ export const receiveCategoryProductsFromServer = (categoryId, callback) => dispa
     axios.get(`/api/products?category=${categoryId}`)
         .then(res => {
             dispatch(receiveCategoryProducts(res.data));
-            callback && callback(`products/category/${categoryId}`);
+            callback && callback(`/products/category/${categoryId}`);
         })
         .catch(err => console.log('Error loading category products', err));
 }
@@ -49,15 +49,15 @@ export const receiveCategoryProductsFromServer = (categoryId, callback) => dispa
 export const receiveNamedProductsFromServer = (name, callback) => dispatch => {
     axios.get(`/api/products?productTitle=${name}`)
         .then(res => {
-            dispatch(receiveNamedProducts(res.data))
-            callback && callback(`products/name/${name}`);
+            dispatch(receiveNamedProducts(res.data));
+            callback && callback(`/products/name/${name}`);
         })
         .catch(err => console.log('Error loading named products', err));
 }
 
 // creates a story and sends it to the server
 export const createOneProductToServer = (product, callback) => dispatch => {
-    axios.post('/', product)
+    axios.post('/api/products', product)
         .then(res => res.data)
         .then(product => createOneProduct(product))
         .then(dispatch)

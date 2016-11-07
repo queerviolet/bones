@@ -6,6 +6,20 @@ const db = require('APP/db')
 const customProductRoutes = require('express').Router()
 
 // Custom routes go here.
+const Product = db.model('product');
+
+customProductRoutes.get('/', (req, res, next) => {
+  Product.findAll()
+    .then(products => res.status(201).json(products))
+    .catch(next);
+})
+
+customProductRoutes.post('/', (req, res, next) => {
+  console.log('hello');
+  Product.create(req.body)
+    .then(product => res.status(201).json(product))
+    .catch(next);
+})
 
 module.exports = customProductRoutes
 
@@ -33,11 +47,6 @@ const product = epilogue.resource({
       }
     ],
 })
-
-// find all users
-product.list = (req, res, context) => {
-  res.status(201).json(context)
-}
 
 // get details about one user
 product.read = (req, res, context) => {
