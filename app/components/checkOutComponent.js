@@ -25,15 +25,30 @@ export default class extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.submitOrder = this.submitOrder.bind(this);
     this.addressMaker = this.addressMaker.bind(this);
+    this.orderProductBulk = this.orderProductBulk.bind(this);
   }
   addressMaker = () => {
     return this.state.id_address_line_1+', '+this.state.id_address_line_2+', '+this.state.id_city+', '+this.state.id_state+', '+this.state.id_postalcode
+  }
+  orderProductBulk = (order_id) => {
+    var bulkArr = [];
+    for (var item in this.props.cart) {
+      var quantity = this.props.cart[item];
+      var x = {
+        quantity,
+        subTotal: +this.props.products[+item - 1].price * quantity,
+        order_id,
+        product_id: item
+      }
+      bulkArr.push(x);
+    }
+    return bulkArr;
   }
   handleChange = (e) => {
     e.preventDefault();
     var stateGuy = {};
     this.state[e.target.id] = e.target.value;
-    console.log(this.state);
+    // console.log(this.state);
   }
   submitOrder = (e) => {
     e.preventDefault();
@@ -42,8 +57,9 @@ export default class extends React.Component {
       address: this.addressMaker(),
       user_id: this.props.user
     }
+    // console.log();
     if (! order.user_id) {
-      order.user_id = -1;
+      // order.user_id = -1;
       var user = {
         name: this.state.id_first_name+' '+this.state.id_last_name,
         email: this.state.id_email,
@@ -53,18 +69,33 @@ export default class extends React.Component {
         password_digest: null
       }
       axios.post('/api/users', user)
-        .then (resp => {
-          console.log(resp);
+      .then (resp => {
+        order.user_id = resp.data.id;
+        axios.post('/api/orders', order)
+        .then(resp => {
+          var bulkArr = this.orderProductBulk(resp.data.id);
+          axios.post('/api/orders/orderProduct', bulkArr)
+            .then(() => {
+              alert('Order received!');
+              this.props.clearCart();
+            });
         })
-        .catch(err => console.error(err))
-    }
-    axios.post('/api/orders', order)
-      .then(resp => {
-        this.props.clearCart();
       })
-      .catch(err => console.log(err))
+      .catch(err => console.error(err))
+    } else {
+      console.log('IN HERE');
+      axios.post('/api/orders', order)
+      .then(resp => {
+        var bulkArr = this.orderProductBulk(resp.data.id);
+        axios.post('/api/orders/orderProduct', bulkArr)
+          .then(() => {
+            alert('Order received!');
+            this.props.clearCart();
+          });
+    })
+    .catch(err => console.error(err))
   }
-
+}
   render () {
     return (
     <div className='container'>

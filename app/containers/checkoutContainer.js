@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import CheckoutComponent from '../components/checkoutComponent';
+import { clearCart } from '../actions/cartActions';
 
 
 const mapStateToProps = (state, ownProps) => ({
