@@ -6,14 +6,20 @@ import {
   receiveCategoryProductsFromServer,
   receiveNamedProductsFromServer 
 } from '../actions/productsActions';
+import {updateCart} from '../actions/cartActions';
+
 
 const mapStateToProps = (state, ownProps) => ({
-  selectedProducts: state.selectedProducts
+  selectedProducts: state.selectedProducts,
+  cart: state.cart
 });
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onLoadCategoryProducts: categoryId => dispatch(receiveCategoryProductsFromServer(categoryId)),
-    onLoadNamedProducts: productName => dispatch(receiveNamedProductsFromServer(productName))
+    onLoadNamedProducts: productName => dispatch(receiveNamedProductsFromServer(productName)),
+    addToCart: (item, qty) => {
+      return dispatch(updateCart(item, qty));
+    }  
   };
 }
 
