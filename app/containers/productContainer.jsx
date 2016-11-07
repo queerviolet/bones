@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onLoadProduct: (productId) => dispatch(receiveOneProductFromServer(productId)),
         addToCart: (item, qty) => dispatch(updateCart(item, qty)),
-        onSubmitReview: review => dispatch(createOneReviewToServer(review))
+        onCreateOneReview: review => dispatch(createOneReviewToServer(review))
     };
 }
 

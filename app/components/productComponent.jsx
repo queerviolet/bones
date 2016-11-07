@@ -13,19 +13,24 @@ export default class ProductComponent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			review: {
-				userId: 1,
-				title: '',
-				numStars: 1,
-				description: '',
-				productId: 1,
-			}
+			user_id: 1,
+			title: '',
+			numStars: 1,
+			description: '',
+			product_id: 1,
 		}
 		this.onHandleSubmitReview = this.onHandleSubmitReview.bind(this);
 	}
 
+	onHandleChange(property, event) {
+		this.setState({ [property]: event.target.value });
+	}
+
 	onHandleSubmitReview(event) {
 		event.preventDefault();
+		const newReview = this.state;
+		this.state.product_id = this.props.currentProduct ? this.props.currentProduct.id : 1;
+		this.props.onCreateOneReview(newReview);
 	}
 
 
@@ -57,7 +62,7 @@ export default class ProductComponent extends React.Component {
 					<p>{currentProduct.description}</p>
 
 					<div className="review-form">
-						<form>
+						<form onSubmit={this.onHandleSubmitReview}>
 							<input className="star star-1" id="star-1" type="radio" name="star1" value="1" />
 							<label className="star star-1" htmlFor="star-1"></label>
 							<input className="star star-2" id="star-2" type="radio" name="star2" value="2" />
@@ -68,9 +73,13 @@ export default class ProductComponent extends React.Component {
 							<label className="star star-4" htmlFor="star-4"></label>
 							<input className="star star-5" id="star-5" type="radio" name="star5" value="5" />
 							<label className="star star-5" htmlFor="star-5"></label> <br />
-							<label>Your Review:</label><br />
-							<br />
-							<textarea rows="8" cols="100" onChange={(e) => this.updateText(e)}></textarea><br />
+							<h1>Your Review:</h1>
+							<label>Title</label>
+							<input type="input" className="review-title"
+								onChange={(event) => { this.onHandleChange('title', event) } }></input>
+							<textarea rows="8" cols="100"
+								onChange={(event) => { this.onHandleChange('description', event) } }>
+							</textarea><br />
 							<button type="submit">Submit Review</button>
 						</form>
 					</div>
