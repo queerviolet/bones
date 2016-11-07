@@ -44,6 +44,19 @@ export default class extends React.Component {
     }
     if (! order.user_id) {
       order.user_id = -1;
+      var user = {
+        name: this.state.id_first_name+' '+this.state.id_last_name,
+        email: this.state.id_email,
+        username: null,
+        addresses: [order.address],
+        isAdmin: false,
+        password_digest: null
+      }
+      axios.post('/api/users', user)
+        .then (resp => {
+          console.log(resp);
+        })
+        .catch(err => console.error(err))
     }
     axios.post('/api/orders', order)
       .then(resp => {
