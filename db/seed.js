@@ -6,9 +6,9 @@ const pUrl = 'http://placehold.it/800x500';
 
 var data = {
   users: [
-    { name: 'Swag Master', email: 'Swag@Master.com', username: 'SwagMaster', addresses: ['5 Hanover Square, New York, NY, 10004'], isAdmin: true, password_digest: 'abcd' },
-    { name: 'Sag Mistress', email: 'Sag@Mistress.com', username: 'SagMistress', addresses: ['5 Hanover Square, New York, NY, 10004'], isAdmin: false, password_digest: 'efgh' },
-    { name: 'Random Man', email: 'Man@Random.com', username: 'RandomMan', addresses: ['10 SandOver Pear, New York, NY, 11111'], isAdmin: false, password_digest: 'ijkl' }
+    { name: 'Swag Master', email: 'Swag@Master.com', username: 'SwagMaster', addresses: ['5 Hanover Square, New York, NY, 10004'], isAdmin: true, password: 'abcd' },
+    { name: 'Sag Mistress', email: 'Sag@Mistress.com', username: 'SagMistress', addresses: ['5 Hanover Square, New York, NY, 10004'], isAdmin: false, password: 'efgh' },
+    { name: 'Random Man', email: 'Man@Random.com', username: 'RandomMan', addresses: ['10 SandOver Pear, New York, NY, 11111'], isAdmin: false, password: 'ijkl' }
   ],
 
   categories: [
