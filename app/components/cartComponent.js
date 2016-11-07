@@ -20,7 +20,7 @@ export default class extends React.Component {
     <div className="container">
       <div className="row">
         <div className="col-sm-12 col-md-10 col-md-offset-1">
-          <table className="table table-hover">
+          <table className="table table-hover" style={{"color":"black"}}>
             <thead>
               <tr>
                 <th>Product</th>
@@ -66,74 +66,80 @@ export default class extends React.Component {
                     </td>
 
                     <td className="col-sm-1 col-md-1" style={{textAlign: "center"}}>
-                        <span onClick={() => {
-                            this.props.addToCart(productId, 1);
-                            this.total = 0;
-                        }} className="glyphicon glyphicon-plus btn" aria-hidden="true" />
-                        <span onClick={() => {
-                          if (qty === 0) {
-                            alert(`You cannot buy a negative quantity of ${name}'s.`);
-                          } else {
-                            this.props.addToCart(productId, -1);
-                            this.total = 0;
-                          }
-                        }} className="glyphicon glyphicon-minus btn" aria-hidden="true" />
+                      <span onClick={() => {
+                        this.props.addToCart(productId, 1);
+                        this.total = 0;
+                      }} className="glyphicon glyphicon-plus btn" aria-hidden="true" />
+                      <span onClick={() => {
+                        if (qty === 0) {
+                          alert(`You cannot buy a negative quantity of ${name}'s.`);
+                        } else {
+                          this.props.addToCart(productId, -1);
+                          this.total = 0;
+                        }
+                      }} className="glyphicon glyphicon-minus btn" aria-hidden="true" />
                     </td>
 
                     <td className="col-sm-1 col-md-1 text-center"><strong>${price}</strong></td>
                     <td className="col-sm-1 col-md-1 text-center"><strong>${itemTotal}</strong></td>
                     <td className="col-sm-1 col-md-1">
                       <button onClick={() => {
+                        this.props.removeFromCart(productId);
                         this.total = 0;
-                        this.props.removeFromCart(productId)
                       }} type="button" className="btn btn-danger">
-                        <span className="glyphicon glyphicon-remove"></span> Remove
-                      </button></td>
-                    </tr>
-                    );
-                  })
-                }
-                <tr>
-                  <td>   </td>
-                  <td>   </td>
-                  <td>   </td>
-                  <td><h5>Subtotal</h5></td>
-                  <td className="text-right"><h5><strong>{this.total}</strong></h5></td>
-                </tr>
-                <tr>
-                  <td>   </td>
-                  <td>   </td>
-                  <td>   </td>
-                  <td><h5>Estimated shipping</h5></td>
-                  <td className="text-right"><h5><strong>It's free</strong></h5></td>
-                </tr>
-                <tr>
-                  <td>   </td>
-                  <td>   </td>
-                  <td>   </td>
-                  <td><h3>Total</h3></td>
-                  <td className="text-right"><h3><strong>{this.total}</strong></h3></td>
-                </tr>
-                <tr>
-                  <td>   </td>
-                  <td>   </td>
-                  <td>   </td>
-                  <td>
-                    <button type="button" className="btn btn-default">
-                      <span className="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                      <span className="glyphicon glyphicon-remove"></span> Remove
                     </button></td>
-                    <td>
-                      <button type="button" className="btn btn-success">
-                        Checkout <span className="glyphicon glyphicon-play"></span>
-                      </button></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          );
+                  </tr>
+                  );
+                })
+              }
+              <tr>
+                <td>   </td>
+                <td>   </td>
+                <td>   </td>
+                <td><h5>Subtotal</h5></td>
+                <td className="text-right"><h5><strong>{this.total}</strong></h5></td>
+              </tr>
+              <tr>
+                <td>   </td>
+                <td>   </td>
+                <td>   </td>
+                <td><h5>Estimated shipping</h5></td>
+                <td className="text-right"><h5><strong>It's free</strong></h5></td>
+              </tr>
+              <tr>
+                <td>   </td>
+                <td>   </td>
+                <td>   </td>
+                <td><h3>Total</h3></td>
+                <td className="text-right"><h3><strong>{this.total}</strong></h3></td>
+              </tr>
+              <tr>
+                <td>   </td>
+                <td>   </td>
+                <td>   </td>
+                <td>
+                  <Link to="/">
+                    <button onClick={()=> this.props.updateTotal(this.total)} type="button" className="btn btn-default">
+                      <span className="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                    </button>
+                  </Link>
+                </td>
+                <td>
+                  <Link to="/checkout">
+                    <button onClick={()=> this.props.updateTotal(this.total)} type="button" className="btn btn-success">
+                      Checkout <span className="glyphicon glyphicon-play"></span>
+                    </button>
+                  </Link>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    );
 
-        }
+  }
 
-      }
+}

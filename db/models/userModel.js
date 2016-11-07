@@ -14,6 +14,7 @@ const User = db.define('users', {
     },
     unique: true
   },
+  username: Sequelize.STRING,
   addresses: Sequelize.ARRAY(Sequelize.STRING),
   isAdmin: {
     type: Sequelize.BOOLEAN,
@@ -22,7 +23,7 @@ const User = db.define('users', {
 
   // We support oauth, so users may or may not have passwords.
   password_digest: Sequelize.STRING,
-  password: Sequelize.VIRTUAL
+  password: Sequelize.VIRTUAL // only exists right before a user is created
 }, {
     indexes: [{ fields: ['email'], unique: true, }],
     hooks: {

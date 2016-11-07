@@ -6,6 +6,19 @@ const db = require('APP/db')
 const customProductRoutes = require('express').Router()
 
 // Custom routes go here.
+const Product = db.model('product');
+
+customProductRoutes.get('/', (req, res, next) => {
+  Product.findAll()
+    .then(products => res.status(201).json(products))
+    .catch(next);
+})
+
+customProductRoutes.post('/', (req, res, next) => {
+  Product.create(req.body)
+    .then(product => res.status(201).json(product))
+    .catch(err => console.log('Error creating product!', err));
+})
 
 module.exports = customProductRoutes
 
@@ -13,8 +26,8 @@ module.exports = customProductRoutes
 const product = epilogue.resource({
   model: db.model('product'),
   endpoints: ['/products', '/products/:id'],
-  search: [ 
-    // this sets up queries for the endpoints 
+  search: [
+    // this sets up queries for the endpoints
     // i.e. /products?isDigitalShip=true
     {
       operator: '$eq',
@@ -32,19 +45,17 @@ const product = epilogue.resource({
         attributes: ['category_id']
       }
     ],
+    actions: [
+      'read', 'delete'
+    ]
 })
 
-// find all users
-product.list = (req, res, context) => {
-  res.status(201).json(context)
-}
-
 // get details about one user
-product.read = (req, res, context) => {
-  const productId = req.params.id;
-  aProduct = context.find(product => product.id === productId);
-  res.status(201).json(aProduct);
-}
+// product.read = (req, res, context) => {
+//   const productId = req.params.id;
+//   aProduct = context.find(product => product.id === productId);
+//   res.status(201).json(aProduct);
+// }
 
 const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
 product.delete.auth(mustBeLoggedIn)
