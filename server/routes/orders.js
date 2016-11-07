@@ -11,6 +11,7 @@ const creditCardModel = db.model('creditCards');
 const orderModel = db.model('orders');
 const lineItemModel = db.model('lineItems');
 const cartProductModel = db.model('cartProducts');
+const utils = require('APP/server/utils');
 
 const customOrdersRoutes = require('express').Router() 
 module.exports = customOrdersRoutes
@@ -76,7 +77,7 @@ customOrdersRoutes.post('/', (req,res,next) => {
 	.then(order => {
 		return cartProductModel.getCartProducts(req.sessionID)
 			.then(cartProducts => {
-				Bluebird.map(cartProducts, cartProduct => {
+				return Bluebird.map(cartProducts, cartProduct => {
 					lineItemModel.create({
 						quantity: cartProduct.quantity,
 						order_id: order.id,
@@ -88,7 +89,23 @@ customOrdersRoutes.post('/', (req,res,next) => {
 					})
 					.catch(next)
 				})
-				.then(() => res.status(201).send(order))
+				.then(() => {
+					console.log(order)
+					// TODO: Refactor creation so that we can send richer confirmation email to the customer
+					if (!process.env.SENDGRID_API_KEY) res.status(201).send(order);
+					utils.sendEmail(
+						process.env.EMAIL, 																		// sender
+						req.body.email,																				// recipient
+						`Order #${order.confirmation_number} Confirmation`,		// subject
+						"Thank you for your order. It is currently being " +
+						"processed and will ship to you shortly!",						// message
+						(statusCode, err) => {
+							if (err)
+								return next(err);
+							res.status(201).send(order);
+						}
+					);
+				})
 				.catch(next)
 			})
 			.catch(next)

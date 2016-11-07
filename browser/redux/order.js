@@ -24,13 +24,13 @@ export const fetchOrder = (id) => dispatch => {
     .catch(err => console.error('Unable to fetch order', err));
 };
 
-export const addOrder = ({ shipping_address, billing_address, credit_card }) => (dispatch, getState) => {
+export const addOrder = ({ email, shipping_address, billing_address, credit_card }) => (dispatch, getState) => {
   // If cart is empty, do not create order and redirect to /cart
   if (!getState().cartProducts.length) {
     console.error('Cannot checkout with an empty cart')
     return browserHistory.push(`cart`);
   }
-  axios.post(`/api/orders`, { shipping_address, billing_address, credit_card })
+  axios.post(`/api/orders`, { email, shipping_address, billing_address, credit_card })
     .then(res => {
       dispatch(createdOrder(res.data))
       browserHistory.push(`/confirmation/${res.data.id}`);

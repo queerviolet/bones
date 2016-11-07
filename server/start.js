@@ -18,8 +18,9 @@ const app = express()
 if (!pkg.isProduction) {
 	// Logging middleware (dev & testing only)
 	app.use(require('volleyball'))
+	// Dev environment variables
+	require('dotenv').config();
 }  
-
 module.exports = app
 	// // We'll store the whole session in a cookie
 	// .use(require('cookie-session') ({

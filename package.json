@@ -55,6 +55,7 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.1.0",
+    "sendgrid": "^4.7.1",
     "sequelize": "^3.24.6"
   },
   "devDependencies": {
@@ -68,6 +69,7 @@
     "chai-enzyme": "^0.5.2",
     "chai-properties": "^1.2.1",
     "chai-things": "^0.2.0",
+    "dotenv": "^2.0.0",
     "enzyme": "^2.5.1",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
