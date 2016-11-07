@@ -8,7 +8,7 @@ import {updateCart} from '../actions/cartActions';
 const mapStateToProps = (state, ownProps) => ({
     currentProduct: state.currentProduct,
      cart: state.cart
-})
+});
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onLoadProduct: (productId) => dispatch(receiveOneProductFromServer(productId)),
