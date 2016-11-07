@@ -8,12 +8,6 @@ const customProductRoutes = require('express').Router()
 // Custom routes go here.
 const Product = db.model('product');
 
-customProductRoutes.get('/', (req, res, next) => {
-  Product.findAll()
-    .then(products => res.status(201).json(products))
-    .catch(next);
-})
-
 customProductRoutes.post('/', (req, res, next) => {
   Product.create(req.body)
     .then(product => res.status(201).json(product))
@@ -46,7 +40,7 @@ const product = epilogue.resource({
       }
     ],
     actions: [
-      'read', 'delete'
+      'list', 'read', 'delete'
     ]
 })
 

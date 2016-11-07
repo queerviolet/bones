@@ -23,14 +23,11 @@ export default class NavbarComponent extends React.Component{
 
   // When a user inputs text in the searchbar, save to the state
   handleOnChange(event){
-    console.log(event.target.value);
     this.setState({searchText: event.target.value});
   }
   // When a user submits on the searchbar, it will fire an event to search for a product
   handleOnSubmit(event){
     event.preventDefault();
-    console.log('submitting an event', this.state.searchText);
-    console.log(Router);
     this.props.onSubmitName(this.state.searchText);
     document.getElementById("search-form").reset();
   }
