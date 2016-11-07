@@ -26,7 +26,7 @@ export default class ProductComponent extends React.Component {
 
 	render() {
 		const currentProduct = this.props.currentProduct;
-		console.log(currentProduct);
+		console.log(currentProduct+ " id is "+currentProduct.id);
 		return (
 
   		<div id="product">
@@ -41,6 +41,7 @@ export default class ProductComponent extends React.Component {
 
     		<div className="product-description" >
     			<p>{currentProduct.description}</p>
+    			<a onClick={(e) => {e.preventDefault(); this.props.addToCart(currentProduct.id, 1);}} href="#" className="btn btn-primary">Add To Cart!</a>
     			{/*       Review Component      */}
     		</div>
       </div>
