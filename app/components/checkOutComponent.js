@@ -1,60 +1,103 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default ({total, cart, products}) => (
-<div className='container'>
-  <div className='row' style={{"paddingTop":"25px", "paddingBottom":"25px"}}>
-    <div className='col-md-12'>
-      <div id='mainContentWrapper'>
-        <div className="col-md-8 col-md-offset-2">
-          <h2 style={{"textAlign":"center", "color":"white"}}>
-            Review Your Order & Complete Checkout
-          </h2>
-          <hr/>
-          <Link to="/">
-            <span className="btn btn-info" style={{"width": "100%"}}>Add More Products & Services</span>
-          </Link>
-          <hr/>
-          <div className="shopping_cart">
-            <form className="form-horizontal" role="form" action="" method="post" id="payment-form">
-              <div className="panel-group" id="accordion">
-                <div className="panel panel-default">
-                  <div className="panel-heading">
-                    <h4 className="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Review Your Order</a>
-                    </h4>
-                  </div>
-                  <div id="collapseOne" className="panel-collapse collapse in">
-                    <div className="panel-body">
-                      <div className="items">
-                        <div className="col-md-9">
-                          <table className="table table-striped">
-                            <tbody>
-                              <tr>
-                                <td colSpan="2">
-                                  <a className="btn btn-warning btn-sm pull-right" href="" title="Remove Item">X</a>
-                                  <b>Premium Posting</b>
-                                </td>
-                                  </tr>
-                                  <tr>
-                                    <td>
-                                      <ul>
-                                        <li>One Job Posting Credit</li>
-                                        <li>Job Distribution*</li>
-                                        <li>Social Media Distribution</li>
-                                      </ul>
-                                    </td>
-                                    <td>
-                                      <b>Item Total</b>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
+export default class extends React.Component {
+
+  constructor () {
+    super();
+    this.state = {
+      id_email: '',
+      id_first_name: '',
+      id_last_name: '',
+      id_address_line_1: '',
+      id_address_line_2: '',
+      id_city: '',
+      id_state: 'AK',
+      id_postalcode: '',
+      id_phone: '',
+      'name-on-card': '',
+      'card-number': '',
+      'card-exp-month': '',
+      'card-exp-year': 2016,
+      'card-cvc': ''
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.submitOrder = this.submitOrder.bind(this);
+  }
+  handleChange = (e) => {
+    var stateGuy = {};
+    this.state[e.target.id] = e.target.value;
+    console.log(this.state);
+  }
+  submitOrder = () => {
+    
+  }
+
+  render () {
+    return (
+    <div className='container'>
+      <div className='row' style={{"paddingTop":"25px", "paddingBottom":"25px"}}>
+        <div className='col-md-12'>
+          <div id='mainContentWrapper'>
+            <div className="col-md-8 col-md-offset-2">
+              <h2 style={{"textAlign":"center", "color":"white"}}>
+                Review Your Order & Complete Checkout
+              </h2>
+              <hr/>
+              <Link to="/">
+                <span className="btn btn-info" style={{"width": "100%"}}>Add More Products & Services</span>
+              </Link>
+              <hr/>
+              <div className="shopping_cart">
+                <form className="form-horizontal" role="form" action="" method="post" id="payment-form">
+                  <div className="panel-group" id="accordion">
+                    <div className="panel panel-default">
+                      <div className="panel-heading">
+                        <h4 className="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Review Your Order</a>
+                        </h4>
+                      </div>
+                      <div id="collapseOne" className="panel-collapse collapse in">
+                        <div className="panel-body">
+                          <div className="items">
+                            <div className="col-md-9">
+                              {
+                                Object.keys(this.props.cart) && Object.keys(this.props.cart).map((item, index) => {
+                                  var productId = item;
+                                  var qty = this.props.cart[item];
+                                  if (! this.props.products.length) {
+                                    return;
+                                  }
+                                  var product = this.props.products[productId - 1];
+                                  var price = product.price;
+                                  var name = product.title;
+                                  return (
+                                  <table key={index} className="table table-striped">
+                                    <tbody>
+                                      <tr>
+                                        <td colSpan="2">
+                                          {/* <a className="btn btn-warning btn-sm pull-right" href="" title="Remove Item">X</a> */}
+                                          <b>{name}</b>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td>
+                                          <b>Qty: {qty}</b>
+                                        </td>
+                                        <td>
+                                          <b>Item Total: ${price}</b>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  );
+                                })
+                              }
                             </div>
                             <div className="col-md-3">
                               <div style={{"textAlign": "center"}}>
                                 <h3>Order Total</h3>
-                                <h3><span style={{"color":"green"}}>${total}</span></h3>
+                                <h3><span style={{"color":"green"}}>${this.props.total}</span></h3>
                               </div>
                             </div>
                           </div>
@@ -91,7 +134,7 @@ export default ({total, cart, products}) => (
                                     <td style={{"width": "175px"}}>
                                       <label htmlFor="id_email">Best Email:</label></td>
                                       <td>
-                                        <input className="form-control" id="id_email" name="email"
+                                        <input onChange={this.handleChange} className="form-control" id="id_email" name="email"
                                         required="required" type="text"/>
                                       </td>
                                     </tr>
@@ -99,7 +142,7 @@ export default ({total, cart, products}) => (
                                       <td style={{"width": "175px"}}>
                                         <label htmlFor="id_first_name">First name:</label></td>
                                         <td>
-                                          <input className="form-control" id="id_first_name" name="first_name"
+                                          <input onChange={this.handleChange} className="form-control" id="id_first_name" name="first_name"
                                           required="required" type="text"/>
                                         </td>
                                       </tr>
@@ -107,7 +150,7 @@ export default ({total, cart, products}) => (
                                         <td style={{"width": "175px"}}>
                                           <label htmlFor="id_last_name">Last name:</label></td>
                                           <td>
-                                            <input className="form-control" id="id_last_name" name="last_name"
+                                            <input onChange={this.handleChange} className="form-control" id="id_last_name" name="last_name"
                                             required="required" type="text"/>
                                           </td>
                                         </tr>
@@ -115,7 +158,7 @@ export default ({total, cart, products}) => (
                                           <td style={{"width": "175px"}}>
                                             <label htmlFor="id_address_line_1">Address:</label></td>
                                             <td>
-                                              <input className="form-control" id="id_address_line_1"
+                                              <input onChange={this.handleChange} className="form-control" id="id_address_line_1"
                                               name="address_line_1" required="required" type="text"/>
                                             </td>
                                           </tr>
@@ -123,7 +166,7 @@ export default ({total, cart, products}) => (
                                             <td style={{"width": "175px"}}>
                                               <label htmlFor="id_address_line_2">Unit / Suite #:</label></td>
                                               <td>
-                                                <input className="form-control" id="id_address_line_2"
+                                                <input onChange={this.handleChange} className="form-control" id="id_address_line_2"
                                                 name="address_line_2" type="text"/>
                                               </td>
                                             </tr>
@@ -131,7 +174,7 @@ export default ({total, cart, products}) => (
                                               <td style={{"width": "175px"}}>
                                                 <label htmlFor="id_city">City:</label></td>
                                                 <td>
-                                                  <input className="form-control" id="id_city" name="city"
+                                                  <input onChange={this.handleChange} className="form-control" id="id_city" name="city"
                                                   required="required" type="text"/>
                                                 </td>
                                               </tr>
@@ -139,7 +182,7 @@ export default ({total, cart, products}) => (
                                                 <td style={{"width": "175px"}}>
                                                   <label htmlFor="id_state">State:</label></td>
                                                   <td>
-                                                    <select className="form-control" id="id_state" name="state">
+                                                    <select onChange={this.handleChange} className="form-control" id="id_state" name="state">
                                                       <option value="AK">Alaska</option>
                                                       <option value="AL">Alabama</option>
                                                       <option value="AZ">Arizona</option>
@@ -198,7 +241,7 @@ export default ({total, cart, products}) => (
                                                   <td style={{"width": "175px"}}>
                                                     <label htmlFor="id_postalcode">Postalcode:</label></td>
                                                     <td>
-                                                      <input className="form-control" id="id_postalcode" name="postalcode"
+                                                      <input onChange={this.handleChange} className="form-control" id="id_postalcode" name="postalcode"
                                                       required="required" type="text"/>
                                                     </td>
                                                   </tr>
@@ -206,7 +249,7 @@ export default ({total, cart, products}) => (
                                                     <td style={{"width": "175px"}}>
                                                       <label htmlFor="id_phone">Phone:</label></td>
                                                       <td>
-                                                        <input className="form-control" id="id_phone" name="phone" type="text"/>
+                                                        <input onChange={this.handleChange} className="form-control" id="id_phone" name="phone" type="text"/>
                                                       </td>
                                                     </tr>
 
@@ -245,7 +288,7 @@ export default ({total, cart, products}) => (
                                                     <label className="col-sm-3 control-label" htmlFor="card-holder-name">Name on
                                                       Card</label>
                                                       <div className="col-sm-9">
-                                                        <input type="text" className="form-control" data-stripe="name"
+                                                        <input onChange={this.handleChange} type="text" className="form-control" data-stripe="name"
                                                         id="name-on-card" placeholder="Card Holder's Name"/>
                                                       </div>
                                                     </div>
@@ -253,7 +296,7 @@ export default ({total, cart, products}) => (
                                                       <label className="col-sm-3 control-label" htmlFor="card-number">Card
                                                         Number</label>
                                                         <div className="col-sm-9">
-                                                          <input type="text" className="form-control" data-stripe="number"
+                                                          <input onChange={this.handleChange} type="text" className="form-control" data-stripe="number"
                                                           id="card-number" placeholder="Debit/Credit Card Number"/>
                                                           <br/>
                                                           <div><img className="pull-right"
@@ -268,7 +311,7 @@ export default ({total, cart, products}) => (
                                                           <div className="col-sm-9">
                                                             <div className="row">
                                                               <div className="col-xs-3">
-                                                                <select className="form-control col-sm-2"
+                                                                <select onChange={this.handleChange} className="form-control col-sm-2"
                                                                 data-stripe="exp-month" id="card-exp-month"
                                                                 style={{"marginLeft":"5px"}}>
                                                                 <option>Month</option>
@@ -287,7 +330,7 @@ export default ({total, cart, products}) => (
                                                               </select>
                                                             </div>
                                                             <div className="col-xs-3">
-                                                              <select className="form-control" data-stripe="exp-year"
+                                                              <select onChange={this.handleChange} className="form-control" data-stripe="exp-year"
                                                               id="card-exp-year">
                                                               <option value="2016">2016</option>
                                                               <option value="2017">2017</option>
@@ -306,7 +349,7 @@ export default ({total, cart, products}) => (
                                                     <div className="form-group">
                                                       <label className="col-sm-3 control-label" htmlFor="cvv">Card CVC</label>
                                                       <div className="col-sm-3">
-                                                        <input type="text" className="form-control" data-stripe="cvc"
+                                                        <input onChange={this.handleChange} type="text" className="form-control" data-stripe="cvc"
                                                         id="card-cvc" placeholder="Security Code"/>
                                                       </div>
                                                     </div>
@@ -337,3 +380,6 @@ export default ({total, cart, products}) => (
                                 </div>
                               </div>
                               );
+
+                            }
+                          }
