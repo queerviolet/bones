@@ -31,6 +31,7 @@ export default class ProductComponent extends React.Component {
 		const newReview = this.state;
 		this.state.product_id = this.props.currentProduct ? this.props.currentProduct.id : 1;
 		this.props.onCreateOneReview(newReview);
+		this.props.onLoadProduct(newReview.product_id);
 	}
 
 
