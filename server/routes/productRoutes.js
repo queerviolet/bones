@@ -9,6 +9,7 @@ const customProductRoutes = require('express').Router()
 const Product = db.model('product');
 const Review = db.model('productReview');
 
+<<<<<<< HEAD
 customProductRoutes.get('/', (req, res, next) => {
   Product.findAll({
     include:[
@@ -19,6 +20,8 @@ customProductRoutes.get('/', (req, res, next) => {
     .catch(next);
 })
 
+=======
+>>>>>>> 8d2710eb1fed08c359da708ac090d653ff34d353
 customProductRoutes.post('/', (req, res, next) => {
   Product.create(req.body)
     .then(product => res.status(201).json(product))
@@ -61,7 +64,7 @@ const product = epilogue.resource({
       }
     ],
     actions: [
-      'delete'
+      'list', 'read', 'delete'
     ]
 })
 

@@ -23,7 +23,6 @@ export default class SelectedProductsComponent extends React.Component {
 
     render() {
         const selectedProducts = this.props.selectedProducts;
-        console.log('selected render', selectedProducts);
         return (
             <div className="selected-products-container">
                 {
