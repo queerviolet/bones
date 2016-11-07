@@ -58,8 +58,6 @@ export const receiveNamedProductsFromServer = (name, callback) => dispatch => {
 // creates a story and sends it to the server
 export const createOneProductToServer = (product, callback) => dispatch => {
     axios.post('/api/products', product)
-        .then(res => res.data)
-        .then(product => createOneProduct(product))
-        .then(dispatch)
+        .then(product => dispatch(createOneProduct(product)))
         .catch(err => console.error(`Creating product ${product.title} failed!`, err));
 }

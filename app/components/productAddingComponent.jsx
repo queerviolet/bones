@@ -9,7 +9,7 @@ export default class ProductAddingComponent extends React.Component {
             title: '',
             description: '',
             price: 0,
-            quantity: 0,
+            inventoryQty: 0,
             photoUrl: '',
             isDigitalShip: false,
             categories: ''
@@ -25,14 +25,15 @@ export default class ProductAddingComponent extends React.Component {
     onHandleSubmit(event){
         event.preventDefault();
         const newProduct = this.state;
-        this.props.onCreateOneProduct(newProduct);
         // dispatch a post message to the server to add a new product
+        this.props.onCreateOneProduct(newProduct);
     }
 
     render(){
         return (
             <div className="product-add-component">
-                <form className="product-add-form" onSubmit={this.onHandleSubmit}>
+                <form className="product-add-form" onSubmit={this.onHandleSubmit}
+                    onMouseDown={() => console.log(this.state)}>
                     <div className="product-title-container">
                         <label>Product Title</label>
                         <input type="title-input" className="add-input" 
@@ -54,7 +55,7 @@ export default class ProductAddingComponent extends React.Component {
                     <div className="product-qty-container">
                         <label>Product Quantity</label>
                         <input type="qty-input" className="add-input" 
-                            name="qty" onChange={(event) => {this.onHandleChange('quantity', event)}}
+                            name="qty" onChange={(event) => {this.onHandleChange('inventoryQty', event)}}
                             id="qty-input-id" placeholder="Quantity"></input>
                     </div>
                     <div className="product-img-container">

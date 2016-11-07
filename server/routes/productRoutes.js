@@ -15,10 +15,9 @@ customProductRoutes.get('/', (req, res, next) => {
 })
 
 customProductRoutes.post('/', (req, res, next) => {
-  console.log('hello');
   Product.create(req.body)
     .then(product => res.status(201).json(product))
-    .catch(next);
+    .catch(err => console.log('Error creating product!', err));
 })
 
 module.exports = customProductRoutes
@@ -46,14 +45,17 @@ const product = epilogue.resource({
         attributes: ['category_id']
       }
     ],
+    actions: [
+      'read', 'delete'
+    ]
 })
 
 // get details about one user
-product.read = (req, res, context) => {
-  const productId = req.params.id;
-  aProduct = context.find(product => product.id === productId);
-  res.status(201).json(aProduct);
-}
+// product.read = (req, res, context) => {
+//   const productId = req.params.id;
+//   aProduct = context.find(product => product.id === productId);
+//   res.status(201).json(aProduct);
+// }
 
 const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
 product.delete.auth(mustBeLoggedIn)
