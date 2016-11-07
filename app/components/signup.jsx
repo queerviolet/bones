@@ -13,7 +13,7 @@ export const Signup = ({ signup }) => (
         <input className="form-control" name="first name" placeholder="First Name"/>
          <input className="form-control" name="last name" placeholder="Last Name"/>
          <input className="form-control" name="email" placeholder="Email Address"/>
-         
+
         <input className="form-control" name="password" type="password" placeholder="Password" />
         <input className="form-control" name="password" type="password" placeholder="Retype-Password" />
 
@@ -31,11 +31,3 @@ export default connect (
   {signup},
 ) (Signup)
 
-
-// <body>
-//   <form class="sign-up">
-//     <h1 class="sign-up-title">Sign up in seconds</h1>
-//     <input type="text" class="sign-up-input" placeholder="What's your username?" autofocus>
-//     <input type="password" class="sign-up-input" placeholder="Choose a password">
-//     <input type="submit" value="Sign me up!" class="sign-up-button">
-//   </form>
