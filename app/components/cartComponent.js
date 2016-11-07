@@ -33,6 +33,9 @@ export default class extends React.Component {
             <tbody>
               {
                 Object.keys(this.props.cart) && Object.keys(this.props.cart).map((item, index) => {
+                  if (index === 0) {
+                    this.total = 0;
+                  }
                   var productId = item;
                   var qty = this.props.cart[item];
                   if (! this.props.products.length) {

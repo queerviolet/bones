@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import axios from 'axios';
 
 export default class extends React.Component {
 
@@ -23,14 +24,32 @@ export default class extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.submitOrder = this.submitOrder.bind(this);
+    this.addressMaker = this.addressMaker.bind(this);
+  }
+  addressMaker = () => {
+    return this.state.id_address_line_1+', '+this.state.id_address_line_2+', '+this.state.id_city+', '+this.state.id_state+', '+this.state.id_postalcode
   }
   handleChange = (e) => {
+    e.preventDefault();
     var stateGuy = {};
     this.state[e.target.id] = e.target.value;
     console.log(this.state);
   }
-  submitOrder = () => {
-    
+  submitOrder = (e) => {
+    e.preventDefault();
+    var order = {
+      status: 'incomplete',
+      address: this.addressMaker(),
+      user_id: this.props.user
+    }
+    if (! order.user_id) {
+      order.user_id = -1;
+    }
+    axios.post('/api/orders', order)
+      .then(resp => {
+        this.props.clearCart();
+      })
+      .catch(err => console.log(err))
   }
 
   render () {
@@ -49,7 +68,7 @@ export default class extends React.Component {
               </Link>
               <hr/>
               <div className="shopping_cart">
-                <form className="form-horizontal" role="form" action="" method="post" id="payment-form">
+                <form onSubmit={this.submitOrder} className="form-horizontal" role="form" id="payment-form">
                   <div className="panel-group" id="accordion">
                     <div className="panel panel-default">
                       <div className="panel-heading">

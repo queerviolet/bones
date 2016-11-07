@@ -6,6 +6,13 @@ const db = require('APP/db')
 const customUserRoutes = require('express').Router()
 
 // Custom routes go here.
+customUserRoutes.post('/', (req, res, next) => {
+  db.model('users').create(req.body)
+    .then(resp => {
+      res.json(resp);
+    })
+    .catch(err => console.error(err));
+});
 
 module.exports = customUserRoutes
 
