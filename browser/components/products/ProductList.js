@@ -6,6 +6,7 @@ import LineItem from '../product/LineItem'
 import { roundPrice, totalPrice } from '../../utils'
 
 export default ({ lineItems }) => {
+  // console.log('lineitems', lineItems);
   return (
     <Table id="product-list">
       <TableHeader displaySelectAll={false} adjustForCheckbox={false}>

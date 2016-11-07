@@ -11,6 +11,7 @@ import ProductContainer from './components/product/ProductContainer'
 import CartContainer from './components/cart/CartContainer'
 import OrderFormContainer from './components/orderform/OrderFormContainer'
 import OrderConfirmationContainer from './components/confirmation/OrderConfirmationContainer'
+import OrderHistoryContainer from './components/orderhistory/OrderHistoryContainer'
 import AccountContainer from './components/account/AccountContainer';
 import PersonalInfo from './components/account/PersonalInfo';
 import SignInContainer from './components/signin/SignInContainer'
@@ -21,6 +22,7 @@ import { fetchProducts } from './redux/products'
 import { fetchProduct } from './redux/product'
 import { fetchOrder } from './redux/order'
 import { fetchCart } from './redux/cart'
+import { fetchOrders } from './redux/orderhistory'
 import { fetchAccount } from './redux/account';
 import { retrieveLoggedInUser } from './redux/user'
 
@@ -31,6 +33,7 @@ const appEnter = () => {
 const productEnter = (nextState) => store.dispatch(fetchProduct(nextState.params.productId));
 const cartEnter = () => store.dispatch(fetchCart());
 const confirmationEnter = (nextState) => store.dispatch(fetchOrder(nextState.params.orderId));
+const orderHistoryEnter = (nextState) => store.dispatch(fetchOrders());
 const accountEnter = (nextState) => store.dispatch(fetchAccount(1));
 
 render(
@@ -42,6 +45,7 @@ render(
         <Route path="/cart" component={CartContainer} onEnter={ cartEnter } />
         <Route path="/checkout" component={ OrderFormContainer } />
         <Route path="/confirmation/:orderId" component={ OrderConfirmationContainer } onEnter={ confirmationEnter } />
+        <Route path="/account/orderhistory" component={ OrderHistoryContainer } onEnter={ orderHistoryEnter } />
         <Route path="/account" component={AccountContainer} onEnter={ accountEnter }>
           <Route path="personal-info" component={PersonalInfo}/>
           <Route path="current-order" />
