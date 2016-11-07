@@ -7,6 +7,7 @@ api.get('/heartbeat', (req, res) => res.send({ok: true,}))
 api.use('/auth', require('./auth'))
 
 api.use('/users', require('./routes/users'))
+api.use('/auth', require('./routes/auth'))
 api.use('/products', require('./routes/products'))
 api.use('/cart-products', require('./routes/cartProducts'))
 api.use('/orders', require('./routes/orders'))

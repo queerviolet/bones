@@ -96,3 +96,10 @@ body,html {
   font-size: 1.4em;
 }
 
+/* Log In */
+.error-message {
+  color: red;
+}
+
+
+  

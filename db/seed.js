@@ -86,7 +86,7 @@ chance.mixin({
 			email: chance.email(),
 			password: '123123',
 			shipping_address_id: chance.natural({min:1, max:5}),
-			billing_address_id: chance.natural({min:1, max:5}),
+			billing_address_id: chance.natural({min:1, max:5})
 		};
 	},
 })

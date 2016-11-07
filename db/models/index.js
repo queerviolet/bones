@@ -21,7 +21,7 @@ User.belongsTo(Address, {as: 'billing_address'});
 
 // UserCreditCards
 CreditCard.belongsTo(User);
-User.hasMany(CreditCard);
+User.hasOne(CreditCard);
 
 // UserOrders
 Order.belongsTo(User);

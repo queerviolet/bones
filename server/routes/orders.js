@@ -48,7 +48,10 @@ customOrdersRoutes.get('/:id', (req,res,next) => {
 // This was working!!
 customOrdersRoutes.post('/', (req,res,next) => {
 	orderModel.findOrCreate({
-		where: { confirmation_number: generateConfirmationNum() },
+		where: { 
+			confirmation_number: generateConfirmationNum(),
+			user_id: req.session.userId
+		},
 		include: [
 			{ model: addressModel, as: 'shipping_address', required: false },
 			{ model: addressModel, as: 'billing_address', required: false },
@@ -69,6 +72,8 @@ customOrdersRoutes.post('/', (req,res,next) => {
 			.catch(next)
 	})
 	.then(order => {
+		if (req.session.userId)
+			req.body.credit_card.user_id = req.session.userId;
 		return creditCardModel
 			.findOrCreate({where: req.body.credit_card})
 			.spread(creditCardInfo => order.setCreditCard(creditCardInfo))
@@ -90,7 +95,6 @@ customOrdersRoutes.post('/', (req,res,next) => {
 					.catch(next)
 				})
 				.then(() => {
-					console.log(order)
 					// TODO: Refactor creation so that we can send richer confirmation email to the customer
 					if (!process.env.SENDGRID_API_KEY) res.status(201).send(order);
 					utils.sendEmail(
