@@ -51,16 +51,16 @@ const product = epilogue.resource({
       }
     ],
     actions: [
-      'list', 'read', 'delete'
+      'list', 'delete'
     ]
 })
 
 // get details about one user
-// product.read = (req, res, context) => {
-//   const productId = req.params.id;
-//   aProduct = context.find(product => product.id === productId);
-//   res.status(201).json(aProduct);
-// }
+product.read = (req, res, context) => {
+  const productId = req.params.id;
+  aProduct = context.find(product => product.id === productId);
+  res.status(201).json(aProduct);
+}
 
 const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
 product.delete.auth(mustBeLoggedIn)
