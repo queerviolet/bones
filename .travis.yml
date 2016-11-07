@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+- '6'
+cache:
+  directories:
+  - node_modules
+install: npm install
+script: npm run build
+deploy:
+  skip_cleanup: true
+  provider: heroku
+  api_key:
+    secure: W4mi6aMMNCwGgZX+ycNOO/NTlt32hbOdfA7JJl5c/QwNZoFrOd+X23xZ4W+hnWsiMznNA1f4b9yA5to9+8W5+dijOFyiU9c0nqnjXRCx6ZvIh2GrAEudyWcFvQEjlED89FKpy07WrcCNBqYKZwYL4e6hZgWmD1gUiXiEPPJojEndzQoWqb8B7moDTe55IrRnzuxt3MWqrgK/FczrH4b+NPT5ssOidSqLC3QPh8M0RQN0R14Vqyc4Ato0fPAuTbSERyJRkoBcUU8j620GsDPdQJhPbnqywuLI2ZjxcBw+2q4EzA4PVNcgOvKN9oUEgAuZPkVTXO9WGtny3uXbBHkrjS/SPxpclVNJMDeORUnqBhFx1OLnS2ciR1B4FRpL4OCzQIlXVDuChfQeBSTCysNrCKAYk40qgHFTHnEKB2kwsPOBBIH3yfPnXir5yOySTOTphgRy84T0qc8Re4TvWTljXERgKotMVmwR4DqR7s7mhYBCbG+r02PsubI/mu4D959aIjl5Y9PVWLWcDzxdp1P9XBJOt4PgzoeCbmUGsSYpjO9EBMAhJUtYgZYbm3ysCFelPr7LJX7tDFeuEcPKcRLxocVPq5dWNG68VsS9Rhb/t5GOPbcqZv3oBUE6W/2jExMbyzheFE2QVQCJp0zJJ16OWGAegS5HYFznqnzE6u18PzY=
+  app:
+    master: just-home
+    initial_deployment: just-home-test
+  run: npm run seed

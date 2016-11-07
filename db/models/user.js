@@ -1,6 +1,6 @@
 'use strict'
 
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt-nodejs')
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 
@@ -42,7 +42,7 @@ function setEmailAndPassword(user) {
 	if (!user.password) return Promise.resolve(user)
 
 	return new Promise((resolve, reject) =>
-		bcrypt.hash(user.get('password'), 10, (err, hash) => {
+		bcrypt.hash(user.get('password'), null, null, (err, hash) => {
 			if (err) reject(err)
 			user.set('password_digest', hash)
 			resolve(user)

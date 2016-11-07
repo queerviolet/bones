@@ -49,7 +49,7 @@ export default ({cartProducts, handleQuantityChange, removeProductFromCart }) =>
             <TableBody displayRowCheckbox={false} showRowHover={true}>
                 {
                     cartProducts && cartProducts.map(item => {
-                        let productLink = `/products/${item.id}`
+                        let productLink = `/products/${item.product.id}`
                         return (
                         <TableRow key={item.id}>
                             <TableRowColumn>
