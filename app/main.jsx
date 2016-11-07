@@ -8,6 +8,7 @@ import { connect, Provider } from 'react-redux'
 import store from './store'
 import Jokes from './components/Jokes'
 import Login from './components/Login'
+import Signup from './components/Signup'
 import homeContainer from './containers/homeContainer'
 import productContainer from './containers/productContainer'
 import allProductsContainer from './containers/allproductsContainer'
@@ -32,6 +33,7 @@ render(
         <Route path="products/name/:productName" component={selectedProductsContainer} />
         <Route path="products/add" component={productAddingContainer} />
       </Route>
+      <Route path="/signup" component={Signup} />
       <Route path="/login" component={Login} />
       <Route path="/checkout" component={checkoutContainer} />
     </Router>

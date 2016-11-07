@@ -44,6 +44,7 @@ export default class NavbarComponent extends React.Component{
         <div className="container">
           <div className="navbar-header">
             <Link to={"/"}className="navbar-brand">CodeCommerce</Link>
+            <Link to={"/signup"}className="nav navbar navbar-right">Signup</Link>
             <Link to={"/login"}className="nav navbar navbar-right">Login</Link>
             <form className="navbar-form navbar-left" id="search-form" role="search" onSubmit={this.handleOnSubmit}>
               <div className="form-group">
