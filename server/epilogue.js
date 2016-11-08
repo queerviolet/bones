@@ -19,7 +19,7 @@ const selfOnly = action => (req, res, context) => {
     res.status(403).send(`You can only ${action} yourself.`)
     return context.stop
   }
-  return context.continue  
+  return context.continue
 }
 
 const forbidden = message => (req, res, context) => {
