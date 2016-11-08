@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { AutoComplete, SelectField, MenuItem } from 'material-ui'
-import { roundPrice, getAvgRating, getStars } from '../../utils'
+import { formatPrice, getAvgRating, getStars } from '../../utils'
 
 // Replace with categories
 const categories = [
@@ -50,7 +50,7 @@ export default ({ products, category, handleChange }) => {
             <div className="thumbnail">
               <img src={product.images[0]} alt="" />
               <div className="caption">
-                <h4 className="pull-right">{`$${roundPrice(product.price)}`}</h4>
+                <h4 className="pull-right">{ formatPrice(product.price) }</h4>
                 <h4>
                   <Link to={`/products/${product.id}`}>{product.name}</Link>
                 </h4>

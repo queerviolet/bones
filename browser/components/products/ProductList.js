@@ -3,10 +3,10 @@ import { Link } from 'react-router';
 import { AutoComplete, SelectField, MenuItem } from 'material-ui'
 import { Table, TableHeader, TableHeaderColumn, TableBody, TableRow, TableRowColumn, TableFooter } from 'material-ui'
 import LineItem from '../product/LineItem'
-import { roundPrice, totalPrice } from '../../utils'
+import { formatPrice, totalPrice } from '../../utils'
 
-export default ({ lineItems }) => {
-  // console.log('lineitems', lineItems);
+export default ({ lineItems, inputTotal }) => {
+  const total = inputTotal ? inputTotal : totalPrice(lineItems);
   return (
     <Table id="product-list">
       <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
@@ -26,7 +26,7 @@ export default ({ lineItems }) => {
       <TableFooter adjustForCheckbox={false}>
         <TableRow>
           <TableRowColumn style={{textAlign: 'right'}}>
-            {`Total: $${totalPrice(lineItems)}`}
+            {`Total: ${formatPrice(total)}`}
           </TableRowColumn>
         </TableRow>
       </TableFooter>

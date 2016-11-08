@@ -60,6 +60,18 @@ customUserRoutes.delete('/:id', (req,res,next) => {
 		.catch(next);
 });
 
+// Retrieve a user's orders
+customUserRoutes.get('/:userId/orders', function(req, res, next){
+	orderModel.findAll({
+		where: { user_id: req.params.userId },
+		include: [
+			{ model: lineItem, include: [{model: productModel, required: true}], required: false }
+		],
+		order: 'order_date DESC'
+	})
+	.then(orders => res.send(orders))
+	.catch(next);
+});
 
 
 // // Epilogue will automatically create standard RESTful routes

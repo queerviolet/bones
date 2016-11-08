@@ -5,7 +5,7 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
-import { roundPrice } from '../../utils';
+import { formatPrice } from '../../utils';
 
 const style = {
   margin: 12,
@@ -30,7 +30,6 @@ export default ({cartProducts, handleQuantityChange, removeProductFromCart }) =>
     cartProducts.forEach(item => {
         total += (item.quantity * item.product.price)
     })
-    total = roundPrice(total);
 
   return (
     <div id="cart" className="col-xs-12">
@@ -60,7 +59,7 @@ export default ({cartProducts, handleQuantityChange, removeProductFromCart }) =>
                                     {item.product.name}
                                 </Link>
                             </TableRowColumn>
-                            <TableRowColumn>${roundPrice(item.product.price)}</TableRowColumn>
+                            <TableRowColumn>{ formatPrice(item.product.price) }</TableRowColumn>
                             <TableRowColumn>
                                 <TextField
                                 style={{width:"55%", minWidth: "40px"}}
@@ -70,7 +69,7 @@ export default ({cartProducts, handleQuantityChange, removeProductFromCart }) =>
                                 />
                             </TableRowColumn>
                             <TableRowColumn>
-                                ${roundPrice(item.product.price * item.quantity)}
+                                { formatPrice(item.product.price * item.quantity) }
                             </TableRowColumn>
                             <TableRowColumn style={{maxWidth:"10px"}}>
                                 {
@@ -88,7 +87,7 @@ export default ({cartProducts, handleQuantityChange, removeProductFromCart }) =>
                     <TableHeaderColumn>{}</TableHeaderColumn>
                     <TableHeaderColumn>{}</TableHeaderColumn>
                     <TableHeaderColumn><b>TOTAL:</b></TableHeaderColumn>
-                    <TableHeaderColumn>${total}</TableHeaderColumn>
+                    <TableHeaderColumn>{ formatPrice(total) }</TableHeaderColumn>
                     <TableHeaderColumn>{}</TableHeaderColumn>
                 </TableRow>
                 <TableRow>

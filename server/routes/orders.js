@@ -37,8 +37,11 @@ const generateConfirmationNum = () => chance.string({
 
 customOrdersRoutes.get('/', (req,res,next) => {
 	orderModel.findAll({
+		include: [
+			{model: lineItemModel, include: [{model: productModel, required: false}], required: false}
+		],
 		order: '"order_date" DESC',
-		include: [{model: lineItemModel, include: [{model: productModel, required: false}], required: false}]
+		limit: 100
 	})
 	.then(result => res.send(result))
 	.catch(err => console.log('could not fetch all orders', err));

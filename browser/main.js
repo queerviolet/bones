@@ -15,7 +15,6 @@ import OrderHistoryContainer from './components/orderhistory/OrderHistoryContain
 import AccountContainer from './components/account/AccountContainer';
 import AccountDetails from './components/account/AccountDetails'
 import SignInContainer from './components/signin/SignInContainer';
-import AdminContainer from './components/admin/AdminContainer';
 import AddProductContainer from './components/admin/AddProductContainer';
 
 // Redux actions and thunks
@@ -26,7 +25,6 @@ import { fetchOrder } from './redux/order'
 import { fetchCart } from './redux/cart'
 import { fetchOrders } from './redux/orderhistory'
 import { retrieveLoggedInUser } from './redux/user'
-import { fetchAllOrders } from './redux/admin'
 
 const appEnter = () => {
   store.dispatch(fetchProducts())
@@ -35,9 +33,11 @@ const appEnter = () => {
 const productEnter = (nextState) => store.dispatch(fetchProduct(nextState.params.productId));
 const cartEnter = () => store.dispatch(fetchCart());
 const confirmationEnter = (nextState) => store.dispatch(fetchOrder(nextState.params.orderId));
-const orderHistoryEnter = (nextState) => store.dispatch(fetchOrders());
-const accountEnter = (nextState) => store.dispatch(fetchAccount(1));
-const adminOrdersEnter = (nextState) => store.dispatch(fetchAllOrders());
+const userOrdersEnter = () => {
+  let userId = store.getState().user.id;
+  if (userId) store.dispatch(fetchOrders(userId));
+};
+const adminOrdersEnter = () => store.dispatch(fetchOrders());
 
 render(
   <Provider store={ store }>
@@ -48,14 +48,17 @@ render(
         <Route path="/cart" component={CartContainer} onEnter={ cartEnter } />
         <Route path="/checkout" component={ OrderFormContainer } />
         <Route path="/confirmation/:orderId" component={ OrderConfirmationContainer } onEnter={ confirmationEnter } />
-        <Route path="/account/orderhistory" component={ OrderHistoryContainer } onEnter={ orderHistoryEnter } />
+        <Route path="/sign-in" component={SignInContainer} />
         <Route path="/account" component={AccountContainer} >
           <Route path="details" component={ AccountDetails }/>
-          <Route path="order-history" component={ OrderHistoryContainer } onEnter={ orderHistoryEnter }/>
+          <Route path="orders" component={ OrderHistoryContainer } onEnter={ userOrdersEnter }/>
           <IndexRedirect to="details" />
         </Route>
-        <Route path="/sign-in" component={SignInContainer} />
-        <Route path="/admin" component={AdminContainer} onEnter={adminOrdersEnter} />
+        <Route path="/admin" component={AccountContainer} >
+          <Route path="orders" component={ OrderHistoryContainer } onEnter={ adminOrdersEnter }/>
+          <Route path="products" />
+          <IndexRedirect to="orders" />
+        </Route>
         <Route path="/addproduct" component={AddProductContainer} />
         <IndexRoute component={ AllProductsContainer } />
       </Route>

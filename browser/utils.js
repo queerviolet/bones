@@ -4,17 +4,18 @@ import FontIcon from 'material-ui/FontIcon'
 // Return the full name of the input user
 export const fullName = (user) => `${user.first_name} ${user.last_name}`;
 
-// Round the input price at two decimals (i.e. $XX.00)
-export const roundPrice = (price) => price.toFixed(2);
+// Return the input price rounded to 2 decimals and with commas (i.e. $X,XXX.00)
+export const formatPrice = price =>
+  `$${price.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+
 
 // Get the total price of the input LineItems or Products
 export const totalPrice = (products) => {
   if (!products) return 0;
-  const total = products.reduce(
+  return products.reduce(
     (sum, item) => sum + (item.quantity ? item.price * item.quantity : item.price)
-  , 0)
-  return roundPrice(total);
-}
+  , 0);
+};
 
 // Return the average rating of the passed in reviews
 export const getAvgRating = (reviews) => {

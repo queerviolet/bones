@@ -24,21 +24,21 @@ export default ({ user }) => {
 			/>
 			<Address
 				disabled={true}
-				values={user.shipping_address}
+				values={user.shipping_address ? user.shipping_address : {}}
 				type="Shipping"
 				errors={{}}
 				legendWidth={185}
 			/>
 			<Address
 				disabled={true}
-				values={user.billing_address}
+				values={user.billing_address ? user.billing_address : {}}
 				type="Billing"
 				errors={{}}
 				legendWidth={160}
 			/>
 			<CreditCard
 				disabled={true}
-				values={user.creditCard}
+				values={user.creditCard ? user.creditCard : {}}
 				errors={{}}
 			/>
 		</div>

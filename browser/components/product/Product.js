@@ -2,7 +2,7 @@ import React from 'react'
 import { RaisedButton } from 'material-ui'
 import {green500} from 'material-ui/styles/colors';
 import Reviews from '../Reviews'
-import { roundPrice, getAvgRating, getStars } from '../../utils'
+import { formatPrice, getAvgRating, getStars } from '../../utils'
 
 export default ({ product, buyClick }) => {
 
@@ -24,7 +24,7 @@ export default ({ product, buyClick }) => {
     		<div className="product-details col-xs-12 col-sm-4" >
 
     			<h2>{product.name}</h2>
-    			<p>{`$${roundPrice(product.price)}`}</p>
+    			<p>{ formatPrice(product.price) }</p>
     			{
 						avgRating ? getStars(avgRating) : null
 					}

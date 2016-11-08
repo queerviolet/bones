@@ -39,7 +39,7 @@ body,html {
 }
 
 /* navbar icons */
-.navbar-item > a > button > div > span:hover {
+.navbar-item button > div > span:hover {
   color: #00b6ce !important;
 }
 
