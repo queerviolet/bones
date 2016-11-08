@@ -62,27 +62,21 @@ export default class ProductComponent extends React.Component {
 				<div className="product-description" >
 					<p>{currentProduct.description}</p>
 
-					<div className="review-form">
+					<div id="review-form">
 						<form onSubmit={this.onHandleSubmitReview}>
-							<input className="star star-1" id="star-1" type="radio" name="star1" value="1" />
-							<label className="star star-1" htmlFor="star-1"></label>
-							<input className="star star-2" id="star-2" type="radio" name="star2" value="2" />
-							<label className="star star-2" htmlFor="star-2"></label>
-							<input className="star star-3" id="star-3" type="radio" name="star3" value="3" />
-							<label className="star star-3" htmlFor="star-3"></label>
-							<input className="star star-4" id="star-4" type="radio" name="star4" value="4" />
-							<label className="star star-4" htmlFor="star-4"></label>
-							<input className="star star-5" id="star-5" type="radio" name="star5" value="5" />
-							<label className="star star-5" htmlFor="star-5"></label> <br />
+							<div id="rating">
+<input name="myrating" type="radio" value="5" /><span>☆</span><input name="myrating" type="radio" value="4" /><span>☆</span><input name="myrating" type="radio" value="3" /><span>☆</span><input name="myrating" type="radio" value="2" /><span>☆</span><input name="myrating" type="radio" value="1" /><span>☆</span>
+</div>
 							<h1>Your Review:</h1>
-							<label>Title</label>
+							<h1>Title</h1>
 							<input type="input" className="review-title"
 								onChange={(event) => { this.onHandleChange('title', event) } }></input>
-							<textarea rows="8" cols="100"
+							<textarea rows="10" cols="80"
 								onChange={(event) => { this.onHandleChange('description', event) } }>
 							</textarea><br />
 							<button type="submit">Submit Review</button>
 						</form>
+
 					</div>
 					{
 						this.props.currentProduct.productReviews
