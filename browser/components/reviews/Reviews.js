@@ -1,7 +1,8 @@
 import React from 'react';
-import { fullName, getStars } from '../utils'
+import { fullName, getStars } from '../../utils'
+import AddReviewContainer from './AddReviewContainer'
 
-export default ({ reviews, avgRating }) => {
+export default ({ user, productId, reviews, avgRating }) => {
   if (!avgRating) return null;
   return (
 
@@ -9,13 +10,16 @@ export default ({ reviews, avgRating }) => {
     	<div className="row reviews-header">
         <h3>Reviews</h3>
         <div className="reviews-rating">
-
           <p>{ avgRating }</p>
           {
             getStars(avgRating)
           }
         </div>
     	</div>
+      {
+        Object.keys(user).length && !user.isAdmin ?
+          <AddReviewContainer productId={productId} /> : null
+      }
       {
         reviews.map((review) => {
           return (
