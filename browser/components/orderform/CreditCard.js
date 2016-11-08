@@ -1,13 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { TextField, SelectField, MenuItem } from 'material-ui';
-
-// Replace with categories
-const cardTypes = [
-  { key: 'mastercard', display: 'MasterCard' },
-  { key: 'visa', display: 'Visa' },
-  { key: 'amex', display: 'American Express' }
-]
+import { creditCardTypes } from '../../utils'
 
 export default ({ values, disabled, handleChange, errors }) => {
   return (
@@ -35,8 +29,8 @@ export default ({ values, disabled, handleChange, errors }) => {
             onChange={(event, key, value) => handleChange("card_type", value, "credit_card") }
           >
           {
-            cardTypes.map((type, i) => {
-              return <MenuItem key={i} value={type.key} primaryText={type.display} />
+            Object.keys(creditCardTypes).map((key, i) => {
+              return <MenuItem key={i} value={key} primaryText={creditCardTypes[key]} />
             })
           }
           </SelectField>

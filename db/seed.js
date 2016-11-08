@@ -1,44 +1,6 @@
 const db = require('APP/db');
-const Chance = require('chance');
-const chance = new Chance(Math.random);
 
-// arrays for ENUM
-const productType = ['chair', 'table', 'bed', 'closet', 'sofa', 'desk'],
-	productCategory = ['bedroom', 'livingroom', 'kitchen', 'office', 'bath', 'dining'],
-	orderStatus = ['created', 'processing', 'cancelled', 'completed'],
-	cardType = ['visa', 'amex', 'mastercard'];
-
-// create methods generating random object
-chance.mixin({
-	cartProducts: () => {
-		return {
-			sessionId: chance.string(),
-			quantity: chance.natural({max:100}),
-			product_id: chance.natural({min:1, max:5}),
-		}
-	},
-	lineItems: () => {
-		return {
-			quantity: chance.natural({min:1, max:8}),
-			price: chance.floating({min: 10, max: 200, fixed: 2}),
-			order_id: chance.natural({min:1, max:5}),
-			product_id: chance.natural({min:1, max:5})
-		}
-	},
-	orders: () => {
-		return {
-			confirmation_number: chance.string(),
-			status: chance.pickone(orderStatus),
-			order_date: chance.date(),
-			user_id: chance.natural({min:1, max:5}),
-			shipping_address_id: chance.natural({min:1, max:5}),
-			billing_address_id: chance.natural({min:1, max:5}),
-			credit_card_id: chance.natural({min:1, max:5}),
-		}
-	}
-})
-
-const productlist = [{name: "Felix Living Room Set", price: "1545.00", description: "-Essential living room set delivered to your door\n-Boxes fit through standard doorways, stairs, and elevators\n-No tools required for assembly", quantity: 10, type: "sofa", category: "livingroom", images: ["//cdn.shopify.com/s/files/1/0338/3945/products/living-room-main_e7562283-acc4-4e1f-83ab-693b13e0b33d_large.jpg?v=1478447772"]},
+const productsList = [{name: "Felix Living Room Set", price: "1545.00", description: "-Essential living room set delivered to your door\n-Boxes fit through standard doorways, stairs, and elevators\n-No tools required for assembly", quantity: 10, type: "sofa", category: "livingroom", images: ["//cdn.shopify.com/s/files/1/0338/3945/products/living-room-main_e7562283-acc4-4e1f-83ab-693b13e0b33d_large.jpg?v=1478447772"]},
 {name: "Felix Sectional", price: "1015.00", description: "-Memory foam in seat evenly distributes body weight\n-Polyurethane foam in seat adds support and durability\n-Fiber fill foam in pillows is soft and fluffy\n-No tools required for assembly\n-Machine washable slipcovers", quantity: 5, type: "sofa", category: "livingroom", images: ["//cdn.shopify.com/s/files/1/0338/3945/products/sectional-main_large.jpg?v=1478289506"]},
 {name: "Felix Sofa", price: "645.00", description: "-Memory foam in seat evenly distributes body weight\n-Polyurethane foam in seat adds support and durability\n-Fiber fill foam in pillows is soft and fluffy\n-No tools required for assembly\n-Machine washable slipcovers", quantity: 5, type: "sofa", category: "livingroom", images: ["//cdn.shopify.com/s/files/1/0338/3945/products/Product_Sofa_large.jpg?v=1478446431"]},
 {name: "Felix Chaise", price: "375.00", description: "-Memory foam in seat evenly distributes body weight\n-Polyurethane foam in seat adds support and durability\n-Fiber fill foam in pillows is soft and fluffy\n-No tools required for assembly\n-Machine washable slipcovers", quantity: 5, type: "sofa", category: "livingroom", images: ["//cdn.shopify.com/s/files/1/0338/3945/products/chaise-gallery01_large.jpg?v=1478446448"]},
@@ -55,9 +17,9 @@ const productlist = [{name: "Felix Living Room Set", price: "1545.00", descripti
 {name: "Stern End Table ", price: "100.00", description: "With each curve of its Space Age silhouette, this nouveau-retro end table refuses to fade into history.", quantity: 5, type: "table", category: "livingroom", images: ["https://joybird2.imgix.net/image_6391_109.jpg"]}
 ]
 
-const reviewlist = [{rating:5,comment: "The living room set is great", product_id: 1, user_id: 1},
+const reviewList = [{rating:5,comment: "The living room set is great", product_id: 1, user_id: 1},
 {rating:4,comment: "Overall great, I have no problems with fully recommending them for your furniture needs!", product_id: 1, user_id: 2},
-{rating:5,comment: "Great quality materials, easy to assemble, nice aesthetics. The couch pillows are a little small and the arm doesn't attach to the chaise (when combined with the couch) are two rather nitpicky observations I had, but otherwise extremely satisfied and would recommend to others.", product_id: 1, user_id: 3},
+{rating:3,comment: "Great quality materials, easy to assemble, nice aesthetics. The couch pillows are a little small and the arm doesn't attach to the chaise (when combined with the couch) are two rather nitpicky observations I had, but otherwise extremely satisfied and would recommend to others.", product_id: 1, user_id: 3},
 {rating:4,comment: "Different than the rest. I really like the furniture, setup, and company (customer service, marketing, shipping experience, etc.). I think it is great for a smaller apartment.", product_id: 1, user_id: 4},
 {rating:5,comment: "Great design.Simple furniture. Easy to assemble. Fast shipping. Decently priced. Good customer service.", product_id: 2, user_id: 5},
 {rating:5,comment: "Superior. Cost, design, and shipping. Easy to assemble, high quality materials, great packaging.", product_id: 2, user_id: 6},
@@ -95,7 +57,7 @@ const reviewlist = [{rating:5,comment: "The living room set is great", product_i
 {rating:5,comment: "Perfect Mid Century Side Table.This is one of the best purchases we have made. This table is the perfect addition to our lounge space that includes two mid century lounge chairs and now this beautiful table. The table is the perfect height and the walnut wood finish is outstanding. The curvature of the base makes this piece very unique and we are always receiving compliments on it.", product_id: 15, user_id: 8}
 ]
 
-const userlist = [
+const userList = [
 {"first_name":"Dan","last_name":"Adams","email":"dan@jh.com","password":"1234","shipping_address_id":10,"billing_address_id":1},
 {"first_name":"Ben","last_name":"Parker","email":"ben@jh.com","password":"1234","shipping_address_id":9,"billing_address_id":2},
 {"first_name":"Ethen","last_name":"Ellis","email":"ethen@jh.com","password":"1234","shipping_address_id":8,"billing_address_id":3},
@@ -109,7 +71,7 @@ const userlist = [
 {"first_name":"admin","last_name":"admin","email":"admin@jh.com","isAdmin":"true", "password":"admin","shipping_address_id":11,"billing_address_id":11}
 ]
 
-const addresslist = [
+const addressesList = [
 {"street1":"399 Ujalap Highway","street2":"(242)","city":"Ibkozbe","state":"NJ","zip":"87406"},
 {"street1":"1396 Fadij Loop","street2":"(631)","city":"Eridije","state":"SD","zip":"62024"},
 {"street1":"1833 Muwa Drive","street2":"(627)","city":"Waijhic","state":"ID","zip":"64604"},
@@ -123,7 +85,7 @@ const addresslist = [
 {"street1":"1 Hanover Square","street2":"(950)","city":"New York","state":"NY","zip":"59102"}
 ]
 
-const creditcardlist=
+const creditCardList=
 [
 {"number":"5555555555554444","expiry_date":"02/2018","security_code":832,"card_type":"mastercard","user_id":1},
 {"number":"4012888888881881","expiry_date":"10/2018","security_code":951,"card_type":"visa","user_id":2},
@@ -138,42 +100,70 @@ const creditcardlist=
 {"number":"4111111111111111","expiry_date":"05/2018","security_code":529,"card_type":"visa","user_id":11}
 ]
 
-// arrays consist of random objects
-// for db.Promise.map(array, fn)
-const addressArr = addresslist, 
-	cartProductArr = [],
-	creditcardArr = creditcardlist,
-	lineItemArr = [],
-	orderArr = [],
-	productArr = productlist,
-	reviewArr = reviewlist,
-	userArr = userlist,
+const cartProductsList= 
+[
+{"sessionId":"Pd749UrmWN","quantity":2, "product_id":1},
+{"sessionId":"$ZIESjH$NnuD(Ke","quantity":1, "product_id":2},
+{"sessionId":"p3!o395","quantity":3, "product_id":3},
+{"sessionId":"!VhTscIiK]^caKsxEn8","quantity":4, "product_id":4},
+{"sessionId":"V](yB*zv#R)o@F]c]oAs","quantity":1, "product_id":5},
+{"sessionId":"yDcL4xWZ0P","quantity":2, "product_id":6},
+{"sessionId":"H393l2qcFcad","quantity":3, "product_id":7},
+{"sessionId":"bXFdb7lMmc","quantity":3, "product_id":8},
+{"sessionId":"J@I[@BdWQa72577L","quantity":1, "product_id":9},
+{"sessionId":"POLlH)mvUR","quantity":2, "product_id":10}
+]
+
+const ordersList = 
+[
+{"confirmation_number":"OoiAooNLyWk*XV*C@eQ!","status":"processing","order_date":"2016-11-08T22:15:51.591Z","user_id":1,"shipping_address_id":1,"billing_address_id":1,"credit_card_id":1},
+{"confirmation_number":"09RVAisgseuGm","status":"completed","order_date":"2016-11-08T22:15:51.591Z","user_id":2,"shipping_address_id":2,"billing_address_id":2,"credit_card_id":2},
+{"confirmation_number":"n&4$m[]CRo(kyA","status":"created","order_date":"2016-11-08T22:15:51.591Z","user_id":3,"shipping_address_id":3,"billing_address_id":3,"credit_card_id":3},
+{"confirmation_number":"UHr1)(Or0GoVb","status":"cancelled","order_date":"2016-11-08T22:15:51.591Z","user_id":4,"shipping_address_id":4,"billing_address_id":4,"credit_card_id":4},
+{"confirmation_number":"1f$llF4","status":"completed","order_date":"2016-11-08T22:15:51.591Z","user_id":5,"shipping_address_id":5,"billing_address_id":5,"credit_card_id":5},
+{"confirmation_number":"jKZ!MWJIC@etQ","status":"completed","order_date":"2016-11-08T22:15:51.591Z","user_id":6,"shipping_address_id":6,"billing_address_id":6,"credit_card_id":6},
+{"confirmation_number":"f4]iE8","status":"cancelled","order_date":"2016-11-08T22:15:51.591Z","user_id":7,"shipping_address_id":7,"billing_address_id":7,"credit_card_id":7},
+{"confirmation_number":"hYpPBcYc7KZ@pIvWT","status":"completed","order_date":"2016-11-08T22:15:51.591Z","user_id":8,"shipping_address_id":8,"billing_address_id":8,"credit_card_id":8},
+{"confirmation_number":"dEu&phJIYkHr","status":"processing","order_date":"2016-11-08T22:15:51.591Z","user_id":9,"shipping_address_id":9,"billing_address_id":9,"credit_card_id":9},
+{"confirmation_number":"3IJ)wQZ*zOo39df4osj","status":"processing","order_date":"2016-11-08T22:15:51.591Z","user_id":10,"shipping_address_id":10,"billing_address_id":10,"credit_card_id":10}
+]
+
+const lineItemsList = 
+[
+{"quantity":1,"price":148.32,"order_id":1,"product_id":1},
+{"quantity":2,"price":65.44,"order_id":2,"product_id":2},
+{"quantity":3,"price":70.28,"order_id":3,"product_id":3},
+{"quantity":1,"price":76.93,"order_id":4,"product_id":4},
+{"quantity":2,"price":55.19,"order_id":5,"product_id":5},
+{"quantity":3,"price":161.05,"order_id":6,"product_id":6},
+{"quantity":1,"price":194.26,"order_id":7,"product_id":7},
+{"quantity":2,"price":113.57,"order_id":8,"product_id":8},
+{"quantity":3,"price":35.08,"order_id":9,"product_id":9},
+{"quantity":1,"price":136.98,"order_id":10,"product_id":10},
+{"quantity":4,"price":148.32,"order_id":1,"product_id":15},
+{"quantity":2,"price":65.44,"order_id":2,"product_id":14},
+{"quantity":1,"price":70.28,"order_id":3,"product_id":13},
+{"quantity":4,"price":76.93,"order_id":4,"product_id":12},
+{"quantity":5,"price":55.19,"order_id":5,"product_id":11},
+{"quantity":2,"price":161.05,"order_id":6,"product_id":10},
+{"quantity":2,"price":194.26,"order_id":7,"product_id":9},
+{"quantity":1,"price":113.57,"order_id":8,"product_id":8},
+{"quantity":1,"price":35.08,"order_id":9,"product_id":7},
+{"quantity":2,"price":136.98,"order_id":10,"product_id":6}
+]
 
 	// table that associates
 	// 'db model': array of random objects
-	tables = {
-		'addresses': addressArr,
-		'cartProducts': cartProductArr,
-		'creditCards': creditcardArr,
-		'lineItems': lineItemArr,
-		'orders': orderArr,
-		'products': productArr,
-		'reviews': reviewArr,
-		'users': userArr,
+const	tables = {
+		'addresses': addressesList,
+		'cartProducts': cartProductsList,
+		'creditCards': creditCardList,
+		'lineItems': lineItemsList,
+		'orders': ordersList,
+		'products': productsList,
+		'reviews': reviewList,
+		'users': userList
 	}
-
-
-for (let i = 0; i < 30; i++) {
-	//addressArr.push(chance.addresses());
-	cartProductArr.push(chance.cartProducts());
-	//creditcardArr.push(chance.creditCards());
-	orderArr.push(chance.orders());
-	lineItemArr.push(chance.lineItems());
-	//productArr.push(chance.products());
-	//reviewArr.push(chance.reviews());
-	//userArr.push(chance.users());
-}
-
 
 // helper function for create data to tatabase
 const seedFunc = function(dbName) {
@@ -181,14 +171,14 @@ const seedFunc = function(dbName) {
 }
 
 // function for seeding data
-const seedUsers = seedFunc('users');
-const seedAddresses = seedFunc('addresses');
-const seedCreditcards = seedFunc('creditCards');
-const seedProducts = seedFunc('products');
-const seedReviews = seedFunc('reviews');
-const seedOrders = seedFunc('orders');
-const seedCartProducts = seedFunc('cartProducts');
-const seedLineItmes = seedFunc('lineItems');
+const seedUsers = seedFunc('users'),
+	seedAddresses = seedFunc('addresses'),
+	seedCreditcards = seedFunc('creditCards'),
+	seedProducts = seedFunc('products'),
+	seedReviews = seedFunc('reviews'),
+	seedOrders = seedFunc('orders'),
+	seedCartProducts = seedFunc('cartProducts'),
+	seedLineItmes = seedFunc('lineItems')
 
 
 db.didSync

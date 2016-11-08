@@ -71,3 +71,23 @@ export const checkExpDate = (exp) => {
 export const checkCV = (cv) => {
   return cv.match(/\d{3}/);
 }
+
+/* ENUM Key->Display Mappers */
+
+// Categories
+export const categories = {
+  all: 'All',
+  bedroom: 'Bedroom',
+  livingroom: 'Living Room',
+  kitchen: 'Kitchen',
+  office: 'Office',
+  bath: 'Bath',
+  dining: 'Dining Room'
+};
+
+// Credit Card Types
+export const creditCardTypes = {
+  mastercard: 'MasterCard',
+  visa: 'Visa',
+  'amex': 'American Express'
+};

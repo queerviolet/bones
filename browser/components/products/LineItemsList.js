@@ -1,6 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
-import { AutoComplete, SelectField, MenuItem } from 'material-ui'
 import { Table, TableHeader, TableHeaderColumn, TableBody, TableRow, TableRowColumn, TableFooter } from 'material-ui'
 import LineItem from '../product/LineItem'
 import { formatPrice, totalPrice } from '../../utils'
