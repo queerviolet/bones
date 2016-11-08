@@ -16,6 +16,7 @@ import cartContainer                  from './containers/cartContainer';
 import receiveAllProductsFromServer   from './actions/productsActions';
 import productAddingContainer         from './containers/productAddingContainer';
 import checkoutContainer              from './containers/checkoutContainer';
+import Signup                         from './components/signup';
 
 render(
   <Provider store={store}>
