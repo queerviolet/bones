@@ -1,7 +1,7 @@
 body {
   /* padding is used to prevent the navbar from covering up page content*/
-/*  padding-top: 70px;
-*/  background-color: #27363B;
+  padding-top: 70px;
+  background-color: #28353B;
   color:#FFFFFF;
 }
 
@@ -34,50 +34,8 @@ body {
 
 /* +++++++++++++++++++++++++START SIDEBAR ICON STYLES++++++++++++++++++++*/
 
-/*#wrapper {
-  transition: all 0.4s ease 0s;
-}
 
-#sidebar-wrapper {
-  padding-left: 1em;
-  margin-left: -250px;
-  left: 250px;
-  width: 15vw;
-  background: #FCCEAA;
-  position: fixed;
-  height: 100%;
-  overflow-y: auto;
-  z-index: 1000;
-  transition: all 0.4s ease 0s;
-}
-
-#page-content-wrapper {
-  width: 50%;
-}
-
-.categoryLinks {
-  padding-top: 2em;
-}
-
-.sidebar-nav {
-  position: absolute;
-  top: 0;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  color: #27363B;
-  font-size: 20px;
-}*/
 /* +++++++++++++++++++++++++END SIDEBAR ICON STYLES++++++++++++++++++++*/
-
-.product-boxes {
-  width: 50%;
-  align-content: center;
-}
-
-#single-product {
-  width: 50%
-}
 
 /* +++++++++++++++++++++++++START LOGIN STYLES+++++++++++++++++++++++++*/
 .wrapper {
@@ -131,9 +89,10 @@ input[type="password"] {
 /* +++++++++++++++++++++++++END LOGIN STYLES+++++++++++++++++++++++++ */
 
 /* +++++++++++++++++++++++++START ADD PAGE STYLES+++++++++++++++++++++++++ */
-.add-input{
 
-}
+
+
+
 /* +++++++++++++++++++++++++END ADD PAGE STYLES+++++++++++++++++++++++++ */
 
 /*!
@@ -141,10 +100,6 @@ input[type="password"] {
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
-
-body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-}
 
 .slide-image {
     width: 100%;

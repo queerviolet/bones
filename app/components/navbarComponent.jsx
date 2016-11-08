@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Router } from 'react-router';
+import sidebarComponent from './sidebarComponent';
 
 /*
 The navbar component will render a basic navbar
@@ -36,23 +37,34 @@ export default class NavbarComponent extends React.Component{
     return (
       <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div className="container">
-
           <div className="navbar-header">
-            <Link to={"/"}className="navbar-brand">CodeCommerce</Link>
-            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul className="nav navbar-nav">
-                <li>
-                  <Link to={"/signup"}className="nav navbar navbar-right">Signup</Link>
-                </li>
-                <li>
-                  <Link to={"/login"}className="nav navbar navbar-right">Login</Link>
-                </li>
+            <button type="button" className="navbar-toggle" data-toggle="collapse">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+            </button>
+            {/*<button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Categories <span className="caret"></span>
+              <ul className="dropdown-menu">
+                <sidebarComponent />
               </ul>
-            </div>
-            <Link to="cart" id="cart" className="btn" data-placement="bottom" title="Ready to Buy?" >
-                          <span className="glyphicon glyphicon-shopping-cart"></span>
-                        </Link>
+            </button>*/}
+            <Link to={"/"} className="navbar-brand">CodeCommerce</Link>
           </div>
+          <div className="collapse navbar-collapse">
+            <ul className="nav navbar-nav">
+              <li>
+                <Link to={"/signup"}className="nav navbar navbar-right">Signup</Link>
+              </li>
+              <li>
+                <Link to={"/login"}className="nav navbar navbar-right">Login</Link>
+              </li>
+            </ul>
+          </div>
+          <Link to="cart" id="cart" className="btn" data-placement="bottom" title="Ready to Buy?" >
+                        <span className="glyphicon glyphicon-shopping-cart"></span>
+                      </Link>
         </div>
       </nav>
     );

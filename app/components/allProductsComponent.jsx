@@ -10,7 +10,6 @@ export default ({products, addToCart, cart}) => (
 
     <div className="row">
       {
-        // checkoutLocalStorage(cart);
         products && products.map((product, index) => {
           return (
             <div key={`${index}`} className="col-md-4 col-sm-4 col-lg-4">
@@ -30,8 +29,8 @@ export default ({products, addToCart, cart}) => (
                             <span className="glyphicon glyphicon-star"></span>
                             <span className="glyphicon glyphicon-star"></span>
                             <span className="glyphicon glyphicon-star"></span>
-                            <span className="glyphicon glyphicon-star"></span>
-                            <span className="glyphicon glyphicon-star"></span>
+                            <span className="glyphicon glyphicon-empty"></span>
+                            <span className="glyphicon glyphicon-empty"></span>
                         </p>
                     </div>
                 </div>
