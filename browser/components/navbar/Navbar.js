@@ -23,7 +23,9 @@ export default ({ user, logout }) => (
       </div>
     </ToolbarGroup>
     <ToolbarGroup style={centerText}>
-      <ToolbarTitle style={toolbarText} text="JustHome" />
+      <Link to="/">
+        <ToolbarTitle style={toolbarText} text="JustHome" />
+      </Link>
     </ToolbarGroup>
     {
       Object.keys(user).length ?

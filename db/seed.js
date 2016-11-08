@@ -41,7 +41,7 @@ chance.mixin({
 		return {
 			quantity: chance.natural({min:1, max:8}),
 			price: chance.floating({min: 10, max: 200, fixed: 2}),
-			order_id: chance.natural({min:1, max:5}),
+			// order_id: chance.natural({min:1, max:5}),
 			product_id: chance.natural({min:1, max:5})
 		}
 	},
@@ -120,7 +120,14 @@ for (let i = 0; i < 30; i++) {
 	addressArr.push(chance.addresses());
 	cartProductArr.push(chance.cartProducts());
 	creditcardArr.push(chance.creditCards());
-	lineItemArr.push(chance.lineItems());
+
+	let newLineItem = chance.lineItems();
+	newLineItem.order_id = i;
+	lineItemArr.push(newLineItem);
+	newLineItem = chance.lineItems();
+	newLineItem.order_id = i;
+	lineItemArr.push(newLineItem);
+
 	orderArr.push(chance.orders());
 	productArr.push(chance.products());
 	reviewArr.push(chance.reviews());

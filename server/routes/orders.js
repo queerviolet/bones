@@ -35,6 +35,15 @@ const generateConfirmationNum = () => chance.string({
 // 	endpoints: ['/orders', '/orders/:id']
 // });
 
+customOrdersRoutes.get('/', (req,res,next) => {
+	orderModel.findAll({
+		order: '"order_date" DESC',
+		include: [{model: lineItemModel, include: [{model: productModel, required: false}], required: false}]
+	})
+	.then(result => res.send(result))
+	.catch(err => console.log('could not fetch all orders', err));
+})
+
 customOrdersRoutes.get('/:id', (req,res,next) => {
 	orderModel.findOne({
 		where: {id: req.params.id},
