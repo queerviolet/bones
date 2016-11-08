@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Navbar from './Navbar';
 import { logout } from '../../redux/user'
 
-const mapStateToProps = ({ userId }) => ({ userId });
+const mapStateToProps = ({ user }) => ({ user });
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout())

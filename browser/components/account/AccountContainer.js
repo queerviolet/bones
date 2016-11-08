@@ -3,8 +3,8 @@
 import { connect } from 'react-redux';
 import Account from './Account';
 
-const mapStateToProps = ({ account }) => ({
-  account
+const mapStateToProps = ({ user }) => ({
+  user
 });
 
 export default connect(

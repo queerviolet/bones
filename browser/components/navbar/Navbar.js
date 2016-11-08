@@ -13,7 +13,7 @@ const toolbarText = {color: white, padding: 0}
 const buttonText = {color: white, padding: 0, transition: 'all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms'}
 const centerText = {marginLeft: '5%'}
 
-export default ({ userId, logout }) => (
+export default ({ user, logout }) => (
   <Toolbar id="navbar" style={{backgroundColor: '#007281'}}>
     <ToolbarGroup>
       <div className="navbar-item">
@@ -26,7 +26,7 @@ export default ({ userId, logout }) => (
       <ToolbarTitle style={toolbarText} text="JustHome" />
     </ToolbarGroup>
     {
-      userId ?
+      Object.keys(user).length ?
       (
         <ToolbarGroup style={{float: 'right'}}>
           <div className="navbar-item">

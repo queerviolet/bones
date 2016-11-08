@@ -17,7 +17,7 @@ const CreditCard = db.define('creditCards', {
 			}
 		}
 	},
-	credit_card_type: {
+	card_type: {
 		type: Sequelize.ENUM,
 		values: ['amex','mastercard','visa']
 	}

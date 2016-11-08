@@ -8,19 +8,19 @@ const REMOVE = 'REMOVE_CURRENT_USER'
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-const set   = userId => ({ type: SET, userId })
+const set   = user => ({ type: SET, user })
 const remove  = () => ({ type: REMOVE })
 
 /* ------------       REDUCER     ------------------ */
 
-export default function reducer (currentUser = null, action) {
+export default function reducer (currentUser = {}, action) {
   switch (action.type) {
     
     case SET: 
-      return action.userId;
+      return action.user;
 
     case REMOVE: 
-      return null;  
+      return {};  
 
     default: 
       return currentUser;
@@ -32,7 +32,7 @@ export default function reducer (currentUser = null, action) {
 export const login = (credentials, displayErr) => dispatch => {
   axios.post('/api/auth/login', credentials)
     .then(res => {
-      dispatch(set(res.data.id));
+      dispatch(set(res.data));
       browserHistory.push(`/`);
     })
     .catch(err => {
@@ -44,7 +44,7 @@ export const login = (credentials, displayErr) => dispatch => {
 export const signup = credentials => dispatch => {
   axios.post('/api/auth/signup', credentials)
     .then(res => {
-      dispatch(set(res.data.id));
+      dispatch(set(res.data));
       browserHistory.push(`/`);
     })
     .catch(err => console.error('Unable to sign up', err));
@@ -53,8 +53,8 @@ export const signup = credentials => dispatch => {
 export const retrieveLoggedInUser = () => dispatch => {
   axios.get('/api/auth/me')
     .then(res => {
-      if (res.data.id)
-        dispatch(set(res.data.id))
+      if (res.data)
+        dispatch(set(res.data))
     })
     .catch(err => console.error('Unable to retrieve logged in user', err));
 }

@@ -9,7 +9,7 @@ const cardTypes = [
   { key: 'amex', display: 'American Express' }
 ]
 
-export default ({ disabled, handleChange, cardType, errors }) => {
+export default ({ values, disabled, handleChange, errors }) => {
   return (
     <fieldset className="form-box">
       <legend style={{ width: '130px' }}>Credit Card</legend>
@@ -17,6 +17,7 @@ export default ({ disabled, handleChange, cardType, errors }) => {
         <div className="col-xs-12 col-sm-8 col-md-5">
           <TextField
             floatingLabelText="Card Number"
+            value={values.number}
             hintText="XXXX-XXXX-XXXX-XXXX"
             errorText={errors.number}
             fullWidth={true}
@@ -27,7 +28,7 @@ export default ({ disabled, handleChange, cardType, errors }) => {
         <div className="col-xs-12 col-sm-4 col-md-3">
           <SelectField
             floatingLabelText="Payment Type"
-            value={cardType}
+            value={values.card_type}
             errorText={errors.card_type}
             fullWidth={true}
             disabled={disabled}
@@ -43,6 +44,7 @@ export default ({ disabled, handleChange, cardType, errors }) => {
         <div className="col-xs-12 col-sm-6 col-md-2">
           <TextField
             floatingLabelText="Expiration Date"
+            value={values.card_type}
             hintText="MM/YYYY"
             errorText={errors.expiry_date}
             fullWidth={true}
@@ -53,6 +55,7 @@ export default ({ disabled, handleChange, cardType, errors }) => {
         <div className="col-xs-12 col-sm-6 col-md-2">
           <TextField
             floatingLabelText="CV Code"
+            value={values.security_code}
             type="number"
             errorText={errors.security_code}
             fullWidth={true}

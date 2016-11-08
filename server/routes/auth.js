@@ -17,8 +17,9 @@ router.post('/signup', (req, res, next) => {
   })
 		.then(user => {
       req.session.userId = user.id;
-      res.status(201).send(user);
+      return userModel.getUserAccount(user.id)
     })
+    .then(userAccount => res.status(201).send(userAccount))
 		.catch(next);
 });
 
@@ -39,14 +40,15 @@ router.post('/login', (req, res, next) => {
       return user.authenticate(req.body.password)
         .then(valid => {
           if (!valid){
-            let error = new Error('User not found');
+            let error = new Error('Incorrect password');
             error.status = 401;
             return next(error)
           }
 
           req.session.userId = user.id;
-          res.send(user);
+          return userModel.getUserAccount(user.id) 
         })
+        .then(userAccount => res.send(userAccount))
     })
 		.catch(next);
 });
@@ -59,5 +61,7 @@ router.delete('/logout', (req, res, next) => {
 
 // Reestablish account on front end
 router.get('/me', (req, res, next) => {
-  res.send({ id: req.session.userId });
+  userModel.getUserAccount(req.session.userId)
+  .then(userAccount => res.send(userAccount))
+  .catch(next)
 });
