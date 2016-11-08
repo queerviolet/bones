@@ -13,7 +13,7 @@ export default ({ first_name, last_name, email, disabled, handleChange, errors }
             errorText={errors.first_name}
             fullWidth={true}
             disabled={disabled}
-            onChange={(evt) => handleChange("first_name", evt.target.value, 'personal_info') }
+            onChange={(evt) => handleChange("first_name", evt.target.value) }
           />
         </div>
         <div className="col-xs-12 col-sm-6 col-md-4">
@@ -23,7 +23,7 @@ export default ({ first_name, last_name, email, disabled, handleChange, errors }
             errorText={errors.last_name}
             fullWidth={true}
             disabled={disabled}
-            onChange={(evt) => handleChange("last_name", evt.target.value, 'personal_info') }
+            onChange={(evt) => handleChange("last_name", evt.target.value) }
           />
         </div>
         <div className="col-xs-12 col-md-4">
@@ -34,7 +34,7 @@ export default ({ first_name, last_name, email, disabled, handleChange, errors }
             errorText={errors.email}
             fullWidth={true}
             disabled={disabled}
-            onChange={(evt) => handleChange("email", evt.target.value, 'personal_info') }
+            onChange={(evt) => handleChange("email", evt.target.value) }
           />
         </div>
       </div>

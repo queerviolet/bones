@@ -44,7 +44,7 @@ export default ({ values, disabled, handleChange, errors }) => {
         <div className="col-xs-12 col-sm-6 col-md-2">
           <TextField
             floatingLabelText="Expiration Date"
-            value={values.card_type}
+            value={values.expiry_date}
             hintText="MM/YYYY"
             errorText={errors.expiry_date}
             fullWidth={true}
