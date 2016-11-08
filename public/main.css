@@ -1,7 +1,8 @@
 body {
   /* padding is used to prevent the navbar from covering up page content*/
   padding-top: 70px;
-  background-color: #27363B;
+  background-color: #28353B;
+  color:#FFFFFF;
 }
 
 /* +++++++++++++++++++++++++START CART ICON STYLES+++++++++++++++++++++++++*/
@@ -33,50 +34,8 @@ body {
 
 /* +++++++++++++++++++++++++START SIDEBAR ICON STYLES++++++++++++++++++++*/
 
-#wrapper {
-  transition: all 0.4s ease 0s;
-}
 
-#sidebar-wrapper {
-  padding-left: 1em;
-  margin-left: -250px;
-  left: 250px;
-  width: 15vw;
-  background: #FCCEAA;
-  position: fixed;
-  height: 100%;
-  overflow-y: auto;
-  z-index: 1000;
-  transition: all 0.4s ease 0s;
-}
-
-#page-content-wrapper {
-  width: 50%;
-}
-
-.categoryLinks {
-  padding-top: 2em;
-}
-
-.sidebar-nav {
-  position: absolute;
-  top: 0;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  color: #27363B;
-  font-size: 20px;
-}
 /* +++++++++++++++++++++++++END SIDEBAR ICON STYLES++++++++++++++++++++*/
-
-.product-boxes {
-  width: 100%;
-  align-content: center;
-}
-
-#single-product {
-  width: 50%
-}
 
 /* +++++++++++++++++++++++++START LOGIN STYLES+++++++++++++++++++++++++*/
 .wrapper {
@@ -128,3 +87,98 @@ input[type="password"] {
 }
 
 /* +++++++++++++++++++++++++END LOGIN STYLES+++++++++++++++++++++++++ */
+
+/* +++++++++++++++++++++++++START ADD PAGE STYLES+++++++++++++++++++++++++ */
+
+
+
+
+/* +++++++++++++++++++++++++END ADD PAGE STYLES+++++++++++++++++++++++++ */
+
+/*!
+ * Start Bootstrap - Shop Homepage (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+
+#rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: center;
+}
+#rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+#rating > *:hover,
+#rating > *:hover ~ span,
+#rating:not(:hover) > input:checked ~ span {
+  color: transparent;
+}
+#rating > *:hover:before,
+#rating > *:hover ~ span:before,
+#rating:not(:hover) > input:checked ~ span:before {
+   content: "\2605";
+   position: absolute;
+   left: 0;
+   color: gold;
+}
+
+#rating > input {
+   margin-left:-1.1em;
+   margin-right:0;
+   top:3px;
+   width:1.1em;
+   height:1.1em;
+   position:relative;
+   z-index:2;
+   opacity:0;
+}
+

@@ -4,7 +4,6 @@ import { Router, Route, IndexRedirect, browserHistory, IndexRoute } from 'react-
 import { render } from 'react-dom'
 import { connect, Provider } from 'react-redux'
 
-
 import store                          from './store'
 import Jokes                          from './components/Jokes'
 import Login                          from './components/Login'
@@ -18,7 +17,6 @@ import receiveAllProductsFromServer   from './actions/productsActions';
 import productAddingContainer         from './containers/productAddingContainer';
 import checkoutContainer              from './containers/checkoutContainer';
 
-
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
@@ -28,8 +26,9 @@ render(
         <Route path="products/category/:categoryId" component={selectedProductsContainer} />
         <Route path="cart" component={cartContainer} onEnter={receiveAllProductsFromServer}/>
         <Route path="products/name/:productName" component={selectedProductsContainer} />
-        <Route path="products/add" component={productAddingContainer} />
+        <Route path="products/product/add" component={productAddingContainer} />
       </Route>
+      <Route path="/signup" component={Signup} />
       <Route path="/login" component={Login} />
       <Route path="/checkout" component={checkoutContainer} />
     </Router>

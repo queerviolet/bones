@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Router } from 'react-router';
+import sidebarComponent from './sidebarComponent';
 
 /*
 The navbar component will render a basic navbar
@@ -23,36 +24,47 @@ export default class NavbarComponent extends React.Component{
 
   // When a user inputs text in the searchbar, save to the state
   handleOnChange(event){
-    console.log(event.target.value);
     this.setState({searchText: event.target.value});
   }
   // When a user submits on the searchbar, it will fire an event to search for a product
   handleOnSubmit(event){
     event.preventDefault();
-    console.log('submitting an event', this.state.searchText);
-    console.log(Router);
     this.props.onSubmitName(this.state.searchText);
     document.getElementById("search-form").reset();
   }
 
   render(){
     return (
-      <nav className="navbar navbar-inverse navbar-fixed-top">
-        <Link to="cart" id="cart" className="btn" data-placement="bottom" title="Ready to Buy?" >
-          <span className="glyphicon glyphicon-shopping-cart"></span>
-        </Link>
+      <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div className="container">
           <div className="navbar-header">
-            <Link to={"/"}className="navbar-brand">CodeCommerce</Link>
-            <Link to={"/login"}className="nav navbar navbar-right">Login</Link>
-            <form className="navbar-form navbar-left" id="search-form" role="search" onSubmit={this.handleOnSubmit}>
-              <div className="form-group">
-                <input type="text" className="form-control" 
-                  placeholder="BST, loops, etc..." onChange={this.handleOnChange}></input>
-              </div>
-              <button type="submit" className="btn btn-default">Search</button>
-            </form>
+            <button type="button" className="navbar-toggle" data-toggle="collapse">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+            </button>
+            {/*<button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Categories <span className="caret"></span>
+              <ul className="dropdown-menu">
+                <sidebarComponent />
+              </ul>
+            </button>*/}
+            <Link to={"/"} className="navbar-brand">CodeCommerce</Link>
           </div>
+          <div className="collapse navbar-collapse">
+            <ul className="nav navbar-nav">
+              <li>
+                <Link to={"/signup"}className="nav navbar navbar-right">Signup</Link>
+              </li>
+              <li>
+                <Link to={"/login"}className="nav navbar navbar-right">Login</Link>
+              </li>
+            </ul>
+          </div>
+          <Link to="cart" id="cart" className="btn" data-placement="bottom" title="Ready to Buy?" >
+                        <span className="glyphicon glyphicon-shopping-cart"></span>
+                      </Link>
         </div>
       </nav>
     );

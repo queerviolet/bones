@@ -6,6 +6,24 @@ const db = require('APP/db')
 const customProductRoutes = require('express').Router()
 
 // Custom routes go here.
+const Product = db.model('product');
+const Review = db.model('productReview');
+
+customProductRoutes.post('/', (req, res, next) => {
+  Product.create(req.body)
+    .then(product => res.status(201).json(product))
+    .catch(err => console.log('Error creating product!', err));
+})
+
+customProductRoutes.get('/:id', (req, res, next) => {
+  Product.findById(req.params.id, {
+    include:[
+      { model: Review }
+    ]
+  })
+    .then(products => res.status(200).json(products))
+    .catch(err => console.log('Error retrieving product', err));
+})
 
 module.exports = customProductRoutes
 
@@ -32,12 +50,10 @@ const product = epilogue.resource({
         attributes: ['category_id']
       }
     ],
+    actions: [
+      'list', 'delete'
+    ]
 })
-
-// find all users
-product.list = (req, res, context) => {
-  res.status(201).json(context)
-}
 
 // get details about one user
 product.read = (req, res, context) => {

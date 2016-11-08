@@ -35,6 +35,14 @@ users.read = (req, res, context) => {
   res.status(201).json(user);
 }
 
+users.update = (req, res, context) => {
+  res.json(context)
+}
+
+users.create = (req, res, context) => {
+  res.json(context);
+}
+
 const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
 users.delete.auth(mustBeLoggedIn)
 users.delete.auth(selfOnly)
