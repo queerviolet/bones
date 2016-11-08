@@ -43,10 +43,7 @@ export default function product(state = {}, action) {
     case RECEIVE_PRODUCT:
       return action.product;
     case ADD_REVIEW:
-      console.log(action.review)
-      let newProduct = Object.assign(state, {reviews: [action.review, ...state.reviews]});
-      console.log(newProduct)
-      return newProduct;
+      return Object.assign(state, {reviews: [action.review, ...state.reviews]});
     default:
       return state;
   }

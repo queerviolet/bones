@@ -36,8 +36,6 @@ export default ({ product, buyClick }) => {
 
     	<div className="row">
     		<ReviewsContainer
-					productId={product.id}
-					reviews={product.reviews}
 					avgRating={avgRating}
 				/>
     	</div>

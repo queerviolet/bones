@@ -10,15 +10,6 @@ const productType = ['chair', 'table', 'bed', 'closet', 'sofa', 'desk'],
 
 // create methods generating random object
 chance.mixin({
-	// addresses: () => {
-	// 	return {
-	// 		street1: chance.address(),
-	// 		street2: chance.areacode(),
-	// 		city: chance.city(),
-	// 		state: chance.state(),
-	// 		zip: chance.zip()
-	// 	};
-	// },
 	cartProducts: () => {
 		return {
 			sessionId: chance.string(),
@@ -26,15 +17,6 @@ chance.mixin({
 			product_id: chance.natural({min:1, max:5}),
 		}
 	},
-	// creditCards: () => {
-	// 	return {
-	// 		number: chance.cc(),
-	// 		expiry_date: chance.exp(),
-	// 		security_code: chance.natural({min: 100, max: 999}),
-	// 		user_id: chance.natural({min:1, max:5}),
-	// 		card_type: chance.pickone(cardType)
-	// 	};
-	// },
 	lineItems: () => {
 		return {
 			quantity: chance.natural({min:1, max:8}),
@@ -53,41 +35,7 @@ chance.mixin({
 			billing_address_id: chance.natural({min:1, max:5}),
 			credit_card_id: chance.natural({min:1, max:5}),
 		}
-	},
-	// products: () => {
-	// 	const thisType = chance.pickone(productType)
-	// 	return {
-	// 		name: chance.first() + ' ' + thisType,
-	// 		price: chance.floating({min: 10, max: 200, fixed: 2}),
-	// 		description: chance.paragraph({sentences: 1}),
-	// 		quantity: chance.natural({max:100}),
-	// 		type: thisType,
-	// 		color: chance.color({format: 'hex'}),
-	// 		style: chance.pickone(productStyle),
-	// 		category: chance.pickone(productCategory),
-	// 		material: chance.pickone(productMaterial),
-	// 		images: ["https://dummyimage.com/320x150/ddd/fff.jpg&text=1", "https://dummyimage.com/320x150/ddd/fff.jpg&text=2", "https://dummyimage.com/320x150/ddd/fff.jpg&text=3"]
-	// 	};
-	// },
-	// reviews: () => {
-	// 	return {
-	// 		rating: Math.floor(Math.random() * 5) + 1,
-	// 		comment: chance.paragraph({sentences: 1}),
-	// 		product_id: chance.natural({min:1, max:5}),
-	// 		user_id: chance.natural({min:1, max:5})
-	// 	};
-	// },
-	// users: () => {
-	// 	return {
-	// 		first_name: chance.first(),
-	// 		last_name: chance.last(),
-	// 		email: chance.email(),
-	// 		isAdmin: chance.bool({likelihood: 20}),
-	// 		password: '123123',
-	// 		shipping_address_id: chance.natural({min:1, max:5}),
-	// 		billing_address_id: chance.natural({min:1, max:5})
-	// 	};
-	// },
+	}
 })
 
 const productlist = [{name: "Felix Living Room Set", price: "1545.00", description: "-Essential living room set delivered to your door\n-Boxes fit through standard doorways, stairs, and elevators\n-No tools required for assembly", quantity: 10, type: "sofa", category: "livingroom", images: ["//cdn.shopify.com/s/files/1/0338/3945/products/living-room-main_e7562283-acc4-4e1f-83ab-693b13e0b33d_large.jpg?v=1478447772"]},
@@ -177,17 +125,17 @@ const addresslist = [
 
 const creditcardlist=
 [
-{"number":"5555-5555-5555-4444","expiry_date":"02/2018","security_code":832,"card_type":"mastercard","user_id":1},
-{"number":"4012-8888-8888-1881","expiry_date":"10/2018","security_code":951,"card_type":"visa","user_id":2},
-{"number":"0987-6543-2100-8806","expiry_date":"03/2018","security_code":725,"card_type":"mastercard","user_id":3},
-{"number":"0987-6543-2100-0473","expiry_date":"10/2018","security_code":781,"card_type":"mastercard","user_id":4},
-{"number":"0987-6543-2100-0050","expiry_date":"10/2018","security_code":968,"card_type":"amex","user_id":5},
-{"number":"0987-6543-2100-4310","expiry_date":"02/2018","security_code":962,"card_type":"amex","user_id":6},
-{"number":"0987-6543-2100-0473","expiry_date":"10/2018","security_code":781,"card_type":"mastercard","user_id":7},
-{"number":"0987-6543-2100-4049","expiry_date":"05/2018","security_code":415,"card_type":"amex","user_id":8},
-{"number":"0987-6543-2100-6923","expiry_date":"11/2018","security_code":444,"card_type":"mastercard","user_id":9},
-{"number":"5105-1051-0510-5100","expiry_date":"02/2018","security_code":694,"card_type":"mastercard","user_id":10},
-{"number":"4111-1111-1111-1111","expiry_date":"05/2018","security_code":529,"card_type":"visa","user_id":11}
+{"number":"5555555555554444","expiry_date":"02/2018","security_code":832,"card_type":"mastercard","user_id":1},
+{"number":"4012888888881881","expiry_date":"10/2018","security_code":951,"card_type":"visa","user_id":2},
+{"number":"0987654321008806","expiry_date":"03/2018","security_code":725,"card_type":"mastercard","user_id":3},
+{"number":"0987654321000473","expiry_date":"10/2018","security_code":781,"card_type":"mastercard","user_id":4},
+{"number":"0987654321000050","expiry_date":"10/2018","security_code":968,"card_type":"amex","user_id":5},
+{"number":"0987654321004310","expiry_date":"02/2018","security_code":962,"card_type":"amex","user_id":6},
+{"number":"0987654321000473","expiry_date":"10/2018","security_code":781,"card_type":"mastercard","user_id":7},
+{"number":"0987654321004049","expiry_date":"05/2018","security_code":415,"card_type":"amex","user_id":8},
+{"number":"0987654321006923","expiry_date":"11/2018","security_code":444,"card_type":"mastercard","user_id":9},
+{"number":"5105105105105100","expiry_date":"02/2018","security_code":694,"card_type":"mastercard","user_id":10},
+{"number":"4111111111111111","expiry_date":"05/2018","security_code":529,"card_type":"visa","user_id":11}
 ]
 
 // arrays consist of random objects

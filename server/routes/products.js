@@ -15,7 +15,7 @@ const products = epilogue.resource({
 	include: [
 		{ 
 			model: reviewModel, 
-			include: [{ model: userModel }],
+			include: [{ model: userModel, required: true }],
 			required: false 
 		}
 	],
@@ -37,6 +37,10 @@ router.post('/:productId/reviews', (req, res, next) => {
 		comment: req.body.comment,
 		rating: req.body.rating
 	})
+		// Get the assoicated user object
+		.then(review => review.reload({
+			include: [{ model: userModel, required: true }]
+		}))
 		.then(review => res.status(201).send(review))
 		.catch(next);
 });

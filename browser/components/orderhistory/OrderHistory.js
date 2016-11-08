@@ -2,7 +2,7 @@ import React from 'react';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { totalPrice, formatPrice } from '../../utils'
-import ProductList from '../products/ProductList';
+import LineItemsList from '../products/LineItemsList';
 
 // Table containing multiple orders with expandable rows
 export default ({ orders }) => {
@@ -25,7 +25,7 @@ export default ({ orders }) => {
                             <FlatButton label="Action1" />
                         </CardActions>*/}
                         <CardText expandable={true}>
-                        <ProductList lineItems={ order.lineItems } inputTotal={ total } />
+                        <LineItemsList lineItems={ order.lineItems } inputTotal={ total } />
                         </CardText>
                     </Card>
                 )

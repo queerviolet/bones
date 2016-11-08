@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import ProductList from '../products/ProductList'
+import LineItemsList from '../products/LineItemsList'
 import { RaisedButton } from 'material-ui';
 import { white, green500 } from 'material-ui/styles/colors';
 
@@ -10,7 +10,7 @@ export default ({ order }) => {
     <div id="order-list" className="col-xs-12">
       <p>Thank you for your order! A confirmation email should be arriving to your inbox shortly.</p>
       <p className="confirmation-num">{`Confirmation Number: #${order.confirmation_number}`}</p>
-      <ProductList lineItems={order.lineItems} />
+      <LineItemsList lineItems={order.lineItems} />
       <Link to="/products">
         <RaisedButton
           label="Keep Shopping"

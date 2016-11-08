@@ -17,11 +17,12 @@ export default ({ user, productId, reviews, avgRating }) => {
         </div>
     	</div>
       {
+        // If the user is logged in and not an admin, show the Add Comment box
         Object.keys(user).length && !user.isAdmin ?
           <AddReviewContainer productId={productId} /> : null
       }
       {
-        reviews.map((review) => {
+        reviews && reviews.map((review) => {
           return (
             <div key={ review.id } className="row review">
               <h4>{ review.user ? fullName(review.user) : null }</h4>
