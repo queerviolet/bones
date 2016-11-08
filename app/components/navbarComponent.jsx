@@ -34,22 +34,24 @@ export default class NavbarComponent extends React.Component{
 
   render(){
     return (
-      <nav className="navbar navbar-inverse navbar-fixed-top">
-        <Link to="cart" id="cart" className="btn" data-placement="bottom" title="Ready to Buy?" >
-          <span className="glyphicon glyphicon-shopping-cart"></span>
-        </Link>
+      <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div className="container">
+
           <div className="navbar-header">
             <Link to={"/"}className="navbar-brand">CodeCommerce</Link>
-            <Link to={"/signup"}className="nav navbar navbar-right">Signup</Link>
-            <Link to={"/login"}className="nav navbar navbar-right">Login</Link>
-            <form className="navbar-form navbar-left" id="search-form" role="search" onSubmit={this.handleOnSubmit}>
-              <div className="form-group">
-                <input type="text" className="form-control" 
-                  placeholder="BST, loops, etc..." onChange={this.handleOnChange}></input>
-              </div>
-              <button type="submit" className="btn btn-default">Search</button>
-            </form>
+            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul className="nav navbar-nav">
+                <li>
+                  <Link to={"/signup"}className="nav navbar navbar-right">Signup</Link>
+                </li>
+                <li>
+                  <Link to={"/login"}className="nav navbar navbar-right">Login</Link>
+                </li>
+              </ul>
+            </div>
+            <Link to="cart" id="cart" className="btn" data-placement="bottom" title="Ready to Buy?" >
+                          <span className="glyphicon glyphicon-shopping-cart"></span>
+                        </Link>
           </div>
         </div>
       </nav>

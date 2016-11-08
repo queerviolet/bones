@@ -23,18 +23,13 @@ export default ({ props, params, onLoadCategoryProducts }) => {
   })
 
   return (
-    <div className="container">
-      <div className="row">
+    <div>
         <NavbarContainer />
-        <div className="row">
-          <div className='col-md-2'>
-            <SidebarContainer onLoadCategoryProducts={onLoadCategoryProducts}/>
-          </div>
-          <div className='col-md-10'>
-            {children}
-          </div>
+        <div className="container">
+          {<SidebarContainer onLoadCategoryProducts={onLoadCategoryProducts}/>}
+          { children }
         </div>
-      </div>
     </div>
+
   )
 }
