@@ -23,12 +23,12 @@ export default ({ user, productId, reviews, avgRating }) => {
       {
         reviews.map((review) => {
           return (
-            <div key={review.id} className="row review">
-              <h4>{fullName(review.user)}</h4>
+            <div key={ review.id } className="row review">
+              <h4>{ review.user ? fullName(review.user) : null }</h4>
               {
                 getStars(review.rating)
               }
-              <p>{review.comment}</p>
+              <p>{ review.comment }</p>
             </div>
           )
         })
