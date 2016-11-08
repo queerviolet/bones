@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import axios from 'axios';
+// var nodemailer = require('nodemailer');
 
 export default class extends React.Component {
 
@@ -27,9 +28,31 @@ export default class extends React.Component {
     this.addressMaker = this.addressMaker.bind(this);
     this.orderProductBulk = this.orderProductBulk.bind(this);
     this.addUser = this.addUser.bind(this);
+    this.sendConfirmEmail = this.sendConfirmEmail.bind(this);
   }
   addressMaker = () => {
     return this.state.id_address_line_1+', '+this.state.id_address_line_2+', '+this.state.id_city+', '+this.state.id_state+', '+this.state.id_postalcode
+  }
+  sendConfirmEmail = () => {
+    // create reusable transporter object using the default SMTP transport
+    // var transporter = nodemailer.createTransport('smtps://user%40gmail.com:pass@smtp.gmail.com');
+    //
+    // // setup e-mail data with unicode symbols
+    // var mailOptions = {
+    //   from: '"Fred Foo ?" <foo@blurdybloop.com>', // sender address
+    //   to: 'blong8334@gmail.com', // list of receivers
+    //   subject: 'Your order confirmation!!', // Subject line
+    //   text: 'Dootsy!', // plaintext body
+    //   html: '<b>Hello world ?</b>' // html body
+    // };
+    //
+    // // send mail with defined transport object
+    // transporter.sendMail(mailOptions, function(error, info){
+    //   if(error){
+    //     return console.log(error);
+    //   }
+    //   console.log('Message sent: ' + info.response);
+    // });
   }
   orderProductBulk = (order_id) => {
     var bulkArr = [];
@@ -89,6 +112,7 @@ export default class extends React.Component {
         axios.post('/api/orders/orderProduct', bulkArr)
         .then(() => {
           alert('Order received!');
+          this.sendConfirmEmail();
           this.props.clearCart();
         });
       })
