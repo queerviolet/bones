@@ -21,7 +21,7 @@ customProductRoutes.get('/:id', (req, res, next) => {
       { model: Review }
     ]
   })
-    .then(products => res.status(201).json(products))
+    .then(products => res.status(200).json(products))
     .catch(err => console.log('Error retrieving product', err));
 })
 

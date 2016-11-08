@@ -6,22 +6,12 @@ const Review = db.model('productReview');
 
 const Promise = require('sequelize').Promise;
 
-//Get all reviews
-router.get('/reviews', function(req, res, next) {
-    Review.findAll()
-        .then((reviews) => {
-            console.log(reviews);
-            res.send(reviews)
-        })
-        .catch(next)
-});
-
-//Get one review by id
-router.get('reviews/:reviewId', function(req, res, next) {
-     Review.findById(req.params.reviewId)
-     .then((review)=>res.send(review))
-     .catch(next)
-});
+// Post to the review table
+router.post('/', (req, res, next) => {
+    Review.create(req.body)
+        .then(review => res.status(201).json(review))
+        .catch(err => console.log('Error creating product!', err));
+})
 
 
 module.exports =router;
