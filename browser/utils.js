@@ -8,7 +8,6 @@ export const fullName = (user) => `${user.first_name} ${user.last_name}`;
 export const formatPrice = price =>
   `$${price.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 
-
 // Get the total price of the input LineItems or Products
 export const totalPrice = (products) => {
   if (!products) return 0;
@@ -25,7 +24,7 @@ export const getAvgRating = (reviews) => {
 }
 
 // Return JSX element containing stars related to the input rating
-export const getStars = (rating) => {
+export const getStars = (rating, clickFn, err) => {
   const starArray = new Array(5).fill().map((item, i) => {
     return (rating > i) ? 'star' : 'star_border';
   })
@@ -33,7 +32,13 @@ export const getStars = (rating) => {
     <div className="stars">
     {
       starArray.map((val, i) => {
-        return <FontIcon key={i} className="material-icons">{ val }</FontIcon>
+        return <FontIcon
+                 key={i}
+                 className={`material-icons ${clickFn ? 'star-press' : 'star-static'}`}
+                 style={{color: `${!clickFn ? 'black' : err ? 'red' : '#00b6ce'}`}}
+                 onClick={()=> { if (clickFn) clickFn(i+1) }}>
+                 { val }
+               </FontIcon>
       })
     }
     </div>

@@ -79,6 +79,24 @@ body,html {
   margin: 0;
 }
 
+.add-review-error {
+  display: flex;
+  color: red;
+  font-weight: bold;
+}
+
+.stars {
+  display: inline;
+}
+
+.star-press:hover {
+  cursor: pointer;
+}
+
+.star-static:hover {
+  cursor: default;
+}
+
 /* Checkout */
 
 .form-box {
