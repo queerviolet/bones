@@ -6,8 +6,8 @@ const reviewModel = db.model('reviews');
 const productModel = db.model('products');
 const userModel = db.model('users');
 
-const router = require('express').Router();
-module.exports = router;
+const customProductRoutes = require('express').Router();
+module.exports = customProductRoutes;
 
 // Epilogue will automatically create standard RESTful routes
 const products = epilogue.resource({
@@ -30,7 +30,7 @@ const products = epilogue.resource({
 });
 
 // Create a review for the input product
-router.post('/:productId/reviews', (req, res, next) => {
+customProductRoutes.post('/:productId/reviews', (req, res, next) => {
 	reviewModel.create({
 		product_id: req.params.productId,
 		user_id: req.session.userId,
