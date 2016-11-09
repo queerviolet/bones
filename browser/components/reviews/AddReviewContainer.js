@@ -14,7 +14,7 @@ function AddReviewDecorator (AddReview) {
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(field, value,) {
+    handleChange(field, value) {
       let newState = {};
       newState[field] = value;
       if (this.state.errors[field]) {

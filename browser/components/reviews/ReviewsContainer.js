@@ -4,7 +4,7 @@ import Reviews from './Reviews';
 
 const mapStateToProps = ({ user, currentProduct }) => ({ 
   user,
-  reviews: currentProduct.reviews,
+  reviews: currentProduct.reviews ? currentProduct.reviews : [],
   productId: currentProduct.id
 });
 

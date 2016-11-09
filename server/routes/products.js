@@ -15,7 +15,7 @@ const products = epilogue.resource({
 	include: [
 		{ 
 			model: reviewModel, 
-			include: [{ model: userModel, required: true }],
+			include: [{ model: userModel, required: false }],
 			required: false 
 		}
 	],
@@ -27,6 +27,25 @@ const products = epilogue.resource({
 	// URL : /products?category=bedroom
 	// findAll(where: {category: bedroom})
 	endpoints: ['/products', '/products/:id']
+});
+
+// Create a new product
+products.create.fetch((req, res, next) => {
+	const newProduct = {
+		name: req.body.name,
+		price: req.body.price,
+		description: req.body.description,
+		quantity: req.body.quantity,
+		category: req.body.category
+	}
+	if (req.body.color) newProduct.color = req.body.color;
+	if (req.body.material) newProduct.material = req.body.material;
+	if (req.body.type) newProduct.type = req.body.type;
+	if (req.body.style) newProduct.style = req.body.style;
+	if (req.body.images) newProduct.images = req.body.images;
+	productModel.create(newProduct)
+		.then(product => res.status(201).send(product))
+		.catch(next);
 });
 
 // Create a review for the input product

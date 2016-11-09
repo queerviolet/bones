@@ -74,7 +74,7 @@ export const checkCV = (cv) => {
 
 /* ENUM Key->Display Mappers */
 
-// Categories
+// Product Categories
 export const categories = {
   all: 'All',
   bedroom: 'Bedroom',
@@ -83,6 +83,26 @@ export const categories = {
   office: 'Office',
   bath: 'Bath',
   dining: 'Dining Room'
+};
+
+// Product Type
+export const types = {
+  chair: 'Chair',
+  table: 'Table',
+  bed: 'Bed',
+  closet: 'Closet',
+  sofa: 'Sofa',
+  desk: 'Desk'
+};
+
+// Product Style
+export const styles = {
+  coastal: 'Coastal',
+  contemporary: 'Contemporary',
+  traditional: 'Traditional',
+  modern: 'Modern',
+  gothic: 'Gothic',
+  brutalist: 'Brutalist'
 };
 
 // Credit Card Types

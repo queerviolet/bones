@@ -5,24 +5,11 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
+import FontIcon from 'material-ui/FontIcon'
 import { formatPrice } from '../../utils';
 
 const style = {
   margin: 12,
-};
-
-const XButton = (item, removeProductFromCart) => {
-    return (
-        <div>
-            <RaisedButton
-                onClick={() => removeProductFromCart(item.product.id)}
-                label="x"
-                secondary={true}
-                style={{margin:0}}
-                fullWidth={false} />
-        </div>
-    )
-  
 };
 
 export default ({cartProducts, handleQuantityChange, removeProductFromCart }) => {
@@ -45,7 +32,7 @@ export default ({cartProducts, handleQuantityChange, removeProductFromCart }) =>
                 <TableHeaderColumn>{}</TableHeaderColumn>
             </TableRow>
             </TableHeader>
-            <TableBody displayRowCheckbox={false} showRowHover={true}>
+            <TableBody displayRowCheckbox={false}>
                 {
                     cartProducts && cartProducts.map(item => {
                         let productLink = `/products/${item.product.id}`
@@ -72,9 +59,12 @@ export default ({cartProducts, handleQuantityChange, removeProductFromCart }) =>
                                 { formatPrice(item.product.price * item.quantity) }
                             </TableRowColumn>
                             <TableRowColumn style={{maxWidth:"10px"}}>
-                                {
-                                    XButton(item, removeProductFromCart)
-                                }
+                                <FontIcon
+                                    className="material-icons item-delete"
+                                    style={{color: 'red'}}
+                                    onClick={() => removeProductFromCart(item.product.id)}>
+                                    clear
+                                </FontIcon>
                             </TableRowColumn>
                         </TableRow>
                         )
@@ -97,7 +87,13 @@ export default ({cartProducts, handleQuantityChange, removeProductFromCart }) =>
                     <TableHeaderColumn>{}</TableHeaderColumn>
                     <TableHeaderColumn>
                         <Link to="/checkout">
-                            <RaisedButton disabled={!cartProducts.length} label="Buy" primary={true} style={style} />
+                            <RaisedButton
+                                disabled={!cartProducts.length}
+                                label="Buy"
+                                backgroundColor="#2b4b91"
+                                labelStyle={{color: 'white'}}
+                                style={style}
+                            />
                         </Link>
                     </TableHeaderColumn>
                     <TableHeaderColumn>{}</TableHeaderColumn>

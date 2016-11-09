@@ -53,7 +53,7 @@ export default ({ role, logout }) => (
           <div className="navbar-item">
             <FlatButton
               label="Sign Out" labelStyle={buttonText}
-              hoverColor="#00BCD4" rippleColor="#2b4b91"
+              hoverColor="#2b4b91" rippleColor="#2b4b91"
               onClick={logout}
             />
           </div>
