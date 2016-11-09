@@ -56,3 +56,10 @@ All deployments to Prod will go through the following process:
 4. Once the PR is merged, Travis will rebuild the repo and deploy to Prod
 
 No changes need to be made to the `.travis.yml` file to enable this process. Be sure not to directly push to `master` in an effort to avoid bad builds being deployed to Prod.
+
+## Testing
+
+The easiest way to test is with [Postman](https://www.getpostman.com/). You can use our development testing
+collection to help you get started!
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/5163bc4d4c0126c3c191)
