@@ -12,7 +12,7 @@ body,html {
 
 .content {
   min-height: calc(100vh - 55px);
-  padding-top: 5.6em;
+  padding-top: 3.6em;
 }
 
 /* Nav bar */
@@ -124,6 +124,41 @@ body,html {
   color: red;
 }
 
+/* Product Page */
+.product-details {
+  margin-top: 5%;
+  padding-right: 5%;
+}
+
+.font1p3 {
+  font-size: 1.3em;
+}
+
+#price {
+  font-size: 1.5em
+}
+
+.inline-left {
+  display: inline-block;
+  float: left;
+}
+
+.inline-right {
+  float: right;
+  position: relative;
+  left: -20%; /* or right 50% */
+  text-align: left;
+}
+
+.product-description {
+  margin-top: 2%;
+  font-size: 1.3em;
+}
+
+small > p {
+  margin-top: 1.5%;
+}
+
 /* Admin Product List */
 
 #product-list {
@@ -134,4 +169,3 @@ body,html {
   cursor: pointer;
   font-weight: bold;
 }
-  
