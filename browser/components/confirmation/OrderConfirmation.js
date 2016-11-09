@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 import LineItemsList from '../products/LineItemsList'
 import { RaisedButton } from 'material-ui';
-import { white, green500 } from 'material-ui/styles/colors';
 
 
 export default ({ order }) => {
@@ -14,9 +13,9 @@ export default ({ order }) => {
       <Link to="/products">
         <RaisedButton
           label="Keep Shopping"
-          backgroundColor={green500}
+          backgroundColor="#2b4b91"
           style={{marginTop: '1em'}}
-          labelStyle={{color: white}}
+          labelStyle={{color: 'white'}}
         />
       </Link>
     </div>

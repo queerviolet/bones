@@ -23,7 +23,7 @@ export default ({ lineItems, inputTotal }) => {
       </TableBody>
       <TableFooter adjustForCheckbox={false}>
         <TableRow>
-          <TableRowColumn style={{textAlign: 'right'}}>
+          <TableRowColumn style={{fontSize: '1.2em', textAlign: 'right'}}>
             {`Total: ${formatPrice(total)}`}
           </TableRowColumn>
         </TableRow>

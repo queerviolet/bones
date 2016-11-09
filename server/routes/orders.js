@@ -17,10 +17,13 @@ const customOrdersRoutes = require('express').Router()
 module.exports = customOrdersRoutes
 
 const chance = require('chance')(Math.random);
-const generateConfirmationNum = () => chance.string({
-	pool:'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
-	length: 20
-});
+const generateConfirmationNum = () => {
+	const randomNum = chance.string({
+		pool:'0123456789',
+		length: 6
+	})
+	return `JH${randomNum}`
+};
 
 // // Epilogue will automatically create standard RESTful routes
 // const orders = epilogue.resource({

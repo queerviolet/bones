@@ -43,6 +43,11 @@ module.exports = app
 	.use(express.static(resolve(__dirname, '..', 'public')))
 	.use(express.static(resolve(__dirname, '..', 'node_modules/bootstrap/dist/css')))
 
+	// Redirect GitHub requests
+	.get('/github', (req, res) => {
+		res.redirect('https://github.com/jakepeyser/JustHome')
+	})
+
 	// Serve our api
 	.use('/api', require('./api'))
 

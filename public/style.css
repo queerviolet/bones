@@ -114,6 +114,11 @@ body,html {
   font-size: 1.4em;
 }
 
+/* Confirmation Page */
+.confirmation-num {
+  font-size: 1.5em;
+}
+
 /* Log In */
 .error-message {
   color: red;
