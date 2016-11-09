@@ -5,16 +5,16 @@ const productsList = [{name: "Felix Living Room Set", price: "1545.00", descript
 {name: "Felix Sofa", price: "645.00", description: "-Memory foam in seat evenly distributes body weight\n-Polyurethane foam in seat adds support and durability\n-Fiber fill foam in pillows is soft and fluffy\n-No tools required for assembly\n-Machine washable slipcovers", quantity: 5, type: "sofa", category: "livingroom", images: ["//cdn.shopify.com/s/files/1/0338/3945/products/Product_Sofa_large.jpg?v=1478446431"]},
 {name: "Felix Chaise", price: "375.00", description: "-Memory foam in seat evenly distributes body weight\n-Polyurethane foam in seat adds support and durability\n-Fiber fill foam in pillows is soft and fluffy\n-No tools required for assembly\n-Machine washable slipcovers", quantity: 5, type: "sofa", category: "livingroom", images: ["//cdn.shopify.com/s/files/1/0338/3945/products/chaise-gallery01_large.jpg?v=1478446448"]},
 {name: "Felix Coffee Table", price: "185.00", description: "-Ash hardwood dowels are firm and high load-bearing\n-Baltic birch plywood panel is durable and warp resistant\n-Powder coated steel reduces scratching and staining\n-No tools required for assembly\n-Height compliments the sofa and chaise", quantity: 10, type: "table", category: "livingroom", images: ["//cdn.shopify.com/s/files/1/0338/3945/products/coffee-table-gallery01_large.jpg?v=1478451747"]},
-{name: "Felix Bookshelf", price: "175.00", description: "-Ash hardwood dowels are firm and high load-bearing\n-Baltic birch plywood panel is durable and warp resistant\n-No tools required for assembly", quantity: 10, type: "closet", category: "livingroom", images: ["//cdn.shopify.com/s/files/1/0338/3945/products/bookshelf-gallery01_large.jpg?v=1478451362"]},
+{name: "Felix Bookshelf", price: "175.00", description: "-Ash hardwood dowels are firm and high load-bearing\n-Baltic birch plywood panel is durable and warp resistant\n-No tools required for assembly", quantity: 10, type: "closet", category: "bedroom", images: ["//cdn.shopify.com/s/files/1/0338/3945/products/bookshelf-gallery01_large.jpg?v=1478451362"]},
 {name: "Felix Side Table", price: "125.00", description: "-Proudly hold the airiest popcorn and heaviest drinks\n-Ash hardwood dowels are firm and high load-bearing\n-Powder coated steel reduces scratching and staining\n-No tools required for assembly\n-Height compliments the sofa and chaise", quantity: 10, type: "table", category: "livingroom", images: ["//cdn.shopify.com/s/files/1/0338/3945/products/side-table-main_large.jpg?v=1478449109"]},
 {name: "Felix Slipcovers", price: "100.00", description: "-For when your pet tears apart your first set or need a new look\n-Machine washable slipcovers\n-Compatible with the sofa and chaise\n-Ships in one manageable-sized box", quantity: 5, type: "sofa", category: "livingroom", images: ["//cdn.shopify.com/s/files/1/0338/3945/products/slipcovers-gallery01_large.jpg?v=1476472238"]},
-{name: "Brooks Folding Table", price: "225.00", description: "Brooks is a high-quality collection of solid wood pieces that unfold in seconds.\n They ship in a box, direct to your door. Limited availability.", quantity: 15, type: "table", category: "livingroom", images: ["//cdn.shopify.com/s/files/1/0338/3945/products/WOTable1_large.jpg?v=1478019397"]},
-{name: "Campaign Chair", price: "495.00", description: "-Laser-cut, powder-coated steel frames, and solid hardwood legs\n-Designed to move, packs perfectly into 2 boxes\n-No tools required for assembly", quantity: 5, type: "chair", category: "livingroom", images: ["http://www.campaignliving.com/images/products/seat-1-blue.jpg"]},
-{name: "Campaign Seat", price: "745.00", description: "-Laser-cut, powder-coated steel frames, and solid hardwood legs\n-Designed to move, packs perfectly into 2 boxes\n-No tools required for assembly", quantity: 5, type: "sofa", category: "livingroom", images: ["http://www.campaignliving.com/images/products/seat-2-blue.jpg"]},
-{name: "Campaign Sofa", price: "995.00", description: "-Laser-cut, powder-coated steel frames, and solid hardwood legs\n-Designed to move, packs perfectly into 2 boxes\n-No tools required for assembly", quantity: 5, type: "sofa", category: "livingroom", images: ["http://www.campaignliving.com/images/products/seat-3-blue.jpg"]},
-{name: "Buckley Credenza", price: "200.00", description: "-Unique and eye-catching, this credenza packs vintage details into an endlessly functional storage space.", quantity: 5, type: "table", category: "livingroom", images: ["https://joybird2.imgix.net/image_1922_109.jpg"]},
+{name: "Brooks Folding Table", price: "225.00", description: "Brooks is a high-quality collection of solid wood pieces that unfold in seconds.\n They ship in a box, direct to your door. Limited availability.", quantity: 15, type: "table", category: "dining", images: ["//cdn.shopify.com/s/files/1/0338/3945/products/WOTable1_large.jpg?v=1478019397"]},
+{name: "Buckley Credenza", price: "200.00", description: "-Unique and eye-catching, this credenza packs vintage details into an endlessly functional storage space.", quantity: 5, type: "table", category: "bedroom", images: ["https://joybird2.imgix.net/image_1922_109.jpg"]},
 {name: "Webb Coffee Table", price: "150.00", description: "Never sacrifice storage for style - you can have it all in a high-quality, handcrafted hardwood frame.", quantity: 5, type: "table", category: "livingroom", images: ["https://joybird2.imgix.net/image_902_109.jpg"]},
-{name: "Stern End Table ", price: "100.00", description: "With each curve of its Space Age silhouette, this nouveau-retro end table refuses to fade into history.", quantity: 5, type: "table", category: "livingroom", images: ["https://joybird2.imgix.net/image_6391_109.jpg"]}
+{name: "Stern End Table ", price: "100.00", description: "With each curve of its Space Age silhouette, this nouveau-retro end table refuses to fade into history.", quantity: 5, type: "table", category: "livingroom", images: ["https://joybird2.imgix.net/image_6391_109.jpg"]},
+{name: "Campaign Chair", price: "495.00", description: "-Laser-cut, powder-coated steel frames, and solid hardwood legs\n-Designed to move, packs perfectly into 2 boxes\n-No tools required for assembly", quantity: 5, type: "chair", category: "bedroom", images: ["http://www.campaignliving.com/images/products/seat-1-blue.jpg"]},
+{name: "Campaign Seat", price: "745.00", description: "-Laser-cut, powder-coated steel frames, and solid hardwood legs\n-Designed to move, packs perfectly into 2 boxes\n-No tools required for assembly", quantity: 5, type: "sofa", category: "office", images: ["http://www.campaignliving.com/images/products/seat-2-blue.jpg"]},
+{name: "Campaign Sofa", price: "995.00", description: "-Laser-cut, powder-coated steel frames, and solid hardwood legs\n-Designed to move, packs perfectly into 2 boxes\n-No tools required for assembly", quantity: 5, type: "sofa", category: "livingroom", images: ["http://www.campaignliving.com/images/products/seat-3-blue.jpg"]}
 ]
 
 const reviewList = [{rating:5,comment: "The living room set is great", product_id: 1, user_id: 1},
@@ -130,26 +130,26 @@ const ordersList =
 
 const lineItemsList = 
 [
-{"quantity":1,"price":148.32,"order_id":1,"product_id":1},
-{"quantity":2,"price":65.44,"order_id":2,"product_id":2},
-{"quantity":3,"price":70.28,"order_id":3,"product_id":3},
-{"quantity":1,"price":76.93,"order_id":4,"product_id":4},
-{"quantity":2,"price":55.19,"order_id":5,"product_id":5},
-{"quantity":3,"price":161.05,"order_id":6,"product_id":6},
-{"quantity":1,"price":194.26,"order_id":7,"product_id":7},
-{"quantity":2,"price":113.57,"order_id":8,"product_id":8},
-{"quantity":3,"price":35.08,"order_id":9,"product_id":9},
-{"quantity":1,"price":136.98,"order_id":10,"product_id":10},
-{"quantity":4,"price":148.32,"order_id":1,"product_id":15},
-{"quantity":2,"price":65.44,"order_id":2,"product_id":14},
-{"quantity":1,"price":70.28,"order_id":3,"product_id":13},
-{"quantity":4,"price":76.93,"order_id":4,"product_id":12},
-{"quantity":5,"price":55.19,"order_id":5,"product_id":11},
-{"quantity":2,"price":161.05,"order_id":6,"product_id":10},
-{"quantity":2,"price":194.26,"order_id":7,"product_id":9},
-{"quantity":1,"price":113.57,"order_id":8,"product_id":8},
-{"quantity":1,"price":35.08,"order_id":9,"product_id":7},
-{"quantity":2,"price":136.98,"order_id":10,"product_id":6}
+{"quantity":1,"price":1545.00,"order_id":1,"product_id":1},
+{"quantity":2,"price":1015.00,"order_id":2,"product_id":2},
+{"quantity":3,"price":645.00,"order_id":3,"product_id":3},
+{"quantity":1,"price":375.00,"order_id":4,"product_id":4},
+{"quantity":2,"price":185.00,"order_id":5,"product_id":5},
+{"quantity":3,"price":175.00,"order_id":6,"product_id":6},
+{"quantity":1,"price":225.00,"order_id":7,"product_id":7},
+{"quantity":2,"price":125.00,"order_id":8,"product_id":8},
+{"quantity":3,"price":100.00,"order_id":9,"product_id":9},
+{"quantity":1,"price":200.00,"order_id":10,"product_id":10},
+{"quantity":4,"price":995.00,"order_id":1,"product_id":15},
+{"quantity":2,"price":745.00,"order_id":2,"product_id":14},
+{"quantity":1,"price":495.00,"order_id":3,"product_id":13},
+{"quantity":4,"price":100.00,"order_id":4,"product_id":12},
+{"quantity":5,"price":150.00,"order_id":5,"product_id":11},
+{"quantity":2,"price":200.00,"order_id":6,"product_id":10},
+{"quantity":2,"price":100.00,"order_id":7,"product_id":9},
+{"quantity":1,"price":125.00,"order_id":8,"product_id":8},
+{"quantity":1,"price":225.00,"order_id":9,"product_id":7},
+{"quantity":2,"price":175.00,"order_id":10,"product_id":6}
 ]
 
 	// table that associates

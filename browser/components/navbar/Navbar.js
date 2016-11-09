@@ -14,11 +14,11 @@ const toolbarText = {color: white, padding: 0}
 const centerText = {marginLeft: '5%'}
 
 export default (props) => (
-  <Toolbar id="navbar" style={{backgroundColor: '#007281'}}>
+  <Toolbar id="navbar" style={{backgroundColor: '#2b4b91'}}>
     <ToolbarGroup>
       <div className="navbar-item">
         <Link to="/">
-          <FontIcon className="material-icons" color={white} hoverColor="#00b6ce">home</FontIcon>
+          <FontIcon className="material-icons" color={white} hoverColor="#00BCD4">home</FontIcon>
         </Link>
       </div>
     </ToolbarGroup>

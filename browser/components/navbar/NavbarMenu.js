@@ -19,7 +19,7 @@ export default ({ role, logout }) => (
             <Link to="/admin">
               <FlatButton
                 label="Admin" labelStyle={buttonText}
-                hoverColor="#007281" rippleColor="#007281"
+                hoverColor="#2b4b91" rippleColor="#2b4b91"
               />
             </Link>
           </div>
@@ -32,7 +32,7 @@ export default ({ role, logout }) => (
             <Link to="/account">
               <FlatButton
                 label="Account" labelStyle={buttonText}
-                hoverColor="#007281" rippleColor="#007281"
+                hoverColor="#2b4b91" rippleColor="#2b4b91"
               />
             </Link>
           </div>
@@ -45,7 +45,7 @@ export default ({ role, logout }) => (
             <Link to="/sign-in">
               <FlatButton
                 label="Sign In" labelStyle={buttonText}
-                hoverColor="#007281" rippleColor="#007281"
+                hoverColor="#2b4b91" rippleColor="#2b4b91"
               />
             </Link>
           </div>
@@ -53,7 +53,7 @@ export default ({ role, logout }) => (
           <div className="navbar-item">
             <FlatButton
               label="Sign Out" labelStyle={buttonText}
-              hoverColor="#007281" rippleColor="#007281"
+              hoverColor="#00BCD4" rippleColor="#2b4b91"
               onClick={logout}
             />
           </div>
@@ -61,7 +61,7 @@ export default ({ role, logout }) => (
       }
         <div className="navbar-item">
           <Link to="/cart">
-            <FontIcon className="material-icons" color={white} hoverColor="#00b6ce">shopping_cart</FontIcon>
+            <FontIcon className="material-icons" color={white} hoverColor="#00BCD4">shopping_cart</FontIcon>
           </Link>
         </div>
       </ToolbarGroup>
