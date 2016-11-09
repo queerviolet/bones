@@ -25,6 +25,7 @@ function ProductsDecorator (AllProducts) {
 		render() {
 			// Filter products by search string and selected category
 			const products = this.props.products.filter((product) => {
+				if (!product.name) return null // Fix this fur real!!!
 				return product.name.toLowerCase()
 					.indexOf(this.state.searchText.toLowerCase()) !== -1 &&
 					(
