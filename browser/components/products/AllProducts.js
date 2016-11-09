@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { AutoComplete, SelectField, MenuItem } from 'material-ui'
-import { formatPrice, getAvgRating, getStars } from '../../utils'
+import { formatPrice, getAvgRating, getStars, categories } from '../../utils'
 
 export default ({ products, category, handleChange }) => {
   return (
@@ -23,17 +23,17 @@ export default ({ products, category, handleChange }) => {
             onChange={(event, key, value) => handleChange("category", value) }
           >
           {
-            categories.map((category, i) => {
-              return <MenuItem key={i} value={category.key} primaryText={category.display} />
+            Object.keys(categories).map((key, i) => {
+              return <MenuItem key={i} value={key} primaryText={categories[key]} />
             })
           }
           </SelectField>
         </div>
       </div>
       {
-        products.map((product,rowIndex) => {
+        products.map((product, rowIndex) => {
           return rowIndex %3 === 0 ? (
-            <div className="row product-results">
+            <div key={ product.id } className="row product-results">
               {
                 products.filter((product, colIndex) => [rowIndex, rowIndex+1, rowIndex+2].some(i => colIndex === i))
                 .map((product) => {
