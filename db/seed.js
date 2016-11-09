@@ -13,7 +13,7 @@ const productsList = [{name: "Felix Living Room Set", price: "1545.00", descript
 {name: "Webb Coffee Table", price: "150.00", description: "Never sacrifice storage for style - you can have it all in a high-quality, handcrafted hardwood frame.", quantity: 5, type: "table", category: "livingroom", images: ["https://joybird2.imgix.net/image_902_109.jpg"]},
 {name: "Stern End Table ", price: "100.00", description: "With each curve of its Space Age silhouette, this nouveau-retro end table refuses to fade into history.", quantity: 5, type: "table", category: "livingroom", images: ["https://joybird2.imgix.net/image_6391_109.jpg"]},
 {name: "Campaign Chair", price: "495.00", description: "-Laser-cut, powder-coated steel frames, and solid hardwood legs\n-Designed to move, packs perfectly into 2 boxes\n-No tools required for assembly", quantity: 5, type: "chair", category: "bedroom", images: ["http://www.campaignliving.com/images/products/seat-1-blue.jpg"]},
-{name: "Campaign Seat", price: "745.00", description: "-Laser-cut, powder-coated steel frames, and solid hardwood legs\n-Designed to move, packs perfectly into 2 boxes\n-No tools required for assembly", quantity: 5, type: "sofa", category: "office", images: ["http://www.campaignliving.com/images/products/seat-2-blue.jpg"]},
+{name: "Campaign Seat", price: "745.00", description: "-Laser-cut, powder-coated steel frames, and solid hardwood legs\n-Designed to move, packs perfectly into 2 boxes\n-No tools required for assembly", quantity: 0, type: "sofa", category: "office", images: ["http://www.campaignliving.com/images/products/seat-2-blue.jpg"]},
 {name: "Campaign Sofa", price: "995.00", description: "-Laser-cut, powder-coated steel frames, and solid hardwood legs\n-Designed to move, packs perfectly into 2 boxes\n-No tools required for assembly", quantity: 5, type: "sofa", category: "livingroom", images: ["http://www.campaignliving.com/images/products/seat-3-blue.jpg"]}
 ]
 
@@ -24,18 +24,18 @@ const reviewList = [{rating:5,comment: "The living room set is great", product_i
 {rating:5,comment: "Great design.Simple furniture. Easy to assemble. Fast shipping. Decently priced. Good customer service.", product_id: 2, user_id: 5},
 {rating:5,comment: "Superior. Cost, design, and shipping. Easy to assemble, high quality materials, great packaging.", product_id: 2, user_id: 6},
 {rating:5,comment: "Enjoyable to assemble. The Felix sectional that we purchased is beautiful, durable, comfortable and affordable ", product_id: 2, user_id: 7},
-{rating:5,comment: "Very surprised. I was very pleasantly surprised how east they were to assemble. The sofa is super comfortable, and very stylish. If I could give them 6 stars, I would.", product_id: 3, user_id: 8},
-{rating:5,comment: "Awesome furniture, clean lines and great customer service. Beautiful and minimalist.", product_id: 3, user_id: 9},
-{rating:5,comment: "Exceeded our expectations.The end-to-end process of getting furniture defied every normal expectation of what it normally takes to get an apartment set-up. Assembling our Felix couch was basically less hassle than getting our coffee machine loaded and going in the morning.", product_id: 3, user_id: 10},
-{rating:5,comment: "Good design. Fast shipping, easy assembly, good quality", product_id: 4, user_id: 1},
+{rating:4,comment: "Very surprised. I was very pleasantly surprised how east they were to assemble. The sofa is super comfortable, and very stylish. If I could give them 6 stars, I would.", product_id: 3, user_id: 8},
+{rating:4,comment: "Awesome furniture, clean lines and great customer service. Beautiful and minimalist.", product_id: 3, user_id: 9},
+{rating:4,comment: "Exceeded our expectations.The end-to-end process of getting furniture defied every normal expectation of what it normally takes to get an apartment set-up. Assembling our Felix couch was basically less hassle than getting our coffee machine loaded and going in the morning.", product_id: 3, user_id: 10},
+{rating:4,comment: "Good design. Fast shipping, easy assembly, good quality", product_id: 4, user_id: 1},
 {rating:5,comment: "Happy with the experience. Convenience, Appearance, Durability, Innovation", product_id: 4, user_id: 2},
-{rating:5,comment: "Amazing. The smart design of the product. The ease of assembly. The excellent packaging. The illustrations in the instructions. The quality of the customer service.", product_id: 4, user_id: 3},
-{rating:4,comment: "Look was great but it was a bit pricey", product_id: 5, user_id: 4},
+{rating:4,comment: "Amazing. The smart design of the product. The ease of assembly. The excellent packaging. The illustrations in the instructions. The quality of the customer service.", product_id: 4, user_id: 3},
+{rating:3,comment: "Look was great but it was a bit pricey", product_id: 5, user_id: 4},
 {rating:3,comment: "Issues with the product but customer service was good", product_id: 5, user_id: 5},
-{rating:3,comment: "Simple but expensive", product_id: 5, user_id: 6},
+{rating:2,comment: "Simple but expensive", product_id: 5, user_id: 6},
 {rating:5,comment: "Well made, great value.The bookshelf is sturdy and good looking. I think that JustHome products are very well made and a great value. They were super knowledgeable about their products, and very nice to do business with.", product_id: 6, user_id: 7},
-{rating:5,comment: "Excellent products and pricing. It's easy to assemble, convenient, and decently priced.", product_id: 6, user_id: 8},
-{rating:5,comment: "Simple. Ease of assembly. Great design, great value!", product_id: 6, user_id: 9},
+{rating:4,comment: "Excellent products and pricing. It's easy to assemble, convenient, and decently priced.", product_id: 6, user_id: 8},
+{rating:4,comment: "Simple. Ease of assembly. Great design, great value!", product_id: 6, user_id: 9},
 {rating:5,comment: "Great Product. A clean, minimalist design and so easy to put together. They also had the friendliest customer service.", product_id: 6, user_id: 10},
 {rating:4,comment: "Very stylish.Great customer service. Easy to assemble.", product_id:7, user_id: 1},
 {rating:3,comment: "Furniture is basic. Decent quality but unremarkable", product_id: 7, user_id: 2},
@@ -48,9 +48,9 @@ const reviewList = [{rating:5,comment: "The living room set is great", product_i
 {rating:5,comment: "Great design.Simple furniture. Easy to assemble. Fast shipping. Decently priced. Good customer service.", product_id: 11, user_id: 9},
 {rating:4,comment: "Superior. Cost, design, and shipping. Easy to assemble, high quality materials, great packaging.", product_id: 11, user_id: 10},
 {rating:5,comment: "Enjoyable to assemble. The Campaign Seat that we purchased is beautiful, durable, comfortable and affordable ", product_id: 11, user_id: 1},
-{rating:5,comment: "Very surprised. I was very pleasantly surprised how east they were to assemble. The sofa is super comfortable, and very stylish. If I could give them 6 stars, I would.", product_id: 12, user_id: 2},
-{rating:5,comment: "Awesome furniture, clean lines and great customer service. Beautiful and minimalist.", product_id: 12, user_id: 3},
-{rating:5,comment: "Exceeded our expectations.The end-to-end process of getting furniture defied every normal expectation of what it normally takes to get an apartment set-up. Assembling our Felix couch was basically less hassle than getting our coffee machine loaded and going in the morning.", product_id: 12, user_id: 4},
+{rating:4,comment: "Very surprised. I was very pleasantly surprised how east they were to assemble. The sofa is super comfortable, and very stylish. If I could give them 6 stars, I would.", product_id: 12, user_id: 2},
+{rating:4,comment: "Awesome furniture, clean lines and great customer service. Beautiful and minimalist.", product_id: 12, user_id: 3},
+{rating:4,comment: "Exceeded our expectations.The end-to-end process of getting furniture defied every normal expectation of what it normally takes to get an apartment set-up. Assembling our Felix couch was basically less hassle than getting our coffee machine loaded and going in the morning.", product_id: 12, user_id: 4},
 {rating:5,comment: "Gorgeous. The quality on this piece is breathtaking. The craftsmanship is outstanding!", product_id: 13, user_id: 5},
 {rating:5,comment: "Beautiful table! I absolutely love my new coffee table! It is so solid and beautiful! It looks wonderful in my living room. I love the storage it provides for all my unread magazines without looking cluttered too! The whole process from order to delivery went very smoothly too!", product_id: 14, user_id: 6},
 {rating:4,comment: "Very pleased. The construction is solid, definitely a quality piece. The only reason I gave it 4 instead of 5 stars is because the finish on the table is very soft.", product_id: 14, user_id: 7},
@@ -72,17 +72,17 @@ const userList = [
 ]
 
 const addressesList = [
-{"street1":"399 Ujalap Highway","street2":"(242)","city":"Ibkozbe","state":"NJ","zip":"87406"},
-{"street1":"1396 Fadij Loop","street2":"(631)","city":"Eridije","state":"SD","zip":"62024"},
-{"street1":"1833 Muwa Drive","street2":"(627)","city":"Waijhic","state":"ID","zip":"64604"},
-{"street1":"978 Vapil Terrace","street2":"(310)","city":"Doluca","state":"NJ","zip":"74281"},
-{"street1":"876 Edhe Pass","street2":"(624)","city":"Devkakof","state":"KY","zip":"81069"},
-{"street1":"238 Vifuke Way","street2":"(962)","city":"Akjemuc","state":"CT","zip":"71661"},
-{"street1":"1994 Duni Street","street2":"(231)","city":"Uluuzireh","state":"VA","zip":"05760"},
-{"street1":"398 Nurho Way","street2":"(882)","city":"Pakedook","state":"IL","zip":"30228"},
-{"street1":"537 Fenal Center","street2":"(643)","city":"Peslafle","state":"IA","zip":"82656"},
-{"street1":"102 Ivtik Square","street2":"(950)","city":"Ticoowe","state":"OH","zip":"59102"},
-{"street1":"1 Hanover Square","street2":"(950)","city":"New York","state":"NY","zip":"59102"}
+{"street1":"756 Ridgewood Dr.","city":"San Diego","state":"CA","zip":"92111"},
+{"street1":"8796 Bedford St. ","city":"New York","state":"NY","zip":"62024"},
+{"street1":"210 Boston Ave. ","city":"Seattle","state":"WA","zip":"64604"},
+{"street1":"756 Ridgewood Dr. ","city":"Boston","state":"MA","zip":"74281"},
+{"street1":"755 Atlantic Street ","city":"Austin","state":"TX","zip":"81069"},
+{"street1":"44 West Rd.","city":"San Jose","state":"CA","zip":"71661"},
+{"street1":"95 Griffin Court","city":"Chicago","state":"IL","zip":"05760"},
+{"street1":"65 Forest Ave.","city":"Clinton","state":"MD","zip":"30228"},
+{"street1":"7517 Clinton St.","city":"New York","state":"NY","zip":"82656"},
+{"street1":"84 Logan Ave.","city":"Raleigh","state":"NC","zip":"59102"},
+{"street1":"1 Hanover Square","city":"New York","state":"NY","zip":"59102"}
 ]
 
 const creditCardList=
@@ -116,16 +116,25 @@ const cartProductsList=
 
 const ordersList = 
 [
-{"confirmation_number":"OoiAooNLyWk*XV*C@eQ!","status":"processing","order_date":"2016-11-08T22:15:51.591Z","user_id":1,"shipping_address_id":1,"billing_address_id":1,"credit_card_id":1},
-{"confirmation_number":"09RVAisgseuGm","status":"completed","order_date":"2016-11-08T22:15:51.591Z","user_id":2,"shipping_address_id":2,"billing_address_id":2,"credit_card_id":2},
-{"confirmation_number":"n&4$m[]CRo(kyA","status":"created","order_date":"2016-11-08T22:15:51.591Z","user_id":3,"shipping_address_id":3,"billing_address_id":3,"credit_card_id":3},
-{"confirmation_number":"UHr1)(Or0GoVb","status":"cancelled","order_date":"2016-11-08T22:15:51.591Z","user_id":4,"shipping_address_id":4,"billing_address_id":4,"credit_card_id":4},
-{"confirmation_number":"1f$llF4","status":"completed","order_date":"2016-11-08T22:15:51.591Z","user_id":5,"shipping_address_id":5,"billing_address_id":5,"credit_card_id":5},
-{"confirmation_number":"jKZ!MWJIC@etQ","status":"completed","order_date":"2016-11-08T22:15:51.591Z","user_id":6,"shipping_address_id":6,"billing_address_id":6,"credit_card_id":6},
-{"confirmation_number":"f4]iE8","status":"cancelled","order_date":"2016-11-08T22:15:51.591Z","user_id":7,"shipping_address_id":7,"billing_address_id":7,"credit_card_id":7},
-{"confirmation_number":"hYpPBcYc7KZ@pIvWT","status":"completed","order_date":"2016-11-08T22:15:51.591Z","user_id":8,"shipping_address_id":8,"billing_address_id":8,"credit_card_id":8},
-{"confirmation_number":"dEu&phJIYkHr","status":"processing","order_date":"2016-11-08T22:15:51.591Z","user_id":9,"shipping_address_id":9,"billing_address_id":9,"credit_card_id":9},
-{"confirmation_number":"3IJ)wQZ*zOo39df4osj","status":"processing","order_date":"2016-11-08T22:15:51.591Z","user_id":10,"shipping_address_id":10,"billing_address_id":10,"credit_card_id":10}
+{"confirmation_number":"JH304349","status":"processing","order_date":"2016-11-01T22:15:51.591Z","user_id":1,"shipping_address_id":1,"billing_address_id":1,"credit_card_id":1},
+{"confirmation_number":"JH950511","status":"completed","order_date":"2016-11-02T22:15:51.591Z","user_id":2,"shipping_address_id":2,"billing_address_id":2,"credit_card_id":2},
+{"confirmation_number":"JH754194","status":"created","order_date":"2016-11-03T22:15:51.591Z","user_id":3,"shipping_address_id":3,"billing_address_id":3,"credit_card_id":3},
+{"confirmation_number":"JH417434","status":"cancelled","order_date":"2016-11-04T22:15:51.591Z","user_id":4,"shipping_address_id":4,"billing_address_id":4,"credit_card_id":4},
+{"confirmation_number":"JH873274","status":"completed","order_date":"2016-11-05T22:15:51.591Z","user_id":5,"shipping_address_id":5,"billing_address_id":5,"credit_card_id":5},
+{"confirmation_number":"JH314005","status":"completed","order_date":"2016-11-06T22:15:51.591Z","user_id":6,"shipping_address_id":6,"billing_address_id":6,"credit_card_id":6},
+{"confirmation_number":"JH258614","status":"cancelled","order_date":"2016-11-07T22:15:51.591Z","user_id":7,"shipping_address_id":7,"billing_address_id":7,"credit_card_id":7},
+{"confirmation_number":"JH201638","status":"completed","order_date":"2016-11-08T22:15:51.591Z","user_id":8,"shipping_address_id":8,"billing_address_id":8,"credit_card_id":8},
+{"confirmation_number":"JH169884","status":"processing","order_date":"2016-11-01T22:15:51.591Z","user_id":9,"shipping_address_id":9,"billing_address_id":9,"credit_card_id":9},
+{"confirmation_number":"JH410287","status":"processing","order_date":"2016-11-02T22:15:51.591Z","user_id":10,"shipping_address_id":10,"billing_address_id":10,"credit_card_id":10},
+{"confirmation_number":"JH754195","status":"created","order_date":"2016-11-03T22:15:51.591Z","user_id":1,"shipping_address_id":3,"billing_address_id":3,"credit_card_id":3},
+{"confirmation_number":"JH417435","status":"cancelled","order_date":"2016-11-04T22:15:51.591Z","user_id":2,"shipping_address_id":4,"billing_address_id":4,"credit_card_id":4},
+{"confirmation_number":"JH873276","status":"completed","order_date":"2016-11-05T22:15:51.591Z","user_id":3,"shipping_address_id":5,"billing_address_id":5,"credit_card_id":5},
+{"confirmation_number":"JH314006","status":"completed","order_date":"2016-11-06T22:15:51.591Z","user_id":4,"shipping_address_id":6,"billing_address_id":6,"credit_card_id":6},
+{"confirmation_number":"JH754102","status":"created","order_date":"2016-11-07T22:15:51.591Z","user_id":1,"shipping_address_id":3,"billing_address_id":3,"credit_card_id":3},
+{"confirmation_number":"JH417403","status":"cancelled","order_date":"2016-11-08T22:15:51.591Z","user_id":2,"shipping_address_id":4,"billing_address_id":4,"credit_card_id":4},
+{"confirmation_number":"JH873204","status":"completed","order_date":"2016-11-01T22:15:51.591Z","user_id":3,"shipping_address_id":5,"billing_address_id":5,"credit_card_id":5},
+{"confirmation_number":"JH314012","status":"completed","order_date":"2016-11-02T22:15:51.591Z","user_id":4,"shipping_address_id":6,"billing_address_id":6,"credit_card_id":6}
+
 ]
 
 const lineItemsList = 
@@ -140,16 +149,24 @@ const lineItemsList =
 {"quantity":2,"price":125.00,"order_id":8,"product_id":8},
 {"quantity":3,"price":100.00,"order_id":9,"product_id":9},
 {"quantity":1,"price":200.00,"order_id":10,"product_id":10},
-{"quantity":4,"price":995.00,"order_id":1,"product_id":15},
+{"quantity":1,"price":995.00,"order_id":1,"product_id":15},
 {"quantity":2,"price":745.00,"order_id":2,"product_id":14},
 {"quantity":1,"price":495.00,"order_id":3,"product_id":13},
-{"quantity":4,"price":100.00,"order_id":4,"product_id":12},
-{"quantity":5,"price":150.00,"order_id":5,"product_id":11},
+{"quantity":2,"price":100.00,"order_id":4,"product_id":12},
+{"quantity":2,"price":150.00,"order_id":5,"product_id":11},
 {"quantity":2,"price":200.00,"order_id":6,"product_id":10},
 {"quantity":2,"price":100.00,"order_id":7,"product_id":9},
 {"quantity":1,"price":125.00,"order_id":8,"product_id":8},
 {"quantity":1,"price":225.00,"order_id":9,"product_id":7},
-{"quantity":2,"price":175.00,"order_id":10,"product_id":6}
+{"quantity":2,"price":175.00,"order_id":10,"product_id":6},
+{"quantity":1,"price":1545.00,"order_id":11,"product_id":1},
+{"quantity":2,"price":1015.00,"order_id":12,"product_id":2},
+{"quantity":3,"price":645.00,"order_id":13,"product_id":3},
+{"quantity":1,"price":375.00,"order_id":14,"product_id":4},
+{"quantity":2,"price":185.00,"order_id":15,"product_id":5},
+{"quantity":3,"price":175.00,"order_id":16,"product_id":6},
+{"quantity":1,"price":225.00,"order_id":17,"product_id":7},
+{"quantity":2,"price":125.00,"order_id":18,"product_id":8}
 ]
 
 	// table that associates
