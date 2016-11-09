@@ -64,6 +64,11 @@ router.post('/:productId/reviews', (req, res, next) => {
 // 		.catch(next);
 // });
 
+customProductRoutes.post('/', (req,res,next) => {
+	productModel.create(req.body)
+		.then(result => res.send(result))
+		.catch(next);
+});
 // router.post('/', (req,res,next) => {
 // 	productModel.create(req.body)
 // 		.then(result => res.send(result))

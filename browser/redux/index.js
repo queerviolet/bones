@@ -5,6 +5,7 @@ import cartProducts from './cart'
 import order from './order'
 import orders from './orderhistory'
 import user from './user'
+import newProduct from './addproduct'
 
 export default combineReducers({
   products,
@@ -12,5 +13,6 @@ export default combineReducers({
   cartProducts,
   order,
   orders,
-  user
+  user,
+  newProduct
 });
