@@ -6,7 +6,9 @@
 
 const User = require('./user');
 const Rocks = require('./rocks');
+const Reviews = require('./reviews');
+const Addresses = require('./addresses');
 
 
 
-module.exports = {User, Rocks};
+module.exports = {User, Rocks, Reviews, Addresses};
