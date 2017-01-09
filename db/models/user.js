@@ -5,7 +5,14 @@ const Sequelize = require('sequelize')
 const db = require('APP/db')
 
 const User = db.define('users', {
-  name: Sequelize.STRING,  
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   email: {
     type: Sequelize.STRING,
     validate: {
@@ -13,6 +20,12 @@ const User = db.define('users', {
 			notEmpty: true,
 		}
   },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    allowNull:false,
+    defaultValue: false
+  },
+
 
   // We support oauth, so users may or may not have passwords.
   password_digest: Sequelize.STRING,
@@ -30,7 +43,10 @@ const User = db.define('users', {
           (err, result) =>
             err ? reject(err) : resolve(result))
         )
-    }    
+    }
+  },
+  getterMethods : {
+    fullName: function() { return this.firstName + " " + this.lastName }
   }
 })
 
