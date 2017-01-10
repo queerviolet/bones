@@ -74,4 +74,5 @@ OAuth.setupStrategy =
   passport.use(new strategy(config, oauth))
 };
 
-module.exports = OAuth;
+
+module.exports = OAuth
