@@ -6,9 +6,8 @@ const db = require('APP/db');
 const Tag = db.define('tags', {
   name: {
     type: Sequelize.STRING,
-    validate: {
-      allowNull: false
-    }
+    allowNull: false
+
   }
 });
 

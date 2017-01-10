@@ -13,19 +13,19 @@ const Category = require('./category');
 const Order = require('./order');
 const Tag = require('./tag');
 
-User.hasMany(Order);
-Order.belongsTo(User);
+const RockTags = require('APP/db').define("rockTags", {});
+// User.hasMany(Order);
+// Order.belongsTo(User);
 
 User.hasMany(Review);
 Review.belongsTo(User);
 
-Rock.hasMany(Review);
 Review.belongsTo(Rock);
+Rock.hasMany(Review);
 
-Rock.hasOne(Category);
-Category.belongsTo(Rock);
+Rock.belongsTo(Category);
 
-Rock.hasMany(Tag);
-Tag.belongsToMany(Rock, {through: 'rockTags'});
+Rock.belongsToMany(Tag, {through: RockTags});
+Tag.belongsToMany(Rock, {through: RockTags});
 
 module.exports = {User, Rock, Review, Address, CartProduct, Category, Order, Tag};

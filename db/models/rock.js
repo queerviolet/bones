@@ -6,9 +6,7 @@ const db = require('APP/db');
 const Rock = db.define('rocks', {
   name: {
     type: Sequelize.STRING,
-    validate: {
-      allowNull: false
-    }
+    allowNull: false
   },
   photo: {
     type: Sequelize.STRING,
