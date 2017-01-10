@@ -15,7 +15,7 @@ const Rock = db.define('rocks', {
     }
   },
   price: {
-    type: Sequelize.DECIMAL(10,2),
+    type: Sequelize.INTEGER, //this will be in cents
     allowNull: false
   },
   weight: Sequelize.FLOAT,
