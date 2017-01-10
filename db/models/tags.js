@@ -3,7 +3,7 @@
 const Sequelize = require('sequelize');
 const db = require('APP/db');
 
-const Tags = db.define('tags', {
+const Tag = db.define('tags', {
   name: {
     type: Sequelize.STRING,
     validate: {
@@ -12,4 +12,4 @@ const Tags = db.define('tags', {
   }
 });
 
-module.exports = Tags;
+module.exports = Tag;

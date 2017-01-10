@@ -3,7 +3,7 @@
 const Sequelize = require('sequelize');
 const db = require('APP/db');
 
-const Rocks = db.define('rocks', {
+const Rock = db.define('rocks', {
   name: {
     type: Sequelize.STRING,
     validate: {
@@ -16,11 +16,14 @@ const Rocks = db.define('rocks', {
       isUrl: true
     }
   },
-  price: Sequelize.FLOAT,
+  price: {
+    type: Sequelize.DECIMAL(10,2),
+    allowNull: false
+  },
   weight: Sequelize.FLOAT,
   color: Sequelize.ENUM('black', 'brown', 'grey', 'white', 'blue'),
   description: Sequelize.TEXT,
   stock: Sequelize.INTEGER
 });
 
-module.exports = Rocks;
+module.exports = Rock;

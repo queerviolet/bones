@@ -3,7 +3,7 @@
 const Sequelize = require('sequelize');
 const db = require('APP/db');
 
-const Addresses = db.define('addresses', {
+const Address = db.define('addresses', {
   street: {
     type: Sequelize.STRING,
     allowNull: false
@@ -22,4 +22,4 @@ const Addresses = db.define('addresses', {
   }
 });
 
-module.exports = Addresses;
+module.exports = Address;
