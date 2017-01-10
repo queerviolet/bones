@@ -96,4 +96,4 @@ describe('The `Address` model', function () {
       });
     });
   });
-})
+});
