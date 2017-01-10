@@ -5,10 +5,10 @@
 // to get access to the User model.
 
 const User = require('./user');
-const Rocks = require('./rocks');
-const Reviews = require('./reviews');
-const Addresses = require('./addresses');
+const Rock = require('./rock');
+const Review = require('./review');
+const Address = require('./address');
 
 
 
-module.exports = {User, Rocks, Reviews, Addresses};
+module.exports = {User, Rock, Review, Address};
