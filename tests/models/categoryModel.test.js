@@ -50,7 +50,6 @@ describe('The `Category` model', function () {
 
         return category.validate()
         .then(function(result) {
-          console.log(result);
           expect(result).to.equal(null);
         });
 
