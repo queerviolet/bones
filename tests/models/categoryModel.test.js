@@ -17,19 +17,19 @@ describe('The `Category` model', function () {
    */
   var name = 'Companion';
 
+  var categoryDummy = {name: 'Companion'};
+
   var category;
   beforeEach(function(){
-    category = Category.build({
-      name
-    });
+    category = Category.build(categoryDummy);
   });
 
   /**
    * Also, we empty the tables after each spec
    */
-  afterEach(function () {
-    return (Category.truncate({ cascade: true }))
-  });
+  // afterEach(function () {
+  //   return (Category.truncate({ cascade: true }))
+  // });
 
   describe('attributes definition for Category', function() {
 
@@ -50,9 +50,8 @@ describe('The `Category` model', function () {
 
         return category.validate()
         .then(function(result) {
-          console.log(result.message);
-          expect(result).to.be.an.instanceOf(Error);
-          expect(result.message).to.contain('Validation min failed');
+          console.log(result);
+          expect(result).to.equal(null);
         });
 
       });
