@@ -78,30 +78,8 @@ describe('The `Rock` model', function () {
         return rock.validate()
         .then(function(result) {
           expect(result).to.be.an.instanceOf(Error);
-          console.log(result.message)
+          console.log(result.message);
           expect(result.message).to.contain('city cannot be null');
-        });
-
-      });
-      it('requires `state`', function () {
-
-        rock.state = null;
-
-        return rock.validate()
-        .then(function(result) {
-          expect(result).to.be.an.instanceOf(Error);
-          expect(result.message).to.contain('state cannot be null');
-        });
-
-      });
-      it('requires `zipcode`', function () {
-
-        rock.zipcode = null;
-
-        return rock.validate()
-        .then(function(result) {
-          expect(result).to.be.an.instanceOf(Error);
-          expect(result.message).to.contain('zipcode cannot be null');
         });
       });
     });
