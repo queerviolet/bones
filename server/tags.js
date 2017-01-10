@@ -1,12 +1,9 @@
-
+/*eslint-disable new-cap */
 'use strict';
 
 const db = require('APP/db');
 const Tag = db.model('tags');
 const Rock = db.model('rocks');
-const Review = db.model('reviews');
-const Category = db.model('categories');
-
 
 const router = require('express').Router();
 
