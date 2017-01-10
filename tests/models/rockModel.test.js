@@ -1,6 +1,7 @@
 var expect = require('chai').expect;
 var Rock = require('APP/db/models/rock');
 var db = require('APP/db');
+var Category = require('APP/db/models/category');
 
 describe('The `Rock` model', function () {
 
@@ -14,25 +15,21 @@ describe('The `Rock` model', function () {
   /**
    * Next, we create an (un-saved!) address instance before every spec
    */
-  var name = 'Best Rock';
-  var photo = 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTUvZcCO4eS5YiWaMPUIqshglRM1ZgX-Ff7zv2oSW3OYb0lWBrT';
-  var price = '4.30';
-  var weight = '7.3';
-  var color = 'grey';
-  var description = 'This is the most beautiful rock in the world.';
-  var stock = '99';
+
+  var rockObject = {
+    name: 'Best Rock',
+    photo: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTUvZcCO4eS5YiWaMPUIqshglRM1ZgX-Ff7zv2oSW3OYb0lWBrT',
+    price: 430,
+    weight: 7.3,
+    color: 'grey',
+    description: 'This is the most beautiful rock in the world.',
+    stock: 99
+  };
+
 
   var rock;
   beforeEach(function(){
-    rock = Rock.build({
-      name,
-      photo,
-      price,
-      weight,
-      color,
-      description,
-      stock
-    });
+    rock = Rock.build(rockObject);
   });
 
   /**
@@ -48,13 +45,13 @@ describe('The `Rock` model', function () {
 
       return rock.save()
       .then(function (savedRock) {
-        expect(savedRock.name).to.equal(name);
-        expect(savedRock.photo).to.equal(photo);
-        expect(savedRock.price).to.equal(price);
-        expect(savedRock.weight).to.equal(weight);
-        expect(savedRock.color).to.equal(color);
-        expect(savedRock.description).to.equal(description);
-        expect(savedRock.stock).to.equal(stock);
+        expect(savedRock.name).to.equal(rockObject.name);
+        expect(savedRock.photo).to.equal(rockObject.photo);
+        expect(savedRock.price).to.equal(rockObject.price);
+        expect(savedRock.weight).to.equal(rockObject.weight);
+        expect(savedRock.color).to.equal(rockObject.color);
+        expect(savedRock.description).to.equal(rockObject.description);
+        expect(savedRock.stock).to.equal(rockObject.stock);
       });
 
     });
@@ -71,17 +68,56 @@ describe('The `Rock` model', function () {
         });
 
       });
-      it('requires `photo`', function () {
+      it('requires `photo` as url', function () {
 
-        rock.photo = null;
+        rock.photo = 'not a url';
 
         return rock.validate()
         .then(function(result) {
           expect(result).to.be.an.instanceOf(Error);
-          console.log(result.message);
-          expect(result.message).to.contain('city cannot be null');
+          expect(result.message).to.contain('Validation isUrl failed');
         });
       });
+      it('requires `price`', function () {
+
+        rock.price = null;
+        return rock.validate()
+        .then(function(result) {
+          expect(result).to.be.an.instanceOf(Error);
+          expect(result.message).to.contain('price cannot be null');
+        });
+      });
+
+    });
+  });
+  describe('associations', function(){
+
+    /**
+     * Add a `belongsTo` relationship between rock and categories.
+     *
+     * http://docs.sequelizejs.com/en/v3/docs/associations/#belongsto
+     */
+
+    it("belongs to a category, which is stored as the rock's `category_id`", function() {
+
+      var creatingRock = Rock.create(rockObject);
+      var creatingCategory = Category.create({
+        name: 'Companion'
+      });
+
+      return Promise.all([creatingRock, creatingCategory])
+      .then(function([createdRock, createdCategory]) {
+        return createdRock.setCategory(createdCategory);
+      })
+      .then(function() {
+        return Rock.findOne({
+          where: { name: 'Best Rock' }
+        });
+      })
+      .then(function(foundRock) {
+        expect(foundRock.category_id).to.equal(1);
+      });
+
     });
   });
 });
