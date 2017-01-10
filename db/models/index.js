@@ -9,7 +9,6 @@ const Rock = require('./rock');
 const Review = require('./review');
 const Address = require('./address');
 const CartProduct = require('./cartProduct');
-const Address = require('./address');
 const Category = require('./category');
 const Order = require('./order');
 const Tag = require('./tag');
@@ -27,6 +26,6 @@ Rock.hasOne(Category);
 Category.belongsTo(Rock);
 
 Rock.hasMany(Tag);
-Tag.belongsToMany(Rock, {through: "rockTags"});
+Tag.belongsToMany(Rock, {through: 'rockTags'});
 
-module.exports = {User, Rock, Review, Address, CartProduct, Address, Category, Order, Tag};
+module.exports = {User, Rock, Review, Address, CartProduct, Category, Order, Tag};
