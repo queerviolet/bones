@@ -13,6 +13,7 @@ const Category = require('./category');
 const Order = require('./order');
 const Tag = require('./tag');
 
+// Create our own rockTag association table to be seeded with rockId and tagId
 const RockTags = require('APP/db').define("rockTags", {});
 // User.hasMany(Order);
 // Order.belongsTo(User);

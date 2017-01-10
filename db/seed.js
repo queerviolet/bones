@@ -1,4 +1,5 @@
 const db = require('APP/db');
+const chalk = require('chalk');
 
 const seedUsers = () => db.Promise.each([
   {firstName: 'James', lastName: 'Kim',  email: 'god@example.com', isAdmin: true, password: '1234'},
@@ -48,9 +49,11 @@ db.didSync
   .then(seedRocks)
   .then(rocks => console.log(`Seeded ${rocks.length} rocks OK`))
   .then(seedReviews)
-  .then(seedTags)
-  .then(seedRockTags)
   .then(reviews => console.log(`Seeded ${reviews.length} reviews OK`))
+  .then(seedTags)
+  .then(tags => console.log(`Seeded ${tags.length} tags OK`))
+  .then(seedRockTags)
+  .then(rockTags => console.log(`Seeded ${rockTags.length} rockTags OK`))
   .then(seedAddress)
   .then(addresses => console.log(`Seeded ${addresses.length} addresses OK`))
   .catch(error => console.error(error))
