@@ -6,7 +6,8 @@ const api = module.exports = require('express').Router();
 api
   .get('/heartbeat', (req, res) => res.send({ok: true}))
   .use('/auth', require('./auth'))
-  .use('/users', require('./users'));
+  .use('/users', require('./users'))
+  .use('/rocks', require('./rocks'));
 
 // Send along any errors
 api.use((err, req, res, next) => {
