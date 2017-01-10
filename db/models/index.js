@@ -8,7 +8,25 @@ const User = require('./user');
 const Rock = require('./rock');
 const Review = require('./review');
 const Address = require('./address');
+const CartProduct = require('./cartProduct');
+const Address = require('./address');
+const Category = require('./category');
+const Order = require('./order');
+const Tag = require('./tag');
 
+User.hasMany(Order);
+Order.belongsTo(User);
 
+User.hasMany(Review);
+Review.belongsTo(User);
 
-module.exports = {User, Rock, Review, Address};
+Rock.hasMany(Review);
+Review.belongsTo(Rock);
+
+Rock.hasOne(Category);
+Category.belongsTo(Rock);
+
+Rock.hasMany(Tag);
+Tag.belongsToMany(Rock, {through: "rockTags"});
+
+module.exports = {User, Rock, Review, Address, CartProduct, Address, Category, Order, Tag};
