@@ -17,4 +17,14 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
+// get a single rock
+router.get('/:id', (req, res, next) => {
+  Rock.findOne({
+    where: { id: req.params.id },
+    include: [Tag, Review, Category]
+  })
+    .then(rock => res.json(rock))
+    .catch(next);
+});
+
 module.exports = router;
