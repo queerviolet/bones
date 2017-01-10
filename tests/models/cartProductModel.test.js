@@ -3,7 +3,7 @@ var CartProduct = require('APP/db/models/cartProduct');
 var db = require ('APP/db');
 
 
-describe('The `cartProduct` model', function () {
+describe('The `CartProduct` model', function () {
 
   /**
    * First we clear the database and recreate the tables before beginning a run
