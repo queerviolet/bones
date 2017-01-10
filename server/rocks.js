@@ -27,4 +27,19 @@ router.get('/:id', (req, res, next) => {
     .catch(next);
 });
 
+// add a rock
+router.post('/addRock', (req, res, next) => {
+  Rock.create(req.body)
+    .then(res.sendStatus(201))
+    .catch(next);
+});
+
+// edit a rock
+router.put('/edit/:id', (req, res, next) => {
+  Rock.findById(req.params.id)
+    .then(rock => rock.update(req.body))
+    .then(res.sendStatus(200))
+    .catch(next);
+});
+
 module.exports = router;
