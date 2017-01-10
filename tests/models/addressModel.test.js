@@ -1,16 +1,6 @@
 var expect = require('chai').expect;
 var Address = require('APP/db/models/address');
-var Rock = require('APP/db/models/rock');
 var db = require ('APP/db');
-
-
-describe('Testing suite capabilities', function () {
-  it('confirms basic arithmetic', function () {
-    expect(2+2).to.equal(4);
-  });
-});
-
-
 
 describe('The `Address` model', function () {
 
