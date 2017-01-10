@@ -17,11 +17,11 @@ describe('The `Category` model', function () {
    */
   var name = 'Companion';
 
+  var categoryDummy = {name: 'Companion'};
+
   var category;
   beforeEach(function(){
-    category = Category.build({
-      name
-    });
+    category = Category.build(categoryDummy);
   });
 
   /**
@@ -50,9 +50,7 @@ describe('The `Category` model', function () {
 
         return category.validate()
         .then(function(result) {
-          console.log(result.message);
           expect(result).to.be.an.instanceOf(Error);
-          expect(result.message).to.contain('Validation min failed');
         });
 
       });
