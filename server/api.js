@@ -10,7 +10,8 @@ api
   .use('/users', require('./users'))
   .use('/rocks', require('./rocks'))
   .use('/categories', require('./categories'))
-  .use('/tags', require('./tags'));
+  .use('/tags', require('./tags'))
+  .use('/orders', require('./orders'));
 
 // Send along any errors
 api.use((err, req, res, next) => {

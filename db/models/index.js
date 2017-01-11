@@ -25,6 +25,7 @@ Review.belongsTo(User);
 User.hasMany(Address);
 Address.belongsTo(User);
 
+Order.belongsTo(Address);
 Order.hasMany(CartProduct);
 CartProduct.belongsTo(Order);
 CartProduct.belongsTo(Rock);
