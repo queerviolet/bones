@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
-import rocks from './rocks';
+import rocksReducer from './rocks';
+import rockReducer from './rock';
 
 const rootReducer = combineReducers({
   auth: require('./auth').default,
-  rocks
+  rocks: rocksReducer,
+  rock: rockReducer
 });
 
 export default rootReducer;
