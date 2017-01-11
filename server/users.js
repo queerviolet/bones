@@ -18,4 +18,12 @@ module.exports = require('express').Router()
 	.get('/:id', mustBeLoggedIn, (req, res, next) =>
 		User.findById(req.params.id)
 		.then(user => res.json(user))
-		.catch(next));
+		.catch(next))
+	.put('/edit/:id', (req, res, next) => {
+		User.update(req.body, { where: { id: req.params.id }, returning: true
+  })
+		.then(updatedUser => {
+      res.status(204).send(updatedUser[1][0].dataValues);
+    })
+    .catch(next);
+});
