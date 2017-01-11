@@ -24,4 +24,19 @@ router.get('/:id', (req, res, next) => {
     .catch(next);
 });
 
+// add a tag
+router.post('/addTag', (req, res, next) => {
+  Tag.create(req.body)
+    .then(tag => res.status(201).send(tag))
+    .catch(next);
+});
+
+// edit a tag
+router.put('/edit/:id', (req, res, next) => {
+  Tag.findById(req.params.id)
+    .then(tag => tag.update(req.body))
+    .then(tag => res.status(200).send(tag))
+    .catch(next);
+});
+
 module.exports = router;
