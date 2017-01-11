@@ -42,8 +42,8 @@ const seedRockTags = () => db.Promise.each([
 ], rockTags => db.model('rockTags').create(rockTags));
 
 const seedOrders = () => db.Promise.each([
-  {status: 'in-cart', date: '2017-01-10 14:35:38.811-05', user_id: 1},
-  {status: 'cancelled', date: '2017-01-10 14:35:38.811-05', user_id: 2}
+  {status: 'in-cart', date: '2017-01-10 14:35:38.811-05', user_id: 1, address_id: 1},
+  {status: 'cancelled', date: '2017-01-10 14:35:38.811-05', user_id: 2, address_id: 2}
 ], order => db.model('orders').create(order));
 
 const seedCartProducts = () => db.Promise.each([
