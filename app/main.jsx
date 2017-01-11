@@ -9,6 +9,11 @@ import Jokes from './components/Jokes';
 import Login from './components/Login';
 import WhoAmI from './components/WhoAmI';
 
+import AllRocks from './components/rocks/AllRocks';
+import App from './components/App.jsx';
+
+import { fetchAllRocks } from './reducers/rocks';
+
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
 )(
@@ -21,10 +26,14 @@ const ExampleApp = connect(
     </div>
 );
 
+const appEnter = () => {
+  store.dispatch(fetchAllRocks())
+}
+
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={ExampleApp}>
+      <Route path="/" component={Home} onEnter = {appEnter}>
         <IndexRedirect to="/jokes" />
         <Route path="/jokes" component={Jokes} />
       </Route>

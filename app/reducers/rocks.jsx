@@ -1,19 +1,19 @@
 import axios from 'axios';
 
 // ---------------------> Action type constant <---------------------
-export const RECEIVE_ROCKS= 'RECEIVE_ROCKS';
+export const RECEIVE_ALL_ROCKS= 'RECEIVE_ALL_ROCKS';
 
 // ----------------> ACTION CREATORS <----------------
-export const receiveRocks = products => ({
-  type: RECEIVE_ROCKS,
+export const receiveAllRocks = products => ({
+  type: RECEIVE_ALL_ROCKS,
   products
 });
 
 // --------------------> THUNKS <--------------------
 
-export const fetchRocks = () => dispatch => {
+export const fetchAllRocks = () => dispatch => {
   axios.get('/api/rocks')
-    .then(res => dispatch(receiveRocks(res.data)))
+    .then(res => dispatch(receiveAllRocks(res.data)))
     .catch(err => {
       console.error('Unable to fetch rocks products', err);
     });
@@ -22,7 +22,7 @@ export const fetchRocks = () => dispatch => {
 // --------------------> REDUCER <--------------------
 export default function rocks(state = [], action) {
   switch (action.type) {
-    case RECEIVE_:
+    case RECEIVE_ALL_ROCKS:
       return action.rocks;
     default:
       return state;
