@@ -30,7 +30,7 @@ router.get('/:id', (req, res, next) => {
 // add a rock
 router.post('/addRock', (req, res, next) => {
   Rock.create(req.body)
-    .then(res.sendStatus(201))
+    .then(rock => res.status(201).send(rock))
     .catch(next);
 });
 

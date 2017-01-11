@@ -24,4 +24,19 @@ router.get('/:id', (req, res, next) => {
     .catch(next);
 });
 
+
+// add a category
+router.post('/addCategory', (req, res, next) => {
+  Category.create(req.body)
+    .then(category => res.status(201).send(category))
+    .catch(next);
+});
+
+// edit a category
+router.put('/edit/:id', (req, res, next) => {
+  Category.findById(req.params.id)
+    .then(category => category.update(req.body))
+    .then(res.sendStatus(200))
+    .catch(next);
+});
 module.exports = router;
