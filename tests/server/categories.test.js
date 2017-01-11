@@ -25,7 +25,7 @@ describe('/api/categories', () => {
       request(app)
         .get('/api/categories')
         .then(res => {
-          expect(res.body.length).to.be.equal(2);
+          expect(res.body.length).to.equal(2);
           expect(res.body[0]).to.contain(utilCategory);
         })
       );
@@ -37,7 +37,6 @@ describe('/api/categories', () => {
         .get('/api/categories/1')
         .then(res => {
           expect(res.body.name).to.equal('Utility');
-          // expect(res.body[0]).to.contain(utilCategory);
         })
       );
   });
@@ -59,7 +58,7 @@ describe('/api/categories', () => {
         .put('/api/categories/edit/1')
         .send({ name: 'Decorative' })
         .then(res => {
-          expect(res.body).to.be.contain({ name: 'Decorative' });
+          expect(res.body).to.contain({ name: 'Decorative' });
         })
       );
   });

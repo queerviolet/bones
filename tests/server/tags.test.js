@@ -1,39 +1,66 @@
-const request = require('supertest-as-promised');
-const {expect} = require('chai');
 const db = require('APP/db');
-const Tag = require('APP/db/models/tag');
+const { expect } = require('chai');
 const app = require('APP/server/start');
+const Tag = require('APP/db/models/tag');
+const request = require('supertest-as-promised');
+
+const tagOne = {
+  name: 'sexy'
+};
+
+const tagTwo = {
+  name: 'friendly'
+};
 
 describe('/api/tags', () => {
 
-  describe('tag', () => {
-    it('POST creates a tag', () =>
+  before('create a tag', () =>
+    db.didSync
+      .then(() => Tag.create(tagOne))
+      .then(() => Tag.create(tagTwo))
+  );
+
+  describe('GET', () => {
+    it('returns all the tags', () =>
       request(app)
-        .post('/api/tags/addTag')
-        .send({
-          name: 'friendly'
+        .get('/api/tags')
+        .then(res => {
+          expect(res.body.length).to.equal(2);
+          res.body.forEach(tag => expect(typeof tag.name).to.be.string);
         })
-        .expect(201)
     );
   });
+
+  describe('GET', () => {
+    it('returns one tag', () =>
+      request(app)
+        .get('/api/tags/1')
+        .then(res => {
+          expect(res.body.name).to.equal('sexy');
+        })
+      );
+  });
+
+  describe('POST', () => {
+    it('creates a new tag', () =>
+      request(app)
+        .post('/api/tags/addTag')
+        .send({ name: 'smooth like a baby\'s bottom' })
+        .then(res => {
+          expect(res.body).to.contain({ name: 'smooth like a baby\'s bottom' });
+        })
+      );
+  });
+
+  describe('PUT', () => {
+    it('edits a tag', () =>
+      request(app)
+        .put('/api/tags/edit/1')
+        .send({ name: 'chris' })
+        .then(res => {
+          expect(res.body).to.contain({ name: 'chris' });
+        })
+      );
+  });
+
 });
-
-
-// it('GET /:id fails 401 (Unauthorized)', () =>
-//   request(app)
-//     .get(`/api/tags/1`)
-//     .expect()
-// );
-
-// it('POST redirects to the user it just made', () =>
-//   request(app)
-//     .post('/api/users')
-//     .send({
-//       email: 'eve@interloper.com',
-//       password: '23456',
-//     })
-//     .redirects(1)
-//     .then(res => expect(res.body).to.contain({
-//       email: 'eve@interloper.com'
-//     }))
-// );
