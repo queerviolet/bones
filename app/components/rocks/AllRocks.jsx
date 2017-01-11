@@ -8,7 +8,7 @@ export default ({ rocks }) => {
      {
         rocks.map(rock => (
           <ul key = { rock.id } >
-            <li> { rock.name } </li>
+            <Link to={`/rocks/${rock.id}`}>{rock.name}</Link>
             <li> { rock.color } </li>
             <li> { rock.description} </li>
             <li> { rock.price } </li>
