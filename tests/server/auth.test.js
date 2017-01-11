@@ -9,7 +9,7 @@ const alice = {
   password: '12345'
 }
 
-describe('/api/auth', () => {
+xdescribe('/api/auth', () => {
   before('create a user', () =>
     db.didSync
       .then(() =>

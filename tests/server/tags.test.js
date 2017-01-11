@@ -5,8 +5,8 @@ const Tag = require('APP/db/models/tag');
 const app = require('APP/server/start');
 
 describe('/api/tags', () => {
-  describe('tag', () => {
 
+  describe('tag', () => {
     it('POST creates a tag', () =>
       request(app)
         .post('/api/tags/addTag')

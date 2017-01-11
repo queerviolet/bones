@@ -4,7 +4,7 @@ const db = require('APP/db');
 const User = require('APP/db/models/user');
 const {expect} = require('chai');
 
-describe('User', () => {
+xdescribe('User', () => {
   before('wait for the db', () => db.didSync);
 
   describe('authenticate(plaintext: String) ~> Boolean', () => {

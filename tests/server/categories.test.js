@@ -1,29 +1,67 @@
-const request = require('supertest-as-promised')
-const {expect} = require('chai')
-const db = require('APP/db')
-const Category = require('APP/db/models/category')
-const app = require('APP/server/start')
+const db = require('APP/db');
+const { expect } = require('chai');
+const app = require('APP/server/start');
+const request = require('supertest-as-promised');
+const Category = require('APP/db/models/category');
 
 const utilCategory = {
-  name: "Utility"
-}
+  name: 'Utility'
+};
+
+const compCategory = {
+  name: 'Companion'
+};
 
 describe('/api/categories', () => {
 
-  describe('POST /api/categories/addCategory', () => {
-    it('succeeds with a valid enum category value', () =>
+  before('create a category', () =>
+    db.didSync
+      .then(() => Category.create(utilCategory))
+      .then(() => Category.create(compCategory))
+  );
+
+  describe('GET all the categories', () => {
+    it('returns all the categories', () =>
+      request(app)
+        .get('/api/categories')
+        .then(res => {
+          expect(res.body.length).to.be.equal(2);
+          expect(res.body[0]).to.contain(utilCategory);
+        })
+      );
+  });
+
+  describe('GET a single categories', () => {
+    it('returns one category', () =>
+      request(app)
+        .get('/api/categories/1')
+        .then(res => {
+          expect(res.body.name).to.equal('Utility');
+          // expect(res.body[0]).to.contain(utilCategory);
+        })
+      );
+  });
+
+  describe('POST a new category', () => {
+    it('adds a new category', () =>
       request(app)
         .post('/api/categories/addCategory')
-        .send(utilCategory)
-        .expect(201)
-      )
+        .send({ name: 'Decorative' })
+        .then(res => {
+          expect(res.body).to.contain({ name: 'Decorative' });
+        })
+      );
+  });
 
-    // it('fails with an invalid enum category value', () =>
-    //   request(app)
-    //     .post('/api/auth/local/login')
-    //     .send({name: 'wrong'})
-    //     .expect(404)
-    //   )
-  })
+  describe('PUT', () => {
+    it('edits a category', () =>
+      request(app)
+        .put('/api/categories/edit/1')
+        .send({ name: 'Decorative' })
+        .then(res => {
+          expect(res.body).to.be.contain({ name: 'Decorative' });
+        })
+      );
+  });
 
-})
+});
