@@ -4,9 +4,9 @@ import axios from 'axios';
 export const RECEIVE_ALL_ROCKS= 'RECEIVE_ALL_ROCKS';
 
 // ----------------> ACTION CREATORS <----------------
-export const receiveAllRocks = products => ({
+export const receiveAllRocks = rocks => ({
   type: RECEIVE_ALL_ROCKS,
-  products
+  rocks
 });
 
 // --------------------> THUNKS <--------------------

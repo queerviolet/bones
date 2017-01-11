@@ -1,6 +1,6 @@
 'use strict';
 import React from 'react';
-import {Router, Route, IndexRedirect, browserHistory} from 'react-router';
+import {Router, Route, IndexRedirect, IndexRoute, browserHistory} from 'react-router';
 import {render} from 'react-dom';
 import {connect, Provider} from 'react-redux';
 
@@ -9,7 +9,7 @@ import Jokes from './components/Jokes';
 import Login from './components/Login';
 import WhoAmI from './components/WhoAmI';
 
-import AllRocks from './components/rocks/AllRocks';
+import AllRocksContainer from './components/rocks/AllRocksContainer';
 import App from './components/App.jsx';
 
 import { fetchAllRocks } from './reducers/rocks';
@@ -33,8 +33,8 @@ const appEnter = () => {
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={Home} onEnter = {appEnter}>
-        <IndexRedirect to="/jokes" />
+      <Route path="/" component={App} onEnter = {appEnter}>
+        <IndexRoute component={AllRocksContainer} />
         <Route path="/jokes" component={Jokes} />
       </Route>
     </Router>
