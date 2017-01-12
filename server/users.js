@@ -12,6 +12,7 @@ const {mustBeLoggedIn, forbidden} = require('./auth.filters');
 const router = require('express').Router();
 
 
+
 router.get('/', forbidden('only admins can list users'), (req, res, next) =>
 	User.findAll()
 	 .then(users => res.json(users))
@@ -31,6 +32,7 @@ router.put('/edit/:id', (req, res, next) => {
 	User.update(req.body, { where: { id: req.params.id }, returning: true })
 	.then(updatedUser => {
     res.status(204).send(updatedUser[1][0].dataValues);
+
   })
   .catch(next);
 });

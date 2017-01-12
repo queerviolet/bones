@@ -8,9 +8,9 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import store from './store';
 import Jokes from './components/Jokes';
-import Login from './components/Login';
-import WhoAmI from './components/WhoAmI';
+// import WhoAmI from './components/WhoAmI';
 
+import LoginContainer from './components/login/LoginContainer';
 import AllRocksContainer from './components/rocks/AllRocksContainer';
 import RockContainer from './components/rock/RockContainer';
 import App from './components/App.jsx';
@@ -20,17 +20,17 @@ import { fetchARock } from './reducers/rock';
 
 injectTapEventPlugin();
 
-const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
-)(
-  ({ user, children }) =>
-    <div>
-      <nav>
-        {user ? <WhoAmI /> : <Login />}
-      </nav>
-      {children}
-    </div>
-);
+// const ExampleApp = connect(
+//   ({ auth }) => ({ user: auth })
+// )(
+//   ({ user, children }) =>
+//     <div>
+//       <nav>
+//         {user ? <WhoAmI /> : <LoginContainer />}
+//       </nav>
+//       {children}
+//     </div>
+// );
 
 const appEnter = () => {
   store.dispatch(fetchAllRocks())
@@ -49,6 +49,7 @@ render(
           <IndexRoute component={AllRocksContainer} />
           <Route path="/jokes" component={Jokes} />
           <Route path="/rocks/:id" component={RockContainer} onEnter={rockEnter}/>
+          <Route path="/login" component={LoginContainer} />
         </Route>
       </Router>
     </MuiThemeProvider>
