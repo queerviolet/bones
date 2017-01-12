@@ -15,6 +15,17 @@ module.exports = require('express').Router()
 		User.create(req.body)
 		.then(user => res.status(201).json(user))
 		.catch(next))
+  .post('/login', (req, res, next) =>
+    User.findOne( {where: {email: req.body.email}
+  })
+    .then(user => {
+      if (user.authenticate(req.body.password)) {
+        res.status(201).send(user);
+      } else {
+        res.status(404).send({err: 'Unable to login'});
+      }
+    })
+    .catch(next))
 	.get('/:id', mustBeLoggedIn, (req, res, next) =>
 		User.findById(req.params.id)
 		.then(user => res.json(user))
