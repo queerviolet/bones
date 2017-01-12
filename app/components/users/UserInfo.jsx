@@ -13,8 +13,14 @@ const style = {
   margin: 12
 };
 
+// const imgStyle = {
+//   max-width: '100%'
+// };
+
 const UserInfoComponent = ({
   userInfo,
+  handleExpand,
+  handleReduce,
   handleToggle,
   handleExpandChange
 }) => (
@@ -23,8 +29,8 @@ const UserInfoComponent = ({
     onExpandChange={handleExpandChange}
   >
     <CardHeader
-      title="Title"
-      subtitle="Subtitle"
+      title={userInfo.detail.firstName}
+      subtitle={userInfo.detail.lastName}
       avatar="images/ok-128.jpg"
       actAsExpander={true}
       showExpandableButton={true}
@@ -40,16 +46,31 @@ const UserInfoComponent = ({
     <CardMedia
       expandable={true}
       overlay={<CardTitle
-        title="Overlay title"
-        subtitle="Overlay subtitle"
+        title="User"
+        subtitle="Detail"
       />}
     >
-      <img src="images/nature-600-337.jpg" />
+      <img
+        src="http://rock100diz.com/wp-content/uploads/2015/04/galets-5.jpg"
+      />
     </CardMedia>
-    <RaisedButton label="Edit" primary={true} style={style} />
-    <h1>{`${userInfo.detail.firstName} ${userInfo.detail.lastName}`}</h1>
-    <p>email:</p>
-    <p>{userInfo.detail.email}</p>
+    <CardTitle title="Card title" subtitle="Card subtitle" expandable={true} />
+    <CardText expandable={true}>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+      Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+      Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+    </CardText>
+    <CardActions>
+      {/* <FlatButton label="Expand" onTouchTap={handleExpand} /> */}
+      {/* <FlatButton label="Reduce" onTouchTap={handleReduce} /> */}
+      <RaisedButton
+        label={(!userInfo.expanded) ? 'Edit' : 'Save'}
+        primary={true}
+        style={style}
+        onClick={(!userInfo.expanded) ? handleExpand : handleReduce}
+      />
+    </CardActions>
   </Card>
 );
 

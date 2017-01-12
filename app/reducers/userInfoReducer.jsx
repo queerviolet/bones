@@ -33,16 +33,18 @@ export const handleExpand = () => ({
   type: EXPAND
 });
 
-export const handleToggle = () => ({
-  type: TOGGLE
+export const handleToggle = (event, toggle) => ({
+  type: TOGGLE,
+  toggle
 });
 
 export const handleReduce = () => ({
   type: REDUCE
 });
 
-export const handleExpandChange = () => ({
-  type: EXPAND_CHANGE
+export const handleExpandChange = (expanded) => ({
+  type: EXPAND_CHANGE,
+  expanded
 });
 
 // --------------------> THUNKS <--------------------
@@ -56,32 +58,32 @@ export const fetchUserInfo = userId => dispatch => {
 };
 
 // --------------------> REDUCER <--------------------
-const userInfoReducer = (state = unknownUserInfo, { type, userInfo }) => {
+const userInfoReducer = (state = unknownUserInfo, action) => {
   const nextState = Object.assign({}, state);
 
-  switch (type) {
+  switch (action.type) {
     case EXPAND:
-      nextState.expanded = 'true';
+      nextState.expanded = true;
       return nextState;
 
     case TOGGLE:
-      nextState.expanded = 'toggle';
+      nextState.expanded = action.toggle;
       return nextState;
 
     case REDUCE:
-      nextState.expanded = 'false';
+      nextState.expanded = false;
       return nextState;
 
     case EXPAND_CHANGE:
-      nextState.expanded = 'expanded';
+      nextState.expanded = action.expanded;
       return nextState;
 
     case RECEIVE_USER_INFO:
-      nextState.detail = userInfo;
+      nextState.detail = action.userInfo;
       return nextState;
 
     case UPDATE_USER_INFO:
-      nextState.detail = userInfo;
+      nextState.detail = action.userInfo;
       return nextState;
 
     default:

@@ -13,12 +13,12 @@ const mapStateToProps = ({ userInfo }) => ({ userInfo });
 const mapDispatchToProps = (dispatch) => ({
   handleExpand: () =>
     dispatch(handleExpand()),
-  handleToggle: () =>
-    dispatch(handleToggle()),
+  handleToggle: (event, toggle) =>
+    dispatch(handleToggle(event, toggle)),
   handleReduce: () =>
     dispatch(handleReduce()),
-  handleExpandChange: () =>
-    dispatch(handleExpandChange())
+  handleExpandChange: (expanded) =>
+    dispatch(handleExpandChange(expanded))
 });
 
 export default connect(
