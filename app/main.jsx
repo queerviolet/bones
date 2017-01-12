@@ -11,10 +11,12 @@ import Jokes from './components/Jokes';
 import Login from './components/Login';
 import WhoAmI from './components/WhoAmI';
 
+import UserInfoContainer from './components/users/UserInfoContainer';
 import AllRocksContainer from './components/rocks/AllRocksContainer';
 import RockContainer from './components/rock/RockContainer';
 import App from './components/App.jsx';
 
+import { fetchUserInfo } from './reducers/userInfoReducer';
 import { fetchAllRocks } from './reducers/rocks';
 import { fetchARock } from './reducers/rock';
 
@@ -33,13 +35,18 @@ const ExampleApp = connect(
 );
 
 const appEnter = () => {
-  store.dispatch(fetchAllRocks())
-}
+  store.dispatch(fetchAllRocks());
+};
 
 const rockEnter = (nextRouterState) => {
   const rockId = nextRouterState.params.id;
   store.dispatch(fetchARock(rockId));
-}
+};
+
+const userSignedIn = (nextRouterState) => {
+  const userId = nextRouterState.params.id;
+  store.dispatch(fetchUserInfo(userId));
+};
 
 render(
   <Provider store={store}>
@@ -48,7 +55,8 @@ render(
         <Route path="/" component={App} onEnter = {appEnter}>
           <IndexRoute component={AllRocksContainer} />
           <Route path="/jokes" component={Jokes} />
-          <Route path="/rocks/:id" component={RockContainer} onEnter={rockEnter}/>
+          <Route path="/rocks/:id" component={RockContainer} onEnter={rockEnter} />
+          <Route path="/users/:id" component={UserInfoContainer} onEnter={userSignedIn} />
         </Route>
       </Router>
     </MuiThemeProvider>
