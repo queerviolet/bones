@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import productsReducer from 'APP/app/reducers/index';
 import { RECEIVE_ALL_ROCKS, receiveAllRocks, fetchAllRocks } from 'APP/app/reducers/rocks';
 
-describe('Products reducer', () => {
+describe('All roducts reducer', () => {
 
   let testStore;
   const newRocks = [
