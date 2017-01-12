@@ -57,7 +57,7 @@ describe('/api/orders', () => {
   describe('PUT', () => {
     xit('edits a order', () =>
       request(app)
-        .put('/api/orders/1')
+        .put('/api/orders/edit/1')
         .send({ status: 'cancelled' })
         .then(res => {
           expect(res.body).to.contain({ status: 'cancelled' });

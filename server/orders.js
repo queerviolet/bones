@@ -39,7 +39,7 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
-router.put('/:id', (req, res, next) => {
+router.put('/edit/:id', (req, res, next) => {
   Order.findOne({
     where: { id: req.params.id }
   })
