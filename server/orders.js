@@ -6,13 +6,14 @@ const Order = db.model('orders');
 const User = db.model('users');
 const CartProduct = db.model('cartProducts');
 const Address = db.model('addresses');
+const Rocks = db.model('rocks');
 
 // const { selfOnly, mustBeLoggedIn, forbidden } = require('./auth.filters');
 
 const router = require('express').Router();
 
 
-// get all the orders
+// Get all the orders
 router.get('/', (req, res, next) => {
   Order.findAll( { include: [User, CartProduct, Address] } )
     .then(orders => {
@@ -21,7 +22,7 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-//get a single order
+// Get a single order by order id
 router.get('/:id', (req, res, next) => {
   Order.findOne({
     where: { id: req.params.id },
@@ -39,6 +40,7 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
+// Edit an order
 router.put('/edit/:id', (req, res, next) => {
   Order.findOne({
     where: { id: req.params.id }

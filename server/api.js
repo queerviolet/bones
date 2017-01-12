@@ -11,7 +11,8 @@ api
   .use('/rocks', require('./rocks'))
   .use('/categories', require('./categories'))
   .use('/tags', require('./tags'))
-  .use('/orders', require('./orders'));
+  .use('/orders', require('./orders'))
+  .use('/carts', require('./cartProducts'));
 
 // Send along any errors
 api.use((err, req, res, next) => {
