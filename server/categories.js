@@ -36,7 +36,7 @@ router.post('/addCategory', (req, res, next) => {
 router.put('/edit/:id', (req, res, next) => {
   Category.findById(req.params.id)
     .then(category => category.update(req.body))
-    .then(res.sendStatus(200))
+    .then(category => res.status(200).send(category))
     .catch(next);
 });
 module.exports = router;

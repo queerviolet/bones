@@ -1,6 +1,6 @@
+var db = require ('APP/db');
 var expect = require('chai').expect;
 var Category = require('APP/db/models/category');
-var db = require ('APP/db');
 
 
 describe('The `Category` model', function () {
@@ -27,9 +27,9 @@ describe('The `Category` model', function () {
   /**
    * Also, we empty the tables after each spec
    */
-  // afterEach(function () {
-  //   return (Category.truncate({ cascade: true }))
-  // });
+  afterEach(function () {
+    return Category.truncate({ cascade: true });
+  });
 
   describe('attributes definition for Category', function() {
 

@@ -1,6 +1,6 @@
+var db = require('APP/db');
 var expect = require('chai').expect;
 var Address = require('APP/db/models/address');
-var db = require('APP/db');
 
 describe('The `Address` model', function () {
 

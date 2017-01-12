@@ -1,6 +1,6 @@
+var db = require ('APP/db');
 var expect = require('chai').expect;
 var CartProduct = require('APP/db/models/cartProduct');
-var db = require ('APP/db');
 
 
 describe('The `CartProduct` model', function () {

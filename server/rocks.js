@@ -38,7 +38,7 @@ router.post('/addRock', (req, res, next) => {
 router.put('/edit/:id', (req, res, next) => {
   Rock.findById(req.params.id)
     .then(rock => rock.update(req.body))
-    .then(res.sendStatus(200))
+    .then(updatedRock => res.status(200).send(updatedRock))
     .catch(next);
 });
 

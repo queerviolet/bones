@@ -7,13 +7,11 @@ const User = db.model('users');
 const CartProduct = db.model('cartProducts');
 const Address = db.model('addresses');
 
-const { selfOnly, mustBeLoggedIn, forbidden } = require('./auth.filters');
-
+// const { selfOnly, mustBeLoggedIn, forbidden } = require('./auth.filters');
 
 const router = require('express').Router();
 
 
-//*TODO make this route only accessible to admins!
 // get all the orders
 router.get('/', (req, res, next) => {
   Order.findAll( { include: [User, CartProduct, Address] } )
@@ -23,11 +21,12 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-//*TODO this is not finished...
 //get a single order
 router.get('/:id', (req, res, next) => {
-  Order.findById(req.params.id,
-    { include: [User, CartProduct, Address] })
+  Order.findOne({
+    where: { id: req.params.id },
+    include: [User, CartProduct, Address]
+  })
     .then(order => res.json(order))
     .catch(next);
 });
@@ -41,12 +40,19 @@ router.post('/', (req, res, next) => {
 });
 
 router.put('/edit/:id', (req, res, next) => {
-  Order.update(req.body, { where: { id: req.params.id }, returning: true
+  Order.findOne({
+    where: { id: req.params.id }
   })
-    .then(updatedOrder => {
-      res.status(204).send(updatedOrder[1][0].dataValues);
-    })
+    .then(order => order.update(req.body))
+    .then(updatedOrder => res.status(204).send(updatedOrder))
     .catch(next);
+  // Order.update(req.body, { where: { id: req.params.id }, returning: true
+  // })
+  //   .then(updatedOrder => {
+  //     // console.log(updatedOrder[1][0].dataValues)
+  //     res.status(204).send(updatedOrder[1][0].dataValues);
+  //   })
+  //   .catch(next);
 });
 
 module.exports = router;
