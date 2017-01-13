@@ -54,7 +54,7 @@ const userSignedIn = (nextRouterState) => {
 const cartEnter = (nextRouterState) => {
   const cartId = nextRouterState.params.cartId;
   store.dispatch(fetchCart(cartId));
-}
+};
 
 render(
   <Provider store={store}>

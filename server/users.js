@@ -50,7 +50,7 @@ router.get('/:userId/addresses', (req, res, next) => {
 
 // Get all orders for one user
 router.get('/:userId/orders', (req, res, next) => {
-  Order.findOne({
+  Order.findAll({
     where: { user_id: req.params.userId },
     include: [{model: CartProduct, include:[{model:Rocks}]}]
   })

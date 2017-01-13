@@ -1,5 +1,5 @@
 import React from 'react';
-import { Toggle, RaisedButton } from 'material-ui';
+import { RaisedButton } from 'material-ui';
 import {
   Card,
   CardText,
@@ -13,15 +13,15 @@ const style = {
   margin: 12
 };
 
-// const imgStyle = {
-//   max-width: '100%'
-// };
+const findDefaultAddress = (addressesArray) => {
+  const defaultAddress = addressesArray.filter(address => address.defaultAddress);
+  return defaultAddress[0];
+};
 
 const UserInfoComponent = ({
   userInfo,
   handleExpand,
   handleReduce,
-  handleToggle,
   handleExpandChange
 }) => (
   <Card
@@ -29,40 +29,43 @@ const UserInfoComponent = ({
     onExpandChange={handleExpandChange}
   >
     <CardHeader
-      title={userInfo.detail.firstName}
-      subtitle={userInfo.detail.lastName}
+      title={userInfo.detail.basicInfo.fullName}
+      subtitle={(userInfo.detail.basicInfo.isAdmin) ? 'Admin' : 'Basic User'}
       actAsExpander={true}
       showExpandableButton={true}
     />
+
     <CardText>
-      <Toggle
-        toggled={userInfo.expanded}
-        onToggle={handleToggle}
-        labelPosition="right"
-        label="This toggle controls the expanded state of the component."
-      />
+      {`Email: ${userInfo.detail.basicInfo.email}`}
+      <br />
+      {userInfo.detail.addresses.length && `Default Address: ${findDefaultAddress(userInfo.detail.addresses)}`}
+      <br />
+      {`Orders: ${userInfo.detail.orders.length}`}
     </CardText>
+
     <CardMedia
       expandable={true}
       overlay={<CardTitle
-        title="User"
-        subtitle="Detail"
+        title={userInfo.detail.basicInfo.fullName}
+        subtitle={(userInfo.detail.basicInfo.isAdmin) ? 'Admin' : 'Basic User'}
       />}
     >
       <img
         src="http://rock100diz.com/wp-content/uploads/2015/04/galets-5.jpg"
       />
     </CardMedia>
-    <CardTitle title="Card title" subtitle="Card subtitle" expandable={true} />
+
+    <CardTitle
+      title="Update your info"
+      subtitle=""
+      expandable={true}
+    />
+
     <CardText expandable={true}>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-      Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-      Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+      {/* {userInfo.detail.orders} */}
     </CardText>
+
     <CardActions>
-      {/* <FlatButton label="Expand" onTouchTap={handleExpand} /> */}
-      {/* <FlatButton label="Reduce" onTouchTap={handleReduce} /> */}
       <RaisedButton
         label={(!userInfo.expanded) ? 'Edit' : 'Save'}
         primary={true}

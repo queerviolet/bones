@@ -2,10 +2,14 @@ import axios from 'axios';
 
 const unknownUserInfo = {
   detail: {
-    firstName: 'John',
-    lastName: 'Doe',
-    email: 'john@doe.com',
-    isAdmin: false
+    basicInfo: {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'john@doe.com',
+      isAdmin: false
+    },
+    orders: {},
+    addresses: {}
   },
   expanded: false
 };
@@ -19,14 +23,14 @@ export const REDUCE = 'REDUCE';
 export const EXPAND_CHANGE = 'EXPAND_CHANGE';
 
 // ----------------> ACTION CREATORS <----------------
-export const recieveUserInfo = userInfo => ({
+export const recieveUserInfo = (detail) => ({
   type: RECEIVE_USER_INFO,
-  userInfo
+  detail
 });
 
-export const updateUserInfo = userInfo => ({
+export const updateUserInfo = detail => ({
   type: UPDATE_USER_INFO,
-  userInfo
+  detail
 });
 
 export const handleExpand = () => ({
@@ -50,8 +54,17 @@ export const handleExpandChange = (expanded) => ({
 // --------------------> THUNKS <--------------------
 
 export const fetchUserInfo = userId => dispatch => {
-  axios.get(`/api/users/${userId}`)
-    .then(res => dispatch(recieveUserInfo(res.data)))
+  const getBasicUserInfo = () => axios.get(`/api/users/${userId}`);
+  const getUserAddresses = () => axios.get(`/api/users/${userId}/addresses`);
+  const getUserOrders = () => axios.get(`/api/users/${userId}/orders`);
+  axios.all([getBasicUserInfo(), getUserAddresses(), getUserOrders()])
+    .then(axios.spread((basicInfo, addresses, orders) => {
+      dispatch(recieveUserInfo({
+        basicInfo: basicInfo.data,
+        addresses: addresses.data,
+        orders: orders.data
+      }));
+    }))
     .catch(err => {
       console.error('Fetching the user info failed', err);
     });
@@ -79,11 +92,11 @@ const userInfoReducer = (state = unknownUserInfo, action) => {
       return nextState;
 
     case RECEIVE_USER_INFO:
-      nextState.detail = action.userInfo;
+      nextState.detail = action.detail;
       return nextState;
 
     case UPDATE_USER_INFO:
-      nextState.detail = action.userInfo;
+      nextState.detail = action.detail;
       return nextState;
 
     default:

@@ -14,9 +14,9 @@ const seedReviews = () => db.Promise.each([
 ], review => db.model('reviews').create(review));
 
 const seedAddress = () => db.Promise.each([
-  {street: '1 Holler Lane', city: 'Westport', state: 'New York', zipcode: '10004', user_id: 1},
-  {street: '5 Hanover Square', city: 'New York', state: 'New York', zipcode: '10004', user_id: 2},
-  {street: '75 Wall Street', city: 'New York', state: 'New York', zipcode: '10004', user_id: 1},
+  {street: '1 Holler Lane', city: 'Westport', state: 'New York', zipcode: '10004', user_id: 1, defaultAddress: true},
+  {street: '5 Hanover Square', city: 'New York', state: 'New York', zipcode: '10004', user_id: 2, defaultAddress: true},
+  {street: '75 Wall Street', city: 'New York', state: 'New York', zipcode: '10004', user_id: 1, defaultAddress: false},
 ], address => db.model('addresses').create(address));
 
 const seedCategories = () => db.Promise.each([
