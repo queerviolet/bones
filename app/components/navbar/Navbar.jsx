@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AppBar, FlatButton, Toolbar, ToolbarGroup, TextField, ToolbarTitle, FontIcon, Popover, Menu, MenuItem } from 'material-ui';
 import NavbarMenu from './NavbarMenu';
+import { Link } from 'react-router';
 
 export default class Navbar extends Component {
   render() {
@@ -11,7 +12,8 @@ export default class Navbar extends Component {
 
             <FontIcon color='white'>Rockstarz </FontIcon>
               <ToolbarGroup>
-                <FlatButton label="Companion" style={{color:'white'}} />
+                <Link to={'/rocks/1'}><FlatButton label="Companion" style={{color:'white'}}>
+                </FlatButton></Link>
                 <FlatButton label="Utility" style={{color:'white'}} />
                 <FlatButton label="Decorative" style={{color:'white'}} />
                 <FlatButton label="Miscellaneous" style={{color:'white'}} />
