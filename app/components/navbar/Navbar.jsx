@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
-import { TextField } from 'material-ui';
+import { AppBar, FlatButton, Toolbar, ToolbarGroup, TextField, ToolbarTitle, FontIcon, Popover, Menu, MenuItem } from 'material-ui';
+import NavbarMenu from './NavbarMenu';
 
 export default class Navbar extends Component {
   render() {
     return (
-      <div>
-        <h1> This is Navbar </h1>
-        <TextField floatingLabelText = 'email' type = 'email' />
-      </div>
+        <Toolbar style={{backgroundColor:'#020202'}}>
+          <ToolbarGroup>
+            <i className="material-icons" style={{color:'white'}}>shop</i>
+
+            <FontIcon color='white'>Rockstarz </FontIcon>
+              <ToolbarGroup>
+                <FlatButton label="Companion" style={{color:'white'}} />
+                <FlatButton label="Utility" style={{color:'white'}} />
+                <FlatButton label="Decorative" style={{color:'white'}} />
+                <FlatButton label="Miscellaneous" style={{color:'white'}} />
+              </ToolbarGroup>
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <NavbarMenu />
+          </ToolbarGroup>
+        </Toolbar>
+
     )
   }
 }
