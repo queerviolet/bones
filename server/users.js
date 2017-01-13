@@ -20,8 +20,10 @@ router.get('/', forbidden('only admins can list users'), (req, res, next) =>
 
 router.post('/', (req, res, next) =>
 	User.create(req.body)
-	 .then(user => res.status(201).json(user))
-	 .catch(next));
+	.then(user => {
+		res.status(201).json(user)
+	})
+	.catch(next));
 
 router.get('/:id', mustBeLoggedIn, (req, res, next) =>
 	User.findById(req.params.id)
