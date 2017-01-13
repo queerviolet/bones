@@ -5,6 +5,7 @@ import {
   handleExpand,
   handleToggle,
   handleReduce,
+  updateUserInfo,
   handleExpandChange
 } from '../../reducers/userInfoReducer';
 
@@ -15,10 +16,13 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(handleExpand()),
   handleToggle: (event, toggle) =>
     dispatch(handleToggle(event, toggle)),
-  handleReduce: () =>
-    dispatch(handleReduce()),
+  handleReduce: () => {
+    dispatch(handleReduce());
+  },
   handleExpandChange: (expanded) =>
-    dispatch(handleExpandChange(expanded))
+    dispatch(handleExpandChange(expanded)),
+  handleUpdateUserInfo: (updatedUserInfo) =>
+    dispatch(updateUserInfo(updatedUserInfo))
 });
 
 export default connect(

@@ -13,16 +13,17 @@ const style = {
   margin: 12
 };
 
-const findDefaultAddress = (addressesArray) => {
-  const defaultAddress = addressesArray.filter(address => address.defaultAddress);
-  return defaultAddress[0];
+const displayDefaultAddress = (addressesArray) => {
+  const defaultAddress = addressesArray.filter(address => address.defaultAddress)[0];
+  return defaultAddress;
 };
 
 const UserInfoComponent = ({
   userInfo,
   handleExpand,
   handleReduce,
-  handleExpandChange
+  handleExpandChange,
+  handleUpdateUserInfo
 }) => (
   <Card
     expanded={userInfo.expanded}
@@ -38,7 +39,7 @@ const UserInfoComponent = ({
     <CardText>
       {`Email: ${userInfo.detail.basicInfo.email}`}
       <br />
-      {userInfo.detail.addresses.length && `Default Address: ${findDefaultAddress(userInfo.detail.addresses)}`}
+      {userInfo.detail.addresses.length && `Default Address: ${displayDefaultAddress(userInfo.detail.addresses).street}`}
       <br />
       {`Orders: ${userInfo.detail.orders.length}`}
     </CardText>

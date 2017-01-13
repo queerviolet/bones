@@ -8,8 +8,8 @@ const unknownUserInfo = {
       email: 'john@doe.com',
       isAdmin: false
     },
-    orders: {},
-    addresses: {}
+    orders: [],
+    addresses: []
   },
   expanded: false
 };

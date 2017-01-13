@@ -28,7 +28,7 @@ router.get('/:id', mustBeLoggedIn, (req, res, next) =>
 	 .then(user => res.json(user))
 	 .catch(next));
 
-router.put('/edit/:id', (req, res, next) => {
+router.put('/:id', (req, res, next) => {
 	User.update(req.body, { where: { id: req.params.id }, returning: true })
 	.then(updatedUser => {
     res.status(204).send(updatedUser[1][0].dataValues);
