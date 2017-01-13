@@ -31,7 +31,6 @@ const UserInfoComponent = ({
     <CardHeader
       title={userInfo.detail.firstName}
       subtitle={userInfo.detail.lastName}
-      avatar="images/ok-128.jpg"
       actAsExpander={true}
       showExpandableButton={true}
     />

@@ -37,6 +37,17 @@ router.put('/edit/:id', (req, res, next) => {
   .catch(next);
 });
 
+//Get all the addresses of a user
+router.get('/:userId/addresses', (req, res, next) => {
+  Address.findAll({
+    where: {
+      user_id: req.params.userId
+    }
+  })
+    .then(addresses => res.json(addresses))
+    .catch(next);
+});
+
 // Get all orders for one user
 router.get('/:userId/orders', (req, res, next) => {
   Order.findOne({
