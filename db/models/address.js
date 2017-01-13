@@ -19,6 +19,9 @@ const Address = db.define('addresses', {
   zipcode: {
     type: Sequelize.STRING,
     allowNull: false,
+  },
+  defaultAddress: {
+    type: Sequelize.BOOLEAN
   }
 });
 
