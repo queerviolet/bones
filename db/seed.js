@@ -20,10 +20,10 @@ const seedAddress = () => db.Promise.each([
 ], address => db.model('addresses').create(address));
 
 const seedCategories = () => db.Promise.each([
-  {name: 'Companion'},
-  {name: 'Utility'},
-  {name: 'Decorative'},
-  {name: 'Miscellaneous'}
+  {name: 'companion'},
+  {name: 'utility'},
+  {name: 'decorative'},
+  {name: 'miscellaneous'}
 ], category => db.model('categories').create(category));
 
 const seedRocks = () => db.Promise.each([

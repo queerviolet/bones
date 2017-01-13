@@ -15,9 +15,9 @@ describe('The `Category` model', function () {
   /**
    * Next, we create an (un-saved!) CartProduct instance before every spec
    */
-  var name = 'Companion';
+  var name = 'companion';
 
-  var categoryDummy = {name: 'Companion'};
+  var categoryDummy = {name: 'companion'};
 
   var category;
   beforeEach(function(){
