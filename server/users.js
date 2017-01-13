@@ -12,7 +12,6 @@ const {mustBeLoggedIn, forbidden} = require('./auth.filters');
 const router = require('express').Router();
 
 
-
 router.get('/', forbidden('only admins can list users'), (req, res, next) =>
 	User.findAll()
 	 .then(users => res.json(users))
@@ -21,7 +20,7 @@ router.get('/', forbidden('only admins can list users'), (req, res, next) =>
 router.post('/', (req, res, next) =>
 	User.create(req.body)
 	.then(user => {
-		res.status(201).json(user)
+		res.status(201).json(user);
 	})
 	.catch(next));
 
