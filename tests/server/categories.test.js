@@ -5,11 +5,11 @@ const request = require('supertest-as-promised');
 const Category = require('APP/db/models/category');
 
 const utilCategory = {
-  name: 'Utility'
+  name: 'utility'
 };
 
 const compCategory = {
-  name: 'Companion'
+  name: 'companion'
 };
 
 describe('/api/categories', () => {
@@ -38,7 +38,7 @@ describe('/api/categories', () => {
   describe('GET a single categories', () => {
 
     //*TODO models/categoryModel.tests breaks this, WHY???!!!!
-
+    // This route no longer exist
     xit('returns one category', () =>
       request(app)
         .get('/api/categories/1')
@@ -52,9 +52,9 @@ describe('/api/categories', () => {
     it('adds a new category', () =>
       request(app)
         .post('/api/categories/addCategory')
-        .send({ name: 'Decorative' })
+        .send({ name: 'decorative' })
         .then(res => {
-          expect(res.body).to.contain({ name: 'Decorative' });
+          expect(res.body).to.contain({ name: 'decorative' });
         })
       );
   });
@@ -66,9 +66,9 @@ describe('/api/categories', () => {
     xit('edits a category', () =>
       request(app)
         .put('/api/categories/edit/1')
-        .send({ name: 'Decorative' })
+        .send({ name: 'decorative' })
         .then(res => {
-          expect(res.body).to.contain({ name: 'Decorative' });
+          expect(res.body).to.contain({ name: 'decorative' });
         })
       );
   });

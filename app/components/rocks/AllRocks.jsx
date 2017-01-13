@@ -6,7 +6,7 @@ export default ({ rocks }) => {
   return (
     <div>
      {
-        rocks.map(rock => (
+        rocks && rocks.map(rock => (
           <ul key = { rock.id } >
             <Link to={`/rocks/${rock.id}`}>{rock.name}</Link>
             <li> { rock.color } </li>
