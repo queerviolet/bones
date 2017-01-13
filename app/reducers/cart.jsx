@@ -31,20 +31,20 @@ export const removeCartProduct = productId => ({
 
 // --------------------> THUNKS <--------------------
 export const fetchCart = (id) => dispatch => {
-  axios.get(`/api/orders/${id}`)
+  axios.get(`/api/carts/${id}`)
     .then(res => {
-      dispatch(receiveCartProduct(res.data));
+      dispatch(receiveCartProducts(res.data));
     })
     .catch(err => {
-      console.error('Unable to fetch the specific rock', err);
+      console.error('Unable to fetch the cart products', err);
     });
 };
 
 // --------------------> REDUCER <--------------------
-export default function rock(state = {}, action) {
+export default function cart(state = [], action) {
   switch(action.type) {
-    case RECEIVE_A_ROCK:
-      return action.rock
+    case RECEIVE_CART_PRODUCTS:
+      return action.cartProducts;
     default:
       return state;
   }
