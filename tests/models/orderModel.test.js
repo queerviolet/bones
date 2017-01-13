@@ -3,7 +3,7 @@ var Order = require('APP/db/models/order');
 var db = require ('APP/db');
 
 
-describe('The `Order` model', function () {
+xdescribe('The `Order` model', function () {
 
   /**
    * First we clear the database and recreate the tables before beginning a run

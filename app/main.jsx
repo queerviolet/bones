@@ -19,8 +19,8 @@ import CartContainer from './components/cart/CartContainer';
 import App from './components/App.jsx';
 
 import { fetchUserInfo } from './reducers/userInfoReducer';
-import { fetchAllRocks } from './reducers/rocks';
-import { fetchARock } from './reducers/rock';
+import { fetchAllRocks, fetchAllCategoryRocks } from './reducers/rocks';
+import { fetchARock} from './reducers/rock';
 import { fetchCart } from './reducers/cart';
 
 injectTapEventPlugin();
@@ -56,14 +56,21 @@ const cartEnter = (nextRouterState) => {
   store.dispatch(fetchCart(cartId));
 };
 
+const categoryRocksEnter = (nextRouterState) => {
+  const categoryName = nextRouterState.params.categoryName;
+  store.dispatch(fetchAllCategoryRocks(categoryName));
+};
+
 render(
   <Provider store={store}>
     <MuiThemeProvider>
       <Router history={browserHistory}>
-        <Route path="/" component={App} onEnter = {appEnter}>
-          <IndexRoute component={AllRocksContainer} />
+        <Route path="/" component={App} >
+          <IndexRedirect to='/rocks' />
+          <Route path='/rocks' component={AllRocksContainer} onEnter={appEnter} />
           <Route path="/jokes" component={Jokes} />
           <Route path="/rocks/:id" component={RockContainer} onEnter={rockEnter} />
+          <Route path='/rocks/categories/:categoryName' component={AllRocksContainer} onEnter={categoryRocksEnter} />
           <Route path="/users/:id" component={UserInfoContainer} onEnter={userSignedIn} />
           <Route path="/login" component={LoginContainer} />
           <Route path="/cart/:cartId" component={CartContainer} onEnter={cartEnter} />

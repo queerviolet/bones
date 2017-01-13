@@ -55,7 +55,7 @@ describe('/api/orders', () => {
 
   //*TODO
   describe('PUT', () => {
-    xit('edits a order', () =>
+    it('edits a order', () =>
       request(app)
         .put('/api/orders/edit/1')
         .send({ status: 'cancelled' })
