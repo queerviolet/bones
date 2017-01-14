@@ -1,5 +1,9 @@
 h1, h2, h3, h4, h5 {
-  font-family: 'Amatic SC';
+  font-family: 'Amatic SC', cursive;
+}
+
+div {
+  font-family: 'Josefin Slab', serif;
 }
 
 body {
