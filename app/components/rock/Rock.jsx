@@ -7,7 +7,7 @@ export default ({ rock }) => {
     <div>
       <p>{rock.name}</p>
       <img src = { rock.photo } />
-      <p>Category: {rock.category && rock.category.name}</p>
+      <p id="big-text">Category: {rock.category && rock.category.name}</p>
       <p>Price: {rock.price}</p>
       <p>Color: {rock.color}</p>
       <p>Description: {rock.description}</p>
