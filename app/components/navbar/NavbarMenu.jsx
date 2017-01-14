@@ -5,6 +5,7 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import { ToolbarGroup } from 'material-ui';
 import { PopoverAnimationVertical } from 'material-ui/Popover';
+import { Link } from 'react-router';
 
 export default class NavbarMenu extends React.Component {
 
@@ -46,8 +47,7 @@ export default class NavbarMenu extends React.Component {
           animation={PopoverAnimationVertical}
         >
           <Menu>
-            <MenuItem primaryText="Log In" />
-            <MenuItem primaryText="Sign up" />
+            <Link to='/login'><MenuItem primaryText="Log In" /></Link>
           </Menu>
         </Popover>
       </ToolbarGroup>
