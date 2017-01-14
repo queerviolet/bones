@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 
 // ---------------------> Action type constant <---------------------
 export const RECEIVE_CART_PRODUCTS = 'RECEIVE_CART_PRODUCTS';
-export const Add_CART_PRODUCT = 'Add_CART_PRODUCT';
+export const ADD_CART_PRODUCT = 'Add_CART_PRODUCT';
 export const UPDATE_CART_PRODUCT_QUANTITY = 'RECEIVE_ROCK';
 export const REMOVE_CART_PRODUCT = 'REMOVE_CART_PRODUCT';
 
@@ -30,7 +30,7 @@ export const removeCartProduct = productId => ({
 });
 
 // --------------------> THUNKS <--------------------
-export const fetchCart = (id) => dispatch => {
+export const fetchCart = id => dispatch => {
   axios.get(`/api/carts/${id}`)
     .then(res => {
       dispatch(receiveCartProducts(res.data));
@@ -40,9 +40,19 @@ export const fetchCart = (id) => dispatch => {
     });
 };
 
+export const addProductToCart = (userId, rockId) => dispatch => {
+  axios.get(`/api/cartProducts/user/${userId}/rock/${rockId}`)
+    .then(res => {
+      dispatch(addCartProduct(res.data));
+    })
+    .catch(err => {
+      console.error('Unable to add the product to the cart', err);
+    });
+};
+
 // --------------------> REDUCER <--------------------
 export default function cart(state = [], action) {
-  switch(action.type) {
+  switch (action.type) {
     case RECEIVE_CART_PRODUCTS:
       return action.cartProducts;
     default:
