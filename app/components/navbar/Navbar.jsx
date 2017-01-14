@@ -5,36 +5,52 @@ import { Link, IndexLink } from 'react-router';
 
 export default class Navbar extends Component {
   render() {
+
     return (
-        <Toolbar style={{backgroundColor:'#020202'}}>
-          <ToolbarGroup>
-            <i className="material-icons" style={{color:'white'}}>shop</i>
 
-            <ToolbarGroup>
-              <IndexLink to='/'><FontIcon color='white'>Rockstarz </FontIcon></IndexLink>
-            </ToolbarGroup>
+      <nav className="navbar navbar-fixed-top navbar-inverse">
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+            </button>
+            <IndexLink to='/' className="navbar-brand">Rockstarz</IndexLink>
+          </div>
 
-            <ToolbarGroup>
-              <Link to={'/rocks/categories/companion'}>
-                <FlatButton label="Companion" style={{color:'white'}}></FlatButton>
-              </Link>
-              <Link to={'/rocks/categories/utility'}>
-                <FlatButton label="Utility" style={{color:'white'}}></FlatButton>
-              </Link>
-              <Link to={'/rocks/categories/decorative'}>
-                <FlatButton label="Decorative" style={{color:'white'}} ></FlatButton>
-              </Link>
-              <Link to={'/rocks/categories/miscellaneous'}>
-                <FlatButton label="Miscellaneous" style={{color:'white'}}></FlatButton>
-              </Link>
-            </ToolbarGroup>
+          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-          </ToolbarGroup>
-          <ToolbarGroup>
-            <NavbarMenu />
-          </ToolbarGroup>
-        </Toolbar>
+            <ul className="nav navbar-nav navbar-left">
+              <li></li>
+              <li ><Link to={'/rocks/categories/companion'}>Companion</Link></li>
+              <li><Link to={'/rocks/categories/utility'}>Utility</Link></li>
+              <li><Link to={'/rocks/categories/decorative'}>Decorative</Link></li>
+              <li> <Link to={'/rocks/categories/miscellaneous'}>Miscellaneous</Link></li>
+            </ul>
 
+            <ul className="nav navbar-nav navbar-right">
+              <li>
+                <form className="navbar-form" role="search">
+                  <div className="input-group">
+                      <input type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term" />
+                      <div className="input-group-btn">
+                          <button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
+                      </div>
+                  </div>
+                </form>
+              </li>
+                <li className="dropdown">
+                  <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span className="caret"></span></a>
+                  <ul className="dropdown-menu">
+                    <li><Link to='/login'>Sign in</Link></li>
+                  </ul>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     )
   }
 }
