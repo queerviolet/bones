@@ -1,7 +1,16 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import AllRocks from './AllRocks';
 
-const mapStateToProps = ({ rocks }) => ({ rocks });
+import { addProductToCart } from '../../reducers/cart';
 
-export default connect (mapStateToProps)(AllRocks);
+const mapStateToProps = ({ rocks, auth }, { location: { pathname } }) => ({ auth, rocks, pathname });
+
+const mapDispatchToProps = (dispatch) => ({
+  addProductToCart: (userId, rockId) =>
+    dispatch(addProductToCart(userId, rockId))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AllRocks);
