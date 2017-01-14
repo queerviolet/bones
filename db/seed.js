@@ -27,9 +27,9 @@ const seedCategories = () => db.Promise.each([
 ], category => db.model('categories').create(category));
 
 const seedRocks = () => db.Promise.each([
-  {name: 'pebble', photo: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTUvZcCO4eS5YiWaMPUIqshglRM1ZgX-Ff7zv2oSW3OYb0lWBrT', price: 9.99, weight: 10, color: 'black', description: 'This rock is best companion to your daily life', stock: 2, category_id: 1},
-  {name: 'beach', photo: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTUvZcCO4eS5YiWaMPUIqshglRM1ZgX-Ff7zv2oSW3OYb0lWBrT', price: 9.99, weight: 5, color: 'brown', description: 'This rock is bathed by the sun at the beach', stock: 1, category_id: 3},
-  {name: 'super rock', photo: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTUvZcCO4eS5YiWaMPUIqshglRM1ZgX-Ff7zv2oSW3OYb0lWBrT', price: 99.99, weight: 2, color: 'white', description: 'This rock is how Super man got his power', stock: 4, category_id: 3},
+  {name: 'pebble', photo: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTUvZcCO4eS5YiWaMPUIqshglRM1ZgX-Ff7zv2oSW3OYb0lWBrT', price: 9.99, weight: 10, color: 'black', description: 'This rock is best companion to your daily life', stock: 9, category_id: 1},
+  {name: 'beach', photo: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTUvZcCO4eS5YiWaMPUIqshglRM1ZgX-Ff7zv2oSW3OYb0lWBrT', price: 9.99, weight: 5, color: 'brown', description: 'This rock is bathed by the sun at the beach', stock: 22, category_id: 3},
+  {name: 'super rock', photo: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTUvZcCO4eS5YiWaMPUIqshglRM1ZgX-Ff7zv2oSW3OYb0lWBrT', price: 99.99, weight: 2, color: 'white', description: 'This rock is how Super man got his power', stock: 24, category_id: 3},
 ], rock => db.model('rocks').create(rock));
 
 const seedTags = () => db.Promise.each([
@@ -43,17 +43,17 @@ const seedRockTags = () => db.Promise.each([
 ], rockTags => db.model('rockTags').create(rockTags));
 
 const seedOrders = () => db.Promise.each([
-  {status: 'in-cart', date: '2017-01-10 14:35:38.811-05', user_id: 1, address_id: 1},
-  {status: 'cancelled', date: '2017-01-10 14:35:38.811-05', user_id: 2, address_id: 2},
+  {status: 'processing', date: '2017-01-10 14:35:38.811-05', user_id: 1, address_id: 1},
+  {status: 'completed', date: '2017-01-10 14:35:38.811-05', user_id: 2, address_id: 2},
   {
-    status: 'in-cart', date: '2017-01-10 14:35:38.811-05', user_id: 1, address_id:1
+    status: 'cancelled', date: '2017-01-10 14:35:38.811-05', user_id: 1, address_id: 1
   }
 ], order => db.model('orders').create(order));
 
 const seedCartProducts = () => db.Promise.each([
   {quantity: 5, order_id: 1, rock_id: 1},
   {quantity: 99, order_id: 2, rock_id: 2},
-  {quantity: 9, order_id: 1, rock_id: 1},
+  {quantity: 9, order_id: 1, rock_id: 2},
 
 ], cartProduct => db.model('cartProducts').create(cartProduct));
 
