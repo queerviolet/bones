@@ -9,6 +9,9 @@ import {
   CardActions
 } from 'material-ui/Card';
 
+import UserOrders from './UserOrders';
+import UserAddress from './UserAddress';
+
 const style = {
   margin: 12
 };
@@ -39,9 +42,14 @@ const UserInfoComponent = ({
     <CardText>
       {`Email: ${userInfo.detail.basicInfo.email}`}
       <br />
-      {userInfo.detail.addresses.length && `Default Address: ${displayDefaultAddress(userInfo.detail.addresses).street}`}
+      {
+        userInfo.detail.addresses.length ?
+        <UserAddress
+          defaultAddress={displayDefaultAddress(userInfo.detail.addresses)} /> :
+        ''
+      }
       <br />
-      {`Orders: ${userInfo.detail.orders.length}`}
+      <UserOrders orders={userInfo.detail.orders} />
     </CardText>
 
     <CardMedia
