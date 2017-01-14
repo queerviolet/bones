@@ -6,8 +6,11 @@ import Paper from 'material-ui/Paper';
 import {GridList} from 'material-ui/GridList';
 
 const style = {
+  root: {
+    margin: '1vw'
+  },
   paper: {
-    height: '100vh',
+    height: '80vh',
     textAlign: 'center'
   },
   button: {
@@ -17,9 +20,9 @@ const style = {
 
 const Login = ({ login, logout, signup }) => (
   <div>
-    <GridList>
+    <GridList style={style.root}>
       <Paper zDepth={1} style={style.paper}>
-        <h2>Existing Customers</h2>
+        <h1>Existing Customers</h1>
         <form onSubmit={evt => {
           evt.preventDefault();
           login(evt.target.email.value, evt.target.password.value);
@@ -35,7 +38,7 @@ const Login = ({ login, logout, signup }) => (
       </Paper>
 
       <Paper zDepth={1} style={style.paper}>
-        <h2>New Customer Sign-Up</h2>
+        <h1>New Customer Sign-Up</h1>
         <form onSubmit={evt => {
             evt.preventDefault();
             signup(evt.target.firstName.value, evt.target.lastName.value, evt.target.email.value, evt.target.password.value );
