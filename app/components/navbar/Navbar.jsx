@@ -17,7 +17,7 @@ export default class Navbar extends Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <IndexLink to='/'><a className="navbar-brand">Rockstarz</a></IndexLink>
+            <IndexLink to='/' className="navbar-brand">Rockstarz</IndexLink>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
