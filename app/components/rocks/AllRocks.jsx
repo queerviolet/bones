@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default ({ rocks }) => {
+const AllRocks = ({ rocks }) => {
   console.log('here are all rocks', rocks);
   return (
     <div>
@@ -18,5 +18,7 @@ export default ({ rocks }) => {
      }
 
     </div>
-  )
-}
+  );
+};
+
+export default AllRocks;
