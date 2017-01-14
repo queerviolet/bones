@@ -11,6 +11,7 @@ const styles = {
   },
   gridList: {
     overflowY: 'auto',
+    
   },
   paper: {
     height: '15em',
