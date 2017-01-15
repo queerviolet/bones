@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   rocks: rocksReducer,
   userInfo: userInfoReducer,
   rock: rockReducer,
-  cartProducts: cartReducer,
+  cartProducts: cartReducer
 });
 
 export default rootReducer;
