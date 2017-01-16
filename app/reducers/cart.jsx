@@ -29,8 +29,8 @@ export const actionRemoveCartProduct = productId => ({
 });
 
 // --------------------> THUNKS <--------------------
-export const fetchCart = id => dispatch => {
-  axios.get(`/api/carts/${id}`)
+export const fetchCart = userId => dispatch => {
+  axios.get(`/api/carts/${userId}`)
     .then(res => {
       dispatch(receiveCartProducts(res.data));
     })
@@ -52,7 +52,7 @@ export const addProductToCart = (quantity, userId, rockId) => dispatch => {
 
 //removes entire product from cart
 export const removeCartProduct = (userId, rockId) => dispatch => {
-  axios.delete(`/user/${userId}/rock/${rockId}`)
+  axios.delete(`/api/carts/user/${userId}/rock/${rockId}`)
     .then(() => dispatch(actionRemoveCartProduct(rockId)));
 };
 
@@ -63,11 +63,21 @@ export default function cart(state = [], action) {
     case RECEIVE_CART_PRODUCTS:
       return action.cartProducts;
     case ADD_CART_PRODUCT:
-      return state.map(cartProduct =>
-        cartProduct.id === action.product.id ? Object.assign({}, cartProduct.quantity, cartProduct.quantity + action.product.quantity) : cartProduct.quantity
-      );
+      let exist = false;
+      let nextState;
+      nextState = state.map(product => {
+        if (product.id === action.productData.id) {
+          exist = true;
+          return Object.assign({}, product, {quantity: +action.productData.quantity});
+        } else {
+          return product;
+        }
+      });
+      if (!exist) nextState = [...state, action.productData];
+      return nextState;
     case REMOVE_CART_PRODUCT:
-      return state.filter(cartProduct => cartProduct.product.id !== action.productId);
+      console.log('this is the state', state);
+      return state.filter(cartProduct => cartProduct.rock_id !== action.productId);
     default:
       return state;
   }

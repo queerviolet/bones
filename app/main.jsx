@@ -52,8 +52,8 @@ const userSignedIn = (nextRouterState) => {
 };
 
 const cartEnter = (nextRouterState) => {
-  const cartId = nextRouterState.params.cartId;
-  store.dispatch(fetchCart(cartId));
+  const userId = nextRouterState.params.userId;
+  store.dispatch(fetchCart(userId));
 };
 
 const categoryRocksEnter = (nextRouterState) => {
@@ -73,7 +73,7 @@ render(
           <Route path='/rocks/categories/:categoryName' component={AllRocksContainer} onEnter={categoryRocksEnter} />
           <Route path="/users/:id" component={UserInfoContainer} onEnter={userSignedIn} />
           <Route path="/login" component={LoginContainer} />
-          <Route path="/cart/:cartId" component={CartContainer} onEnter={cartEnter} />
+          <Route path="/cart/:userId" component={CartContainer} onEnter={cartEnter} />
 
         </Route>
       </Router>

@@ -35,7 +35,7 @@ module.exports = app
   .use(require('express-session')({
     secret: 'IKnowWhereYouLive',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: true
   }))
 
   // Body parsing middleware
