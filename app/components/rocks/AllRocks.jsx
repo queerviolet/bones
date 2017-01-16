@@ -44,9 +44,10 @@ const styles = {
 const AllRocks = ({
   rocks,
   pathname,
-  changeErrorText,
+  updateQuantity,
   addProductToCart,
-  auth: { id }
+  auth: { id },
+  itemQuantity: { quantity, errorText }
 }) => {
   const category = pathname.split('/')[3];
   const selectTitle = (() => {
@@ -60,9 +61,6 @@ const AllRocks = ({
     selectTitle.slice(1) +
     ' Rockz';
   })();
-
-  let quantity = 0;
-  let errorText = null;
 
   return (
     <div style={styles.root}>
@@ -93,7 +91,7 @@ const AllRocks = ({
                       className="material-icons"
                       style={styles.iconStyles}
                       onClick={() => {
-                        quantity = 0;
+                        updateQuantity(0);
                         console.log('item quantity reset', quantity);
                       }}
                     >
@@ -110,11 +108,13 @@ const AllRocks = ({
                     name="itemQuantity"
                     errorText={errorText}
                     floatingLabelText="Quantity"
-                    onTouchTap={evt => evt.stopPropagation()}
+                    onTouchTap={evt => {
+                      evt.stopPropagation();
+                      evt.preventDefault();
+                    }}
                     onChange={evt => {
-                      quantity = evt.target.value;
-                      errorText = changeErrorText(quantity);
-                      console.log('current quantity input', quantity);
+                      updateQuantity(Number(evt.target.value));
+                      console.log('current quantity input', evt.target.value);
                       console.log('ERROR TEXT', errorText);
                     }}
                     hintText="How many would you like to order?"

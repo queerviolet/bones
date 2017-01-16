@@ -2,16 +2,15 @@ import { connect } from 'react-redux';
 import AllRocks from './AllRocks';
 
 import { addProductToCart } from '../../reducers/cart';
+import { updateQuantity } from '../../reducers/itemQuantityReducer';
 
-const mapStateToProps = ({ rocks, auth }, { location: { pathname } }) => ({ auth, rocks, pathname });
+const mapStateToProps = ({ rocks, auth, itemQuantity }, { location: { pathname } }) => ({ auth, rocks, pathname, itemQuantity });
 
 const mapDispatchToProps = dispatch => ({
   addProductToCart: (quantity, userId, rockId) =>
     dispatch(addProductToCart(quantity, userId, rockId)),
-  changeErrorText: quantity => {
-    if (quantity < 0) return 'You must enter a valid quantity';
-    dispatch(() => ({ type: null }));
-  }
+  updateQuantity: amount =>
+    dispatch(updateQuantity(amount))
 });
 
 export default connect(
