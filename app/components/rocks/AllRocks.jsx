@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { TextField } from 'material-ui/';
 import { GridList, GridTile } from 'material-ui/GridList';
 import {
   Paper,
@@ -74,7 +75,6 @@ const AllRocks = ({
                     key={rock.id + 'a'}
                     tooltip="Click to choose quantity"
                     tooltipPosition="top-left"
-                    onItemTouchTap={event => addProductToCart(id, rock.id)}
                   >
                     <i
                       className="material-icons"
@@ -87,8 +87,17 @@ const AllRocks = ({
                 anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
                 targetOrigin={{horizontal: 'right', vertical: 'bottom'}}
               >
-                <MenuItem primaryText="Add To Cart" />
-                <MenuItem primaryText="Item Quantity" value="number" />
+                <MenuItem
+                  primaryText="Add To Cart"
+                  onTouchTap={(event) => addProductToCart(quantity, id, rock.id)}
+                >
+                  <TextField
+                    name="itemQuantity"
+                    hintText="Hint Text"
+                    errorText="You must order at least one item."
+                    floatingLabelText="Quantity"
+                  />
+                </MenuItem>
               </IconMenu>
             }
           >
