@@ -90,7 +90,8 @@ const AllRocks = ({
                 <MenuItem
                   primaryText="Add To Cart"
                   onTouchTap={(event) => addProductToCart(quantity, id, rock.id)}
-                >
+                />
+                <MenuItem>
                   <TextField
                     name="itemQuantity"
                     hintText="Hint Text"
