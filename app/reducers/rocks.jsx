@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // ---------------------> Action type constant <---------------------
-export const RECEIVE_ALL_ROCKS= 'RECEIVE_ALL_ROCKS';
+export const RECEIVE_ALL_ROCKS = 'RECEIVE_ALL_ROCKS';
 export const RECEIVE_ALL_CATEGORY_ROCKS = 'RECEIVE_ALL_CATEGORY_ROCKS';
 
 // ----------------> ACTION CREATORS <----------------
@@ -14,7 +14,7 @@ export const receiveAllRocks = rocks => ({
 export const receiveAllCategoryRocks = rocks => ({
   type: RECEIVE_ALL_CATEGORY_ROCKS,
   rocks
-})
+});
 
 // --------------------> THUNKS <--------------------
 

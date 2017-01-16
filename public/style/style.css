@@ -7,5 +7,7 @@ div {
 }
 
 body {
+  height: 100vh;
   padding-top: 70px;
+  background: linear-gradient(to right bottom, grey, white);
 }

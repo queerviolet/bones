@@ -14,8 +14,9 @@ export const receiveCartProducts = cartProducts => ({
   cartProducts
 });
 
-export const addCartProduct = product => ({
+export const addCartProduct = (quantity, product) => ({
   type: ADD_CART_PRODUCT,
+  quantity,
   product
 });
 
@@ -40,8 +41,8 @@ export const fetchCart = id => dispatch => {
     });
 };
 
-export const addProductToCart = (userId, rockId) => dispatch => {
-  axios.get(`/api/cartProducts/user/${userId}/rock/${rockId}`)
+export const addProductToCart = (quantity, userId, rockId) => dispatch => {
+  axios.post(`/api/cartProducts/user/${userId}/rock/${rockId}`)
     .then(res => {
       dispatch(addCartProduct(res.data));
     })

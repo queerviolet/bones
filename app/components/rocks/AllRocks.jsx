@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Paper, IconButton, Subheader } from 'material-ui';
 import { GridList, GridTile } from 'material-ui/GridList';
+import {
+  Paper,
+  IconMenu,
+  MenuItem,
+  Subheader,
+  IconButton
+} from 'material-ui';
 
 const styles = {
   root: {
@@ -11,11 +17,19 @@ const styles = {
   },
   gridList: {
     overflowY: 'auto',
-    
+  },
+  title: {
   },
   paper: {
-    height: '15em',
-    width: '15em',
+    height: '20em',
+    width: '20em',
+    margin: 34,
+    padding: 10,
+    textAlign: 'left'
+  },
+  cartDropdown: {
+    height: '1em',
+    width: '4em',
     margin: 34,
     textAlign: 'left'
   },
@@ -35,7 +49,10 @@ const AllRocks = ({
     return category ? category : 'All Rocks';
   })();
 
-  const title = selectTitle[0].toUpperCase() + selectTitle.slice(1);
+  const title =
+    selectTitle[0].toUpperCase() +
+    selectTitle.slice(1) +
+    ' Rockz';
 
   return (
     <div style={styles.root}>
@@ -51,12 +68,28 @@ const AllRocks = ({
             title={rock.name}
             subtitle={<span>$<b>{(rock.price) / 100}</b></span>}
             actionIcon={
-              <IconButton onClick={() => addProductToCart(id, rock.id)}><i
-                className="material-icons"
-                style={styles.iconStyles}
+              <IconMenu
+                iconButtonElement={
+                  <IconButton
+                    key={rock.id + 'a'}
+                    tooltip="Click to choose quantity"
+                    tooltipPosition="top-left"
+                    onItemTouchTap={event => addProductToCart(id, rock.id)}
+                  >
+                    <i
+                      className="material-icons"
+                      style={styles.iconStyles}
+                    >
+                      add_shopping_cart
+                    </i>
+                  </IconButton>
+                }
+                anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
+                targetOrigin={{horizontal: 'right', vertical: 'bottom'}}
               >
-                add_shopping_cart
-              </i></IconButton>
+                <MenuItem primaryText="Add To Cart" />
+                <MenuItem primaryText="Item Quantity" value="number" />
+              </IconMenu>
             }
           >
             <Link to={`/rocks/${rock.id}`}><img src={rock.photo} /></Link>
@@ -69,3 +102,6 @@ const AllRocks = ({
 };
 
 export default AllRocks;
+
+//this
+//onClick={() => addProductToCart(id, rock.id)}
