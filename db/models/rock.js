@@ -19,7 +19,7 @@ const Rock = db.define('rocks', {
     allowNull: false
   },
   weight: Sequelize.FLOAT,
-  color: Sequelize.ENUM('black', 'brown', 'grey', 'white', 'blue'),
+  color: Sequelize.ENUM('black', 'brown', 'grey', 'white', 'blue', 'green', 'human', 'red', 'pink'),
   description: Sequelize.TEXT,
   stock: Sequelize.INTEGER
 });
