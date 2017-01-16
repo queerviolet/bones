@@ -10,15 +10,34 @@ const router = require('express').Router();
 
 
 // Get all rocks pertaining to an order
-router.get('/:orderId', (req, res, next) => {
-  CartProduct.findAll({
-    where: {order_id:req.params.orderId},
-    include: [Rock]
+router.get('/:userId', (req, res, next) => {
+  let modelWhere;
+  //if it a guest, pass req.params as 'undefined'
+  console.log(req.params.userId);
+  if (req.params.userId === 'undefined') {
+    modelWhere = {
+      status: 'in-cart',
+      sessionId: req.session.id
+    };
+  } else {
+    modelWhere = {
+      user_id: req.params.userId,
+      status: 'in-cart'
+    };
+  }
+  Order.findOne({
+    where: modelWhere
   })
-    .then(cartProducts => {
-      res.send(cartProducts);
-    })
-    .catch(next);
+  .then(order => {
+    return CartProduct.findAll({
+      where: {order_id: order.id},
+      include: [Rock, Order]
+    });
+  })
+  .then(cartProducts => {
+    res.send(cartProducts);
+  })
+  .catch(next);
 });
 
 // Add product to existing shopping cart
