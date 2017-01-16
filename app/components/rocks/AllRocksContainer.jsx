@@ -5,9 +5,9 @@ import { addProductToCart } from '../../reducers/cart';
 
 const mapStateToProps = ({ rocks, auth, cartIcon }, { location: { pathname } }) => ({ auth, rocks, cartIcon, pathname });
 
-const mapDispatchToProps = (dispatch) => ({
-  addProductToCart: (userId, rockId) =>
-    dispatch(addProductToCart(userId, rockId)),
+const mapDispatchToProps = dispatch => ({
+  addProductToCart: (quantity, userId, rockId) =>
+    dispatch(addProductToCart(quantity, userId, rockId)),
 });
 
 export default connect(
