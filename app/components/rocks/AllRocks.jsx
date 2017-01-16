@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { TextField } from 'material-ui/';
 import { GridList, GridTile } from 'material-ui/GridList';
 import {
   Paper,
   IconMenu,
   MenuItem,
   Subheader,
+  TextField,
   IconButton
 } from 'material-ui';
 
@@ -29,12 +29,6 @@ const styles = {
     margin: 34,
     padding: 10,
     // textAlign: 'left'
-  },
-  cartDropdown: {
-    height: '1em',
-    width: '4em',
-    margin: 34,
-    textAlign: 'left'
   },
   iconStyles: {
     marginRight: 24

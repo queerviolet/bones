@@ -1,9 +1,23 @@
-import React from 'react';
 import { connect } from 'react-redux';
-import Rock from './Rock';
+import SingleRock from './Rock';
 
-const mapStateToProps = ({rock}) => ({rock});
+import { addProductToCart } from '../../reducers/cart';
+import { updateQuantity } from '../../reducers/itemQuantityReducer';
 
-const mapDispatchToProps = () => ({})
+const mapStateToProps = ({ rock, auth, itemQuantity }) => ({
+  rock,
+  auth,
+  itemQuantity
+});
 
-export default connect(mapStateToProps)(Rock);
+const mapDispatchToProps = dispatch => ({
+  addProductToCart: (quantity, userId, rockId) =>
+    dispatch(addProductToCart(quantity, userId, rockId)),
+  updateQuantity: amount =>
+    dispatch(updateQuantity(amount))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SingleRock);
