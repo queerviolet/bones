@@ -5,7 +5,17 @@ const style = {
   marginRight: 5
 };
 
-const Navbar = ({ auth, userInfo }) => {
+const Navbar = ({ auth, logout }) => {
+
+  const dropdownItem = (typeof auth === 'string') ?
+    (<li><Link to="/login">Sign in</Link></li>) :
+    (<button type="button" onClick={logout}>Log Out</button>);
+
+  const user = (typeof auth === 'string') ?
+    'Guest' :
+    auth.firstName;
+
+
   return (
     <nav className="navbar navbar-fixed-top navbar-inverse">
       <div className="container-fluid">
@@ -28,9 +38,13 @@ const Navbar = ({ auth, userInfo }) => {
             <li> <Link to={'/rocks/categories/miscellaneous'}>Miscellaneous</Link></li>
           </ul>
 
-          <p style={style} className="navbar-text pull-right">{`Hello ${userInfo}`}</p>
 
           <ul className="nav navbar-nav navbar-right">
+            <li>
+              <p style={style} className="navbar-text pull-right">
+                {`Hello ${user}`}
+              </p>
+            </li>
             <li>
               <form className="navbar-form" role="search">
                 <div className="input-group">
@@ -41,12 +55,12 @@ const Navbar = ({ auth, userInfo }) => {
                 </div>
               </form>
             </li>
-              <li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span className="caret" /></a>
-                <ul className="dropdown-menu">
-                  <li><Link to="/login">Sign in</Link></li>
-                </ul>
-              </li>
+            <li className="dropdown">
+              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span className="caret" /></a>
+              <ul className="dropdown-menu">
+                {dropdownItem}
+              </ul>
+            </li>
           </ul>
         </div>
       </div>

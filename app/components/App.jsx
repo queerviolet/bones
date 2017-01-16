@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import Navbar from './navbar/Navbar';
+import NavbarContainer from './navbar/NavbarContainer';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <NavbarContainer />
         { this.props.children }
 
       </div>
