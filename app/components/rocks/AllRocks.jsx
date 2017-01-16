@@ -17,7 +17,9 @@ const styles = {
     justifyContent: 'space-around'
   },
   gridList: {
-    overflowY: 'auto',
+    width: '100vw',
+    margin: 'auto',
+    overflowY: 'auto'
   },
   title: {
   },
@@ -26,7 +28,7 @@ const styles = {
     width: '20em',
     margin: 34,
     padding: 10,
-    textAlign: 'left'
+    // textAlign: 'left'
   },
   cartDropdown: {
     height: '1em',
@@ -42,29 +44,40 @@ const styles = {
 const AllRocks = ({
   rocks,
   pathname,
+  changeErrorText,
   addProductToCart,
   auth: { id }
 }) => {
   const category = pathname.split('/')[3];
   const selectTitle = (() => {
-    return category ? category : 'All Rocks';
+    return category ? category : 'All Rockz';
   })();
 
-  const title =
+  const title = (() => {
+    return selectTitle === 'All Rockz' ?
+    selectTitle :
     selectTitle[0].toUpperCase() +
     selectTitle.slice(1) +
     ' Rockz';
+  })();
+
+  let quantity = 0;
+  let errorText = null;
 
   return (
     <div style={styles.root}>
+      <Subheader><h1>{title}</h1></Subheader>
       <GridList
+        cols={4}
+        padding={4}
         cellHeight="auto"
         style={styles.gridList}
       >
-        <Subheader><h1>{title}</h1></Subheader>
         {rocks && rocks.map(rock => (
           <Paper key={rock.id} style={styles.paper} zDepth={4} rounded={false}>
           <GridTile
+            cols={1}
+            rows={1}
             key={rock.id}
             title={rock.name}
             subtitle={<span>$<b>{(rock.price) / 100}</b></span>}
@@ -79,6 +92,10 @@ const AllRocks = ({
                     <i
                       className="material-icons"
                       style={styles.iconStyles}
+                      onClick={() => {
+                        quantity = 0;
+                        console.log('item quantity reset', quantity);
+                      }}
                     >
                       add_shopping_cart
                     </i>
@@ -87,18 +104,30 @@ const AllRocks = ({
                 anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}
                 targetOrigin={{horizontal: 'right', vertical: 'bottom'}}
               >
-                <MenuItem
-                  primaryText="Add To Cart"
-                  onTouchTap={(event) => addProductToCart(quantity, id, rock.id)}
-                />
                 <MenuItem>
                   <TextField
+                    type="number"
                     name="itemQuantity"
-                    hintText="Hint Text"
-                    errorText="You must order at least one item."
+                    errorText={errorText}
                     floatingLabelText="Quantity"
+                    onTouchTap={evt => evt.stopPropagation()}
+                    onChange={evt => {
+                      quantity = evt.target.value;
+                      errorText = changeErrorText(quantity);
+                      console.log('current quantity input', quantity);
+                      console.log('ERROR TEXT', errorText);
+                    }}
+                    hintText="How many would you like to order?"
                   />
                 </MenuItem>
+                <MenuItem
+                  primaryText="Add To Cart"
+                  onTouchTap={evt => {
+                    evt.preventDefault();
+                    addProductToCart(quantity, id, rock.id);
+                    console.log('The quantity added to the cart:', quantity);
+                  }}
+                />
               </IconMenu>
             }
           >
@@ -112,6 +141,3 @@ const AllRocks = ({
 };
 
 export default AllRocks;
-
-//this
-//onClick={() => addProductToCart(id, rock.id)}
