@@ -128,20 +128,5 @@ router.delete('/user/:userId/order/:orderId/rock/:rockId', (req, res, next) => {
 
   });
 })
-// router.put('/edit/:id', (req, res, next) => {
-//   Order.findOne({
-//     where: { id: req.params.id }
-//   })
-//     .then(order => order.update(req.body))
-//     .then(updatedOrder => res.status(204).send(updatedOrder))
-//     .catch(next);
-//   // Order.update(req.body, { where: { id: req.params.id }, returning: true
-//   // })
-//   //   .then(updatedOrder => {
-//   //     // console.log(updatedOrder[1][0].dataValues)
-//   //     res.status(204).send(updatedOrder[1][0].dataValues);
-//   //   })
-//   //   .catch(next);
-// });
 
 module.exports = router;
