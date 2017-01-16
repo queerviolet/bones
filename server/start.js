@@ -32,9 +32,10 @@ prettyError.skipPackage('express')
 
 module.exports = app
   // We'll store the whole session in a cookie
-  .use(require('cookie-session')({
-    name: 'session',
-    keys: [process.env.SESSION_SECRET || 'an insecure secret key'],
+  .use(require('express-session')({
+    secret: 'IKnowWhereYouLive',
+    resave: false,
+    saveUninitialized: false
   }))
 
   // Body parsing middleware

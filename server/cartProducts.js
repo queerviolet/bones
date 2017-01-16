@@ -25,11 +25,21 @@ router.get('/:orderId', (req, res, next) => {
 // Pass in req.body.rockQuantity. If rockQuanity is not set, it will be set to 1 by default.
 router.post('/user/:userId/rock/:rockId', (req, res, next) => {
   // Find the shopping cart of the user. If the shopping cart doesn't exist, create one
-  Order.findOrCreate({
-    where: {
+  let modelWhere;
+  //if it a guest, pass req.params as 'undefined'
+  if (req.params.userId === 'undefined') {
+    modelWhere = {
+      status: 'in-cart',
+      sessionId: req.session.id
+    };
+  } else {
+    modelWhere = {
       user_id: req.params.userId,
       status: 'in-cart'
-    },
+    };
+  }
+  Order.findOrCreate({
+    where: modelWhere,
     include: [CartProduct]
   })
   .then(order => {
@@ -78,8 +88,8 @@ router.post('/user/:userId/rock/:rockId', (req, res, next) => {
             rock_id: req.params.rockId,
             quantity: incrementQuantity
           })
-          .then(cartProducts => {
-            res.json(cartProducts)
+          .then(cartProduct => {
+            res.json(cartProduct)
           })
       }
 
@@ -90,37 +100,60 @@ router.post('/user/:userId/rock/:rockId', (req, res, next) => {
   .catch(next);
 });
 
+
 // Delete the whole shopping cart or order
-router.delete('/user/:userId/order/:orderId', (req, res, next) => {
-  Order.findOne({
-    where: {
+//Logged in Users
+router.delete('/user/:userId', (req, res, next) => {
+  let modelWhere;
+  //if it a guest, pass req.params as 'undefined'
+  if (req.params.userId === 'undefined') {
+    modelWhere = {
+      status: 'in-cart',
+      sessionId: req.session.id
+    };
+  } else {
+    modelWhere = {
       user_id: req.params.userId,
       status: 'in-cart'
-    },
+    };
+  }
+  Order.findOne({
+    where: modelWhere,
     include: [CartProduct]
   })
   .then(order => {
     CartProduct.destroy({
-      where: {order_id: req.params.orderId}
+      where: {order_id: order.id}
     })
     res.sendStatus(200);
 
   });
 });
 
+
 // Delete particular rock from the order
-router.delete('/user/:userId/order/:orderId/rock/:rockId', (req, res, next) => {
-  Order.findOne({
-    where: {
+router.delete('/user/:userId/rock/:rockId', (req, res, next) => {
+  let modelWhere;
+  //if it a guest, pass req.params as 'undefined'
+  if (req.params.userId === 'undefined') {
+    modelWhere = {
+      status: 'in-cart',
+      sessionId: req.session.id
+    };
+  } else {
+    modelWhere = {
       user_id: req.params.userId,
       status: 'in-cart'
-    },
+    };
+  }
+  Order.findOne({
+    where: modelWhere,
     include: [CartProduct]
   })
   .then(order => {
     CartProduct.destroy({
       where: {
-        order_id: req.params.orderId,
+        order_id: order.id,
         rock_id: req.params.rockId
       }
     })
