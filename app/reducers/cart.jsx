@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { browserHistory } from 'react-router';
 
 // ---------------------> Action type constant <---------------------
 export const RECEIVE_CART_PRODUCTS = 'RECEIVE_CART_PRODUCTS';
-export const ADD_CART_PRODUCT = 'Add_CART_PRODUCT';
+export const ADD_CART_PRODUCT = 'ADD_CART_PRODUCT';
 export const UPDATE_CART_PRODUCT_QUANTITY = 'RECEIVE_ROCK';
 export const REMOVE_CART_PRODUCT = 'REMOVE_CART_PRODUCT';
 
@@ -14,10 +13,9 @@ export const receiveCartProducts = cartProducts => ({
   cartProducts
 });
 
-export const addCartProduct = (quantity, product) => ({
+export const addCartProduct = (productData) => ({
   type: ADD_CART_PRODUCT,
-  quantity,
-  product
+  productData
 });
 
 export const updateCartProduct = product => ({
@@ -25,7 +23,7 @@ export const updateCartProduct = product => ({
   product
 });
 
-export const removeCartProduct = productId => ({
+export const actionRemoveCartProduct = productId => ({
   type: REMOVE_CART_PRODUCT,
   productId
 });
@@ -41,8 +39,9 @@ export const fetchCart = id => dispatch => {
     });
 };
 
+//this will update quantity to cart (adds and subtracts quantity), it will also add product to cart
 export const addProductToCart = (quantity, userId, rockId) => dispatch => {
-  axios.post(`/api/cartProducts/user/${userId}/rock/${rockId}`)
+  axios.post(`/api/carts/user/${userId}/rock/${rockId}`, {rockQuantity: quantity})
     .then(res => {
       dispatch(addCartProduct(res.data));
     })
@@ -51,11 +50,24 @@ export const addProductToCart = (quantity, userId, rockId) => dispatch => {
     });
 };
 
+//removes entire product from cart
+export const removeCartProduct = (userId, rockId) => dispatch => {
+  axios.delete(`/user/${userId}/rock/${rockId}`)
+    .then(() => dispatch(actionRemoveCartProduct(rockId)));
+};
+
+
 // --------------------> REDUCER <--------------------
 export default function cart(state = [], action) {
   switch (action.type) {
     case RECEIVE_CART_PRODUCTS:
       return action.cartProducts;
+    case ADD_CART_PRODUCT:
+      return state.map(cartProduct =>
+        cartProduct.id === action.product.id ? Object.assign({}, cartProduct.quantity, cartProduct.quantity + action.product.quantity) : cartProduct.quantity
+      );
+    case REMOVE_CART_PRODUCT:
+      return state.filter(cartProduct => cartProduct.product.id !== action.productId);
     default:
       return state;
   }
