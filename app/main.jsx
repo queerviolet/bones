@@ -15,6 +15,7 @@ import LoginContainer from './components/login/LoginContainer';
 import AllRocksContainer from './components/rocks/AllRocksContainer';
 import RockContainer from './components/rock/RockContainer';
 import CartContainer from './components/cart/CartContainer';
+import AdminContainer from './components/admin/AdminContainer';
 
 import App from './components/App.jsx';
 
@@ -22,6 +23,7 @@ import { fetchUserInfo } from './reducers/userInfoReducer';
 import { fetchAllRocks, fetchAllCategoryRocks } from './reducers/rocks';
 import { fetchARock} from './reducers/rock';
 import { fetchCart } from './reducers/cart';
+import { fetchUsers } from './reducers/admin';
 
 injectTapEventPlugin();
 
@@ -39,6 +41,10 @@ injectTapEventPlugin();
 
 const appEnter = () => {
   store.dispatch(fetchAllRocks());
+};
+
+const adminEnter = () => {
+  store.dispatch(fetchUsers());
 };
 
 const rockEnter = (nextRouterState) => {
@@ -68,6 +74,7 @@ render(
         <Route path="/" component={App} >
           <IndexRedirect to='/rocks' />
           <Route path='/rocks' component={AllRocksContainer} onEnter={appEnter} />
+          <Route path='/admin' component={AdminContainer} onEnter={adminEnter} />
           <Route path="/jokes" component={Jokes} />
           <Route path="/rocks/:id" component={RockContainer} onEnter={rockEnter} />
           <Route path='/rocks/categories/:categoryName' component={AllRocksContainer} onEnter={categoryRocksEnter} />
