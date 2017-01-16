@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {GridList} from 'material-ui/Gridlist';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
