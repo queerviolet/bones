@@ -11,9 +11,10 @@ const Rocks = db.model('rocks');
 const {mustBeLoggedIn, forbidden} = require('./auth.filters');
 const router = require('express').Router();
 
-
-router.get('/', forbidden('only admins can list users'), (req, res, next) =>
-	User.findAll()
+//commented out forbidden since we don't have that
+//forbidden('only admins can list users'),
+router.get('/', (req, res, next) =>
+	User.findAll({ include: [Order, Address] })
 	 .then(users => res.json(users))
 	 .catch(next));
 
@@ -32,7 +33,7 @@ router.get('/:id', mustBeLoggedIn, (req, res, next) =>
 router.put('/:id', (req, res, next) => {
 	User.update(req.body, { where: { id: req.params.id }, returning: true })
 	.then(updatedUser => {
-    res.status(204).send(updatedUser[1][0].dataValues);
+    res.status(200).send(updatedUser[1][0]);
 
   })
   .catch(next);
@@ -46,6 +47,19 @@ router.get('/:userId/addresses', (req, res, next) => {
     }
   })
     .then(addresses => res.json(addresses))
+    .catch(next);
+});
+
+router.put('/:userId/addresses', (req, res, next) => {
+  Address.update(req.body, {
+    where: {
+      user_id: req.params.userId
+    }, returning: true
+  })
+    .then(addresses => {
+			console.log('addresses-----------------',addresses)
+			res.send(addresses[1][0])
+		})
     .catch(next);
 });
 
