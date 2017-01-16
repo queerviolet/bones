@@ -1,7 +1,7 @@
 'use strict';
 
 const Sequelize = require('sequelize');
-const db = require('App/db');
+const db = require('APP/db');
 
 const cartProduct = db.define('cartProducts', {
   quantity: {
