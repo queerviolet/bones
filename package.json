@@ -37,6 +37,7 @@
     "cookie-session": "^2.0.0-alpha.1",
     "enzyme": "^2.5.1",
     "express": "^4.14.0",
+    "express-session": "^1.14.2",
     "material-ui": "^0.16.6",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
