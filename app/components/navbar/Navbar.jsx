@@ -7,13 +7,25 @@ const style = {
 
 const Navbar = ({ auth, logout }) => {
 
-  const dropdownItem = (typeof auth === 'string') ?
-    (<li><Link to="/login">Sign in</Link></li>) :
-    (<button type="button" onClick={logout}>Log Out</button>);
+  const notLoggedIn = typeof auth === 'string';
+  const isAdmin = !notLoggedIn && auth.isAdmin;
+  const user = notLoggedIn ? 'Guest' : auth.firstName;
 
-  const user = (typeof auth === 'string') ?
-    'Guest' :
-    auth.firstName;
+  const adminLink = isAdmin ? (<li><Link to={`/admin`}>Admin Page</Link></li>) : null;
+
+  const dropdownMenu = notLoggedIn ? (
+    <ul className="dropdown-menu">
+      <li><Link to="/login">Sign in</Link></li>
+      <li><Link to={`/cart/undefined`}>View Cart</Link></li>
+    </ul>
+  ) : (
+    <ul className="dropdown-menu">
+      {adminLink}
+      <li><Link to={`/users/${auth.id}`}>My Profile</Link></li>
+      <li><Link to={`/cart/${auth.id}`}>View Cart</Link></li>
+      <li><button type="button" className="btn" onClick={logout}>Log Out</button></li>
+    </ul>
+  );
 
 
   return (
@@ -38,7 +50,6 @@ const Navbar = ({ auth, logout }) => {
             <li> <Link to={'/rocks/categories/miscellaneous'}>Miscellaneous</Link></li>
           </ul>
 
-
           <ul className="nav navbar-nav navbar-right">
             <li>
               <p style={style} className="navbar-text pull-right">
@@ -57,9 +68,7 @@ const Navbar = ({ auth, logout }) => {
             </li>
             <li className="dropdown">
               <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span className="caret" /></a>
-              <ul className="dropdown-menu">
-                {dropdownItem}
-              </ul>
+              {dropdownMenu}
             </li>
           </ul>
         </div>

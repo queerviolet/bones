@@ -24,8 +24,8 @@ const styles = {
   title: {
   },
   paper: {
-    height: '20em',
-    width: '20em',
+    height: '21vw',
+    width: '21vw',
     margin: 34,
     padding: 10,
     // textAlign: 'left'

@@ -8,6 +8,7 @@ import {
   TextField
 } from 'material-ui';
 
+
 const style = {
   root: {
     margin: '1vw'
@@ -19,6 +20,7 @@ const style = {
     textAlign: 'left'
   }
 };
+
 
 export default ({ cartProducts, auth, cartAddProduct, cartRemoveProduct }) => {
   let totalPrice = 0;
@@ -57,3 +59,4 @@ export default ({ cartProducts, auth, cartAddProduct, cartRemoveProduct }) => {
     </div>
   );
 };
+
