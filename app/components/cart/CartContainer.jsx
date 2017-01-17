@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import Cart from './Cart';
 import { addProductToCart, removeCartProduct } from 'APP/app/reducers/cart';
 
-const mapStateToProps = ({cartProducts}) => ({cartProducts});
+const mapStateToProps = ({cartProducts, auth}) => ({cartProducts, auth});
 
 const mapDispatchToProps = (dispatch) => {
   return {

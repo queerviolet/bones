@@ -72,7 +72,7 @@ const AllRocks = ({
             rows={1}
             key={rock.id}
             title={rock.name}
-            subtitle={<span>$<b>{(rock.price) / 100}</b></span>}
+            subtitle={<span>$<b>{(rock.price / 100).toFixed(2)}</b></span>}
             actionIcon={
               <IconMenu
                 iconButtonElement={

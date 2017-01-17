@@ -59,7 +59,7 @@ const SingleRock = ({
         </GridTile>
         <GridTile cols={2}>
           <h1>{rock.name}</h1>
-          <h2>{`Price: $${rock.price / 100}`}</h2>
+          <h2>{`Price: $${(rock.price / 100).toFixed(2)}`}</h2>
           <h2>{`Category: ${rock.category && rock.category.name}`}</h2>
           <h2>{`Color: ${rock.color}`}</h2>
           <p>{rock.description}</p>
