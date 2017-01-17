@@ -4,7 +4,12 @@ import AllRocks from './AllRocks';
 import { addProductToCart } from '../../reducers/cart';
 import { updateQuantity } from '../../reducers/itemQuantityReducer';
 
-const mapStateToProps = ({ rocks, auth, itemQuantity }, { location: { pathname } }) => ({ auth, rocks, pathname, itemQuantity });
+const mapStateToProps = ({ rocks, auth, itemQuantity }, { location: { pathname } }) => ({
+  auth,
+  rocks,
+  pathname,
+  itemQuantity
+});
 
 const mapDispatchToProps = dispatch => ({
   addProductToCart: (quantity, userId, rockId) =>
