@@ -1,6 +1,7 @@
 const initialState = {
   quantity: 0,
-  errorText: ''
+  errorText: '',
+  isDisabled: true
 };
 
 // ---------------------> Action type constant <---------------------
@@ -24,6 +25,7 @@ const itemQuantityReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_ITEM_QUANTITY:
       nextState.quantity = action.amount;
+      nextState.isDisabled = action.amount <= 0;
       nextState.errorText = (action.amount <= 0) ? 'Please enter a valid amount.' : '';
       return nextState;
 
