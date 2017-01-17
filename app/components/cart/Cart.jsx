@@ -7,10 +7,10 @@ export default({ cartProducts, cartAddProduct, cartRemoveProduct }) => {
   return(
     <div>
     {
-      cartProducts.length && cartProducts.map(cartProduct => {
+      cartProducts.map(cartProduct => {
         return (
           <ul key = {cartProduct.id}>
-            <li><Link to={`/rocks/${cartProduct.rock.id}`}>{ cartProduct.rock && cartProduct.rock.name}</Link></li>
+            <li><Link to={cartProduct.rock && `/rocks/${cartProduct.rock.id}`}>{ cartProduct.rock && cartProduct.rock.name}</Link></li>
             <li>${ cartProduct.rock && cartProduct.rock.price}</li>
 
             <li> {cartProduct.quantity} </li>
