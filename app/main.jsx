@@ -1,8 +1,8 @@
 'use strict';
 import React from 'react';
-import {Router, Route, IndexRedirect, IndexRoute, browserHistory} from 'react-router';
+import {Router, Route, IndexRedirect, browserHistory} from 'react-router';
 import {render} from 'react-dom';
-import {connect, Provider} from 'react-redux';
+import {Provider} from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -72,12 +72,12 @@ render(
     <MuiThemeProvider>
       <Router history={browserHistory}>
         <Route path="/" component={App} >
-          <IndexRedirect to='/rocks' />
-          <Route path='/rocks' component={AllRocksContainer} onEnter={appEnter} />
-          <Route path='/admin' component={AdminContainer} onEnter={adminEnter} />
+          <IndexRedirect to="/rocks" />
+          <Route path="/rocks" component={AllRocksContainer} onEnter={appEnter} />
+          <Route path="/admin" component={AdminContainer} onEnter={adminEnter} />
           <Route path="/jokes" component={Jokes} />
           <Route path="/rocks/:id" component={RockContainer} onEnter={rockEnter} />
-          <Route path='/rocks/categories/:categoryName' component={AllRocksContainer} onEnter={categoryRocksEnter} />
+          <Route path="/rocks/categories/:categoryName" component={AllRocksContainer} onEnter={categoryRocksEnter} />
           <Route path="/users/:id" component={UserInfoContainer} onEnter={userSignedIn} />
           <Route path="/login" component={LoginContainer} />
           <Route path="/cart/:userId" component={CartContainer} onEnter={cartEnter} />

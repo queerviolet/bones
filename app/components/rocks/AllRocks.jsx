@@ -21,13 +21,13 @@ const styles = {
     margin: 'auto',
     overflowY: 'auto'
   },
-  title: {
-  },
   paper: {
     height: '21vw',
     width: '21vw',
     margin: 34,
     padding: 10,
+  },
+  titleStyles: {
   },
   iconStyles: {
     marginRight: 24
@@ -75,6 +75,7 @@ const AllRocks = ({
             rows={1}
             key={rock.id}
             title={rock.name}
+            titleStyle={styles.titleStyle}
             subtitle={<span>$<b>{(rock.price / 100).toFixed(2)}</b></span>}
             actionIcon={
               <IconMenu
@@ -101,7 +102,7 @@ const AllRocks = ({
                     type="number"
                     name="itemQuantity"
                     errorText={errorText}
-                    loatingLabelFixed={true}
+                    floatingLabelFixed={true}
                     floatingLabelText="Quantity"
                     onTouchTap={evt => evt.stopPropagation()}
                     onChange={evt => updateQuantity(Number(evt.target.value))}
