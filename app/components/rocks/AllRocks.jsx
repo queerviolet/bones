@@ -21,14 +21,13 @@ const styles = {
     margin: 'auto',
     overflowY: 'auto'
   },
-  title: {
-  },
   paper: {
-    height: '20em',
-    width: '20em',
+    height: '21vw',
+    width: '21vw',
     margin: 34,
     padding: 10,
-    // textAlign: 'left'
+  },
+  titleStyles: {
   },
   iconStyles: {
     marginRight: 24
@@ -41,7 +40,11 @@ const AllRocks = ({
   updateQuantity,
   addProductToCart,
   auth: { id },
-  itemQuantity: { quantity, errorText }
+  itemQuantity: {
+    quantity,
+    errorText,
+    isDisabled
+  }
 }) => {
   const category = pathname.split('/')[3];
   const selectTitle = (() => {
@@ -72,7 +75,8 @@ const AllRocks = ({
             rows={1}
             key={rock.id}
             title={rock.name}
-            subtitle={<span>$<b>{(rock.price) / 100}</b></span>}
+            titleStyle={styles.titleStyle}
+            subtitle={<span>$<b>{(rock.price / 100).toFixed(2)}</b></span>}
             actionIcon={
               <IconMenu
                 iconButtonElement={
@@ -84,10 +88,7 @@ const AllRocks = ({
                     <i
                       className="material-icons"
                       style={styles.iconStyles}
-                      onClick={() => {
-                        updateQuantity(0);
-                        console.log('item quantity reset', quantity);
-                      }}
+                      onClick={() => updateQuantity(0)}
                     >
                       add_shopping_cart
                     </i>
@@ -101,25 +102,19 @@ const AllRocks = ({
                     type="number"
                     name="itemQuantity"
                     errorText={errorText}
+                    floatingLabelFixed={true}
                     floatingLabelText="Quantity"
-                    onTouchTap={evt => {
-                      evt.stopPropagation();
-                      evt.preventDefault();
-                    }}
-                    onChange={evt => {
-                      updateQuantity(Number(evt.target.value));
-                      console.log('current quantity input', evt.target.value);
-                      console.log('ERROR TEXT', errorText);
-                    }}
+                    onTouchTap={evt => evt.stopPropagation()}
+                    onChange={evt => updateQuantity(Number(evt.target.value))}
                     hintText="How many would you like to order?"
                   />
                 </MenuItem>
                 <MenuItem
+                  disabled={isDisabled}
                   primaryText="Add To Cart"
                   onTouchTap={evt => {
                     evt.preventDefault();
                     addProductToCart(quantity, id, rock.id);
-                    console.log('The quantity added to the cart:', quantity);
                   }}
                 />
               </IconMenu>

@@ -13,7 +13,6 @@ const router = require('express').Router();
 router.get('/:userId', (req, res, next) => {
   let modelWhere;
   //if it a guest, pass req.params as 'undefined'
-  console.log(req.params.userId);
   if (req.params.userId === 'undefined') {
     modelWhere = {
       status: 'in-cart',

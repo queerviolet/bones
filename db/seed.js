@@ -47,7 +47,8 @@ const seedRocks = () => db.Promise.each([
   {name: 'kirbyrock', photo: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTxMlP-3pU2ofXx9ctdH3dsBz2mxOl6LS_8oY6knLGRIBQDz6VJ', price: 39400, weight: 18, color: 'pink', description: 'Adorable pet in pepto-bismol pink.', stock: 18, category_id: 1},
   {name: 'excalibur rock', photo: 'http://www.explorelochlomond.co.uk/stone.jpg', price: 53329400, weight: 2400, color: 'grey', description: 'Useful for fending off intruders. Keep away from children.', stock: 1, category_id: 2},
   {name: 'Kid Rock', photo: 'https://www.razorgator.com/images/2/concerts-hero/rock-pop/kid-rock.jpg', price: 1539420, weight: 160, color: 'human', description: 'Partyyyfyfydsfdsuyydsfyyyyyyyyy!', stock: 2, category_id: 4},
-  {name: 'Chris Rock', photo: 'http://www.officialpsds.com/images/thumbs/Chris-Rock-psd48491.png', price: 4039420, weight: 140, color: 'human', description: 'I had a cop pull me over the other day, scared me so bad, made me think I stole my own car', stock: 2, category_id: 4}
+  {name: 'Chris Rock', photo: 'http://www.officialpsds.com/images/thumbs/Chris-Rock-psd48491.png', price: 4039420, weight: 140, color: 'human', description: 'I had a cop pull me over the other day, scared me so bad, made me think I stole my own car', stock: 2, category_id: 4},
+  {name: 'The Rolling Stones', photo: 'http://rollingstones.topmusic.center/Fotos/TheStones/TheStones16.jpg', price: 14039420, weight: 450, color: 'human', description: 'Limited Edition Bundle Pack!', stock: 1, category_id: 4}
 
 ], rock => db.model('rocks').create(rock));
 

@@ -43,23 +43,23 @@ const SingleRock = ({
   updateQuantity,
   addProductToCart,
   auth: { id },
-  itemQuantity: { quantity, errorText }
+  itemQuantity: {
+    quantity,
+    errorText,
+    isDisabled
+  }
 }) => {
   const { reviews } = rock;
 
   return (
     <div style={styles.root}>
-      <GridList
-        cols={4}
-        cellHeight="auto"
-        style={styles.gridlist}
-      >
+      <GridList cols={4} cellHeight="auto" style={styles.gridlist}>
         <GridTile cols={2}>
           <img src={ rock.photo } />
         </GridTile>
         <GridTile cols={2}>
           <h1>{rock.name}</h1>
-          <h2>{`Price: $${rock.price / 100}`}</h2>
+          <h2>{`Price: $${(rock.price / 100).toFixed(2)}`}</h2>
           <h2>{`Category: ${rock.category && rock.category.name}`}</h2>
           <h2>{`Color: ${rock.color}`}</h2>
           <p>{rock.description}</p>
@@ -71,9 +71,7 @@ const SingleRock = ({
           <br />
           {reviews && reviews.map((review) => (
             <div key={review.id}>
-              <div>
-                { stars(review.rating) }
-              </div>
+              <div>{stars(review.rating)}</div>
               <p>{review.comment}</p>
             </div>
           ))}
@@ -103,25 +101,17 @@ const SingleRock = ({
                 type="number"
                 name="itemQuantity"
                 errorText={errorText}
+                floatingLabelFixed={true}
                 floatingLabelText="Quantity"
-                onTouchTap={evt => {
-                  evt.preventDefault();
-                  evt.stopPropagation();
-                }}
-                onChange={evt => {
-                  evt.preventDefault();
-                  evt.stopPropagation();
-                  updateQuantity(Number(evt.target.value));
-                }}
+                onTouchTap={evt => evt.stopPropagation()}
+                onChange={evt => updateQuantity(Number(evt.target.value))}
                 hintText="How many would you like to order?"
               />
             </MenuItem>
             <MenuItem
+              disabled={isDisabled}
               primaryText="Add To Cart"
-              onTouchTap={evt => {
-                evt.preventDefault();
-                addProductToCart(quantity, id, rock.id);
-              }}
+              onTouchTap={() => addProductToCart(quantity, id, rock.id)}
             />
           </IconMenu>
         </GridTile>
