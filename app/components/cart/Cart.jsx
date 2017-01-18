@@ -71,6 +71,7 @@ export default ({ cartProducts, auth, cartAddProduct, cartRemoveProduct }) => {
   return (
     <div style={style.root}>
       <h1>Shopping Cart</h1>
+
     </div>
   );
 };

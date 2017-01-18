@@ -28,13 +28,21 @@ router.get('/:userId', (req, res, next) => {
     where: modelWhere
   })
   .then(order => {
-    return CartProduct.findAll({
-      where: {order_id: order.id},
-      include: [Rock, Order]
-    });
+    if(!order) {
+      return res.sendStatus(404);
+    } else {
+      return CartProduct.findAll({
+         where: {order_id: order.id},
+        include: [Rock, Order]
+      });
+    }
   })
   .then(cartProducts => {
-    res.send(cartProducts);
+    if(!cartProducts) {
+      return res.sendStatus(404);
+    }
+      res.json(cartProducts);
+
   })
   .catch(next);
 });
