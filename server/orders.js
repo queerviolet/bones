@@ -57,4 +57,135 @@ router.put('/edit/:id', (req, res, next) => {
   //   .catch(next);
 });
 
+// Checkout a shopping cart
+ // router.put('/checkout/:userId', (req, res, next) => {
+
+ //    let newUserData, newAddressData, newOrderData ;
+
+ //    if (req.params.userId === 'undefined') {
+ //      User.create(req.body)
+ //        .then(newUser => {
+ //          newUserData = newUser;
+ //        })
+ //        .then(() => {
+ //          return Address.create(req.body)
+ //          .then(newAddress => {
+ //            newAddressData = newAddress;
+ //          })
+ //        })
+ //        .then(() => {
+ //           return Order.update(
+ //            {
+ //              user_id: newUserData.id,
+ //              address_id: newAddressData.id
+ //              status: "processing"
+ //            },
+ //            {
+ //              status: 'in-cart',
+ //              where:{sessionId: req.session.id}
+ //            })
+
+ //        })
+ //        .then(order => {
+ //          res.status(200).send(order);
+ //        })
+ //        .catch(next)
+ //    } else {
+
+ //        return Order.update(
+ //        {
+ //          status: "processing"
+ //        },
+ //        {
+ //          status: 'in-cart',
+ //          where:{user_id: req.params.userId}
+ //        })
+ //        .then(order => {
+
+ //          newOrderData = order;
+
+ //          return Address.update(
+ //          {
+ //            street: req.body.street,
+ //            city: req.body.city,
+ //            state: req.body.state,
+ //            zipcode: req.body.zipcode
+ //          },
+ //          {
+ //            where: {id: order.address_id}
+ //          })
+ //        })
+ //        .then(address => {
+ //          newAddressData = address;
+ //          res.json({newOrderData, newAddressData})
+ //        })
+ //        .catch(next);
+
+ //      }
+
+ // })
+
+ router.put('/checkout/:userId', (req, res, next) => {
+
+    let affectedOrderData;
+
+    if (req.params.userId === 'undefined') {
+      let newUserData;
+      User.create(req.body)
+      .then(newUser => {
+          newUserData = newUser;
+          return Address.create(req.body)
+        })
+        .then(newAddress => {
+           return Order.update(
+            {
+              user_id: newUserData.id,
+              address_id: newAddress.id,
+              status: "processing"
+            },
+            {
+              where:{
+                sessionId: req.session.id,
+                status: 'in-cart'
+              }, returning: true
+            })
+        })
+        .then(affectedOrder => {
+          res.send(affectedOrder[1][0]);
+        })
+        .catch(next)
+
+    } else {
+        Order.update(
+        {
+          status: "processing"
+        },
+        {
+          where:{
+            user_id: req.params.userId,
+            status: 'in-cart'
+          }, returning: true
+        })
+        .then(affectedOrder => {
+          affectedOrderData = affectedOrder;
+          return Address.update(
+          {
+            street: req.body.street,
+            city: req.body.city,
+            state: req.body.state,
+            zipcode: req.body.zipcode
+          },
+          {
+            where: {user_id: req.params.userId},
+            returning: true
+          })
+        })
+        .then(affectedAddressArr => {
+
+          res.send(affectedOrderData[1]);
+        })
+        .catch(next);
+    }
+
+ })
 module.exports = router;

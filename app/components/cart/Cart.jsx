@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-
 export default({ cartProducts, cartAddProduct, cartRemoveProduct }) => {
   console.log('cartProducts', cartProducts);
   return(
@@ -18,6 +17,7 @@ export default({ cartProducts, cartAddProduct, cartRemoveProduct }) => {
           </ul>
         )
       })
+
     }
     </div>
   )
