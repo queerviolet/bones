@@ -1,6 +1,7 @@
 import React from 'react';
 import { GridList, GridTile } from 'material-ui/GridList';
 import {
+  Snackbar,
   IconMenu,
   MenuItem,
   TextField,
@@ -41,12 +42,15 @@ const styles = {
 const SingleRock = ({
   rock,
   updateQuantity,
+  addedItemToCart,
   addProductToCart,
+  handleSnackbarClose,
   auth: { id },
   itemQuantity: {
     quantity,
     errorText,
-    isDisabled
+    isDisabled,
+    messageOpen
   }
 }) => {
   const { reviews } = rock;
@@ -111,11 +115,21 @@ const SingleRock = ({
             <MenuItem
               disabled={isDisabled}
               primaryText="Add To Cart"
-              onTouchTap={() => addProductToCart(quantity, id, rock.id)}
+              onTouchTap={evt => {
+                evt.preventDefault();
+                addedItemToCart();
+                addProductToCart(quantity, id, rock.id);
+              }}
             />
           </IconMenu>
         </GridTile>
       </GridList>
+      <Snackbar
+        open={messageOpen}
+        message="Your rocks have been added to your cart!"
+        autoHideDuration={3000}
+        onRequestClose={handleSnackbarClose}
+      />
     </div>
   );
 };

@@ -133,7 +133,7 @@ const AllRocks = ({
     <Snackbar
       open={messageOpen}
       message="Your rocks have been added to your cart!"
-      autoHideDuration={4000}
+      autoHideDuration={3000}
       onRequestClose={handleSnackbarClose}
     />
     </div>
