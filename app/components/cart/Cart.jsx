@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import Checkout from 'APP/app/components/checkout/Checkout';
 
 import {
   GridList,
@@ -52,7 +53,7 @@ export default ({ cartProducts, auth, cartAddProduct, cartRemoveProduct }) => {
 
                   <RaisedButton style={style.button} label="Remove From Cart" secondary={true} onClick={evt => {
                     evt.preventDefault();
-                    cartRemoveProduct(auth.id, cartProduct.rock_id);
+                    cartRemoveProduct(cartProduct.order.user_id, cartProduct.rock_id);
                     }}/>
 
                 </GridTile>
@@ -61,7 +62,7 @@ export default ({ cartProducts, auth, cartAddProduct, cartRemoveProduct }) => {
           }
           <GridTile cols={4}>
             <h2>Total Price: ${(totalPrice / 100).toFixed(2)}</h2>
-            <RaisedButton style={{align: 'center'}} label="Checkout" primary={true}/>
+            <Checkout />
           </GridTile>
         </GridList>
       </div>

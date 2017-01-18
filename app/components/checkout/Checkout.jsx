@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { TextField, RaisedButton, GridList, GridTile} from 'material-ui';
 
-export default({ defaultAddress }) => {
+export default({auth, defaultAddress, cartCheckoutOrder, cartProducts }) => {
+
   return(
 
     <div>
@@ -21,7 +22,7 @@ export default({ defaultAddress }) => {
               <TextField name="card-number" floatingLabelText="Card Number" /><br />
               <TextField name="expiration-date" floatingLabelText="Expiration Date" hintText="MM/YYYY" /><br />
               <TextField name="cv-code" floatingLabelText="Security Code" /><br />
-              <RaisedButton label="Submit Order" primary={true} type="submit" />
+              <RaisedButton style={{align:'center'}} label="Checkout" primary={true} type="submit" onClick={() => cartCheckoutOrder(auth.id)} />
           </div>
           </div>
         </div>

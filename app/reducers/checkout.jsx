@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {browserHistory} from 'react-router';
 
 // ---------------------> Action type constant <---------------------
 export const CHECK_OUT_CART = 'CHECK_OUT_CART';
@@ -16,6 +17,7 @@ export const checkoutOrderCart = userId => dispatch => {
   .then(res => {
     dispatch(checkoutCart(res.data));
   })
+  .then(() => browserHistory.push('/'))
   .catch(err => console.err('Unable to update shopping cart', err));
 };
 
