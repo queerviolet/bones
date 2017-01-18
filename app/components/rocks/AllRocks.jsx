@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { GridList, GridTile } from 'material-ui/GridList';
 import {
   Paper,
+  Snackbar,
   IconMenu,
   MenuItem,
   Subheader,
@@ -38,12 +39,15 @@ const AllRocks = ({
   rocks,
   pathname,
   updateQuantity,
+  addedItemToCart,
   addProductToCart,
+  handleSnackbarClose,
   auth: { id },
   itemQuantity: {
     quantity,
     errorText,
-    isDisabled
+    isDisabled,
+    messageOpen
   }
 }) => {
   const category = pathname.split('/')[3];
@@ -114,6 +118,7 @@ const AllRocks = ({
                   primaryText="Add To Cart"
                   onTouchTap={evt => {
                     evt.preventDefault();
+                    addedItemToCart();
                     addProductToCart(quantity, id, rock.id);
                   }}
                 />
@@ -125,6 +130,12 @@ const AllRocks = ({
         </Paper>
         ))}
     </GridList>
+    <Snackbar
+      open={messageOpen}
+      message="Your rocks have been added to your cart!"
+      autoHideDuration={3000}
+      onRequestClose={handleSnackbarClose}
+    />
     </div>
   );
 };
