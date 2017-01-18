@@ -52,7 +52,7 @@ export default ({ cartProducts, auth, cartAddProduct, cartRemoveProduct }) => {
 
                   <RaisedButton style={style.button} label="Remove From Cart" secondary={true} onClick={evt => {
                     evt.preventDefault();
-                    cartRemoveProduct(cartProduct.order.user_id, cartProduct.rock_id);
+                    cartRemoveProduct(auth.id, cartProduct.rock_id);
                     }}/>
 
                 </GridTile>
