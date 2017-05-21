@@ -12,8 +12,10 @@ const selfOnly = action => (req, res, next) => {
   next()
 }
 
-const forbidden = message => (req, res, next) => {
+const forbidden = message => (req, res) => {
   res.status(403).send(message)
 }
 
-module.exports = {mustBeLoggedIn, selfOnly, forbidden,}
+// Feel free to add more filters here (suggested: something that keeps out non-admins)
+
+module.exports = {mustBeLoggedIn, selfOnly, forbidden}
