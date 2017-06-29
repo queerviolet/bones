@@ -29,12 +29,7 @@ module.exports = {
     rules: [{
       test: /jsx?$/,
       exclude: /(node_modules|bower_components)/,
-      use: [{
-        loader: 'babel-loader',
-        options: {
-          presets: ['react', 'es2015', 'stage-2']
-        }
-      }]
+      loader: 'babel-loader' // config in .babelrc
     }]
   },
   plugins: devMode
