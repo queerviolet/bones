@@ -4,10 +4,10 @@ module.exports = {
   parser: "babel-eslint",
   parserOptions: {
     sourceType: "module",
-    ecmaVersion: 8
-  },
-  ecmaFeatures: {
-    jsx: true,
+    ecmaVersion: 8,
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   plugins: ['react'],
   rules: {

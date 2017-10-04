@@ -10,8 +10,8 @@ const store = createStore(
   rootReducer,
   composeWithDevTools(
     applyMiddleware(
-      createLogger({collapsed: true}),
-      thunkMiddleware
+      thunkMiddleware,
+      createLogger({collapsed: true})
     )
   )
 )
